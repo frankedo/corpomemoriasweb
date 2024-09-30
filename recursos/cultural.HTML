@@ -26,23 +26,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Trayectoria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testmonial">Fundadoras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contacto</a>
-                    </li>
-                    <li class="nav-item ml-md-4">
-                        <a class="nav-link btn btn-primary" href="components.html"></a>
+            
                     </li>
                 </ul>
             </div>
@@ -54,7 +38,7 @@
         <div class="overlay"></div>
         <div class="header-content">
             <p>Corporación Marlón Memorias y Huellas de un Desaparecido</p>
-            <h6>Corpomemorias</h6> 
+            <h6>Cultural</h6> 
             <button class="btn btn-outline-light">Estamos en Construcción</button> 
         </div>      
     </header><!-- End of Page Header -->    
@@ -341,89 +325,3 @@
     <script src="assets/js/creative-design.js"></script>
 
 	
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popup Automático con Imagen</title>
-    <style>
-        /* Estilos para el popup */
-        .popup {
-            display: none; /* Oculto por defecto */
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            z-index: 100;
-        }
-        
-        /* Fondo oscuro cuando el popup está activo */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 50;
-        }
-        
-        /* Estilos para el botón de cerrar */
-        .close-btn {
-            float: right;
-            cursor: pointer;
-            color: red;
-        }
-
-        /* Imagen dentro del popup */
-        .popup img {
-            width: 100%;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Fondo oscuro -->
-    <div id="popupOverlay" class="popup-overlay"></div>
-
-    <!-- Contenido del popup -->
-    <div id="popup" class="popup">
-        <span class="close-btn" onclick="closePopup()">X (cerrar)</span>
-        <h2>¡Bienvenido!</h2>
-        <p>Tu ayuda es importante.</p>
-
-        <!-- Imagen dentro del popup -->
-        <img src="assets/imgs/1727378767183.jpg" alt="Imagen de Popup">
-    </div>
-
-    <script>
-        // Función para abrir el popup automáticamente
-        function openPopup() {
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('popupOverlay').style.display = 'block';
-        }
-
-        // Función para cerrar el popup
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
-
-        // Abrir el popup automáticamente cuando la página cargue
-        window.onload = function() {
-            openPopup();
-        };
-    </script>
-</body>
-</html>
