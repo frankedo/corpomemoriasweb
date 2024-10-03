@@ -11429,7 +11429,7 @@ section.height-auto {
 }
 
 .img-wrapper {
- 
+ position: relative; 
   <--  inicio del imagen wrapper que agregue yo-->
   
     width: 100%; /* O un tamaño fijo como 300px */
