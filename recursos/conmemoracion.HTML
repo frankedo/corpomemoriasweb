@@ -131,6 +131,73 @@
                     <div class="img-wrapper">
                         <div class="after right"></div>
                         <img src="assets/imgs/Fotos_entrega_dinga_aguachica_cesar_14-1024x710.jpeg" class="w-100" alt="About Us">
+<div class="container">
+    <div class="image-slider">
+        <div class="images">
+            <img src="image1.jpg" alt="Imagen 1">
+            <img src="image2.jpg" alt="Imagen 2">
+            <img src="image3.jpg" alt="Imagen 3">
+        </div>
+    </div>
+    
+    <!-- Botones de navegación -->
+    <div class="nav-buttons">
+        <span id="prev">&#10094;</span>
+        <span id="next">&#10095;</span>
+    </div>
+
+    <!-- Puntos indicadores -->
+    <div class="dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+    </div>
+</div>
+
+<script>
+    const images = document.querySelector('.images');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+    const totalImages = document.querySelectorAll('.images img').length;
+
+    // Mostrar imagen según índice
+    function showImage(index) {
+        const offset = index * -100;
+        images.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+    }
+
+    // Función para el botón "siguiente"
+    document.getElementById('next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+    });
+
+    // Función para el botón "anterior"
+    document.getElementById('prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        showImage(currentIndex);
+    });
+
+    // Cambiar imagen al hacer clic en un punto
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            currentIndex = parseInt(e.target.getAttribute('data-index'));
+            showImage(currentIndex);
+        });
+    });
+
+    // Cambio automático de imágenes cada 5 segundos
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        showImage(currentIndex);
+    }, 5000);
+</script>
+
+
+
                     </div>                      
                 </div>
             </div><!-- End of Row -->           
