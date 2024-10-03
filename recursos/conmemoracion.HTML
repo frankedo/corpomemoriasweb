@@ -131,6 +131,87 @@
                     <div class="img-wrapper">
                         <div class="after right"></div>
                         <img src="assets/imgs/Fotos_entrega_dinga_aguachica_cesar_14-1024x710.jpeg" class="w-100" alt="About Us">
+
+
+ <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .image-slider {
+            width: 100%;
+            overflow: hidden;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+
+        .images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .images img {
+            width: 100%;
+            display: block;
+        }
+
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .nav-buttons span {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            user-select: none;
+        }
+
+        .dots {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dots span {
+            display: inline-block;
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dots .active {
+            background-color: #333;
+        }
+    </style>
+
+
+
 <div class="container">
     <div class="image-slider">
         <div class="images">
