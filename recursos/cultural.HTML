@@ -2,15 +2,10 @@
 <html lang="en">
 <head>
 <!-- Otros enlaces y metadatos -->
-    
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
-
     <!-- Lightbox JS with defer -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js" defer></script>
-
-
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Creative Design landing page.">
@@ -33,6 +28,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
  <!-- estilo de la grilla de imagenes en la seccion grupo de teatro -->
+<style>
+    .thumbnail-image {
+        width: 100px; /* Ajusta el tamaño de las miniaturas */
+        height: auto; /* Mantiene la proporción correcta */
+        margin-right: 10px; /* Espacio entre las imágenes */
+    }
+    
+    .image-grid {
+        display: flex;         /* Activa el diseño en fila */
+        overflow-x: auto;      /* Habilita el desplazamiento horizontal */
+        white-space: nowrap;   /* Evita que las imágenes se alineen en vertical */
+    }
+
+    .image-grid img {
+        flex-shrink: 0; /* Evita que las imágenes se encojan */
+    }
+</style> <!-- finaliza estilo de la grilla de imagenes en la seccion grupo de teatro -->
 
 
 </head>
