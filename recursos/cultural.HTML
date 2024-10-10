@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Lightbox CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+
+<!-- Lightbox JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Creative Design landing page.">
@@ -222,7 +228,7 @@
 
 
 
- <!-- About Section -->
+<!-- About Section -->
 <section id="about">
     <div class="container">
         <div class="about-wrapper">
@@ -239,7 +245,12 @@
                 <div class="row">
                     <div class="col">
                         <p></p>
-<!-- Image Slider -->
+                    </div>
+                </div><!-- End of Row -->
+
+                <!-- Combined Image Slider and YouTube Video -->
+                <div class="media-container">
+                    <!-- Image Slider -->
                     <div id="imageCarousel-1" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#imageCarousel-1" data-slide-to="0" class="active"></li>
@@ -248,13 +259,19 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="../assets/imgs/huellasimagen.jpeg" class="w-100 rounded-lg" alt="Huellas Imagen 1">
+                                <a href="../assets/imgs/huellasimagen.jpeg" data-lightbox="gallery" data-title="Huellas Imagen 1">
+                                    <img src="../assets/imgs/huellasimagen.jpeg" class="w-100 rounded-lg" alt="Huellas Imagen 1" style="width: 150px; height: auto;">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="../assets/imgs/pexels-anntarazevich-7772001.jpg" class="w-100 rounded-lg" alt="Imagen 2">
+                                <a href="../assets/imgs/pexels-anntarazevich-7772001.jpg" data-lightbox="gallery" data-title="Imagen 2">
+                                    <img src="../assets/imgs/pexels-anntarazevich-7772001.jpg" class="w-100 rounded-lg" alt="Imagen 2" style="width: 150px; height: auto;">
+                                </a>
                             </div>
                             <div class="carousel-item">
-                                <img src="../assets/imgs/pexels-artur-vila-nova-125806131-13351550.jpg" class="w-100 rounded-lg" alt="Imagen 3">
+                                <a href="../assets/imgs/pexels-artur-vila-nova-125806131-13351550.jpg" data-lightbox="gallery" data-title="Imagen 3">
+                                    <img src="../assets/imgs/pexels-artur-vila-nova-125806131-13351550.jpg" class="w-100 rounded-lg" alt="Imagen 3" style="width: 150px; height: auto;">
+                                </a>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#imageCarousel-1" role="button" data-slide="prev">
@@ -266,19 +283,15 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div><!-- End of Image Slider -->
-                    </div>
-                </div><!-- End of Row -->
-
-            
-                    
 
                     <!-- YouTube Video -->
                     <iframe width="100%" height="450px" class="border-0" src="https://www.youtube.com/embed/cN3eIwHyiKI" allowfullscreen></iframe>
-          
+                </div><!-- End of Media Container -->
             </div>
         </div><!-- End of About Wrapper -->
     </div><!-- End of Container -->
 </section><!-- End of Section -->
+
 
 
     <!-- Section -->
