@@ -1,0 +1,63 @@
+<section id="podcast-visor">
+    <div class="container">
+        <h2 class="text-center">Visor de Podcast</h2>
+        <div id="podcastCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="LINK_A_EXIGENCIAS_UBPD">
+                        <img src="ruta_a_la_imagen1.jpg" class="d-block w-100" alt="Exigencias UBPD">
+                    </a>
+                    <div class="carousel-caption">
+                        <h5>Exigencias UBPD</h5>
+                        <p>Escucha el último episodio del pódcast de Exigencias UBPD.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="LINK_A_APOYEMOS_A_MAMI_VOLVERAS">
+                        <img src="ruta_a_la_imagen2.jpg" class="d-block w-100" alt="Apoyemos a Mami ¿Algún día volverás?">
+                    </a>
+                    <div class="carousel-caption">
+                        <h5>Apoyemos a Mami ¿Algún día volverás?</h5>
+                        <p>Descubre la historia detrás de este emocionante pódcast.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="LINK_A_EPISODIO_1_SPOTIFY">
+                        <img src="ruta_a_la_imagen3.jpg" class="d-block w-100" alt="Apoyemos a Mami episodio 1: Revolcón del Vientre">
+                    </a>
+                    <div class="carousel-caption">
+                        <h5>Apoyemos a Mami episodio 1: Revolcón del Vientre</h5>
+                        <p>Escucha el primer episodio en Spotify.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="LINK_A_EPISODIO_2_SPOTIFY">
+                        <img src="ruta_a_la_imagen4.jpg" class="d-block w-100" alt="Apoyemos a Mami episodio 2: La Memoria de un Concebido">
+                    </a>
+                    <div class="carousel-caption">
+                        <h5>Apoyemos a Mami episodio 2: La Memoria de un Concebido</h5>
+                        <p>Explora el segundo episodio en Spotify.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="LINK_A_CRONIQUEANDO_SPOTIFY">
+                        <img src="ruta_a_la_imagen5.jpg" class="d-block w-100" alt="Croniqueando - Jairo Tarazona, Temporada 1, Episodio 44">
+                    </a>
+                    <div class="carousel-caption">
+                        <h5>Croniqueando - Temporada 1, Episodio 44</h5>
+                        <p>El corazón grande de una madre buscadora.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Controles para avanzar/retroceder en el visor -->
+            <a class="carousel-control-prev" href="#podcastCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#podcastCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</section>
