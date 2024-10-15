@@ -15,51 +15,6 @@
 
 </head>
 
-#galeria-arte {
-    margin: 60px 0;
-}
-
-#galeria-arte h2 {
-    font-size: 2.5em;
-    font-weight: bold;
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 40px;
-}
-
-.art-item img {
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.art-item:hover img {
-    transform: scale(1.05);
-}
-
-.modal-content {
-    border-radius: 10px;
-}
-
-.modal-body img {
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-    border-bottom: none;
-}
-
-.modal-title {
-    font-size: 1.8em;
-    font-weight: 600;
-}
-
-.close {
-    font-size: 1.5em;
-}
-
-
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
     <!-- Page Navbar -->
@@ -120,98 +75,9 @@ pictórica de los Hechos victimizantes”, tuvo buena participación de los visi
 
 
 
-<section id="galeria-arte">
-    <div class="container">
-        <div class="row">
 
-            <!-- Tarjeta 1 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card my-3">
-                    <a href="../assets/imgs/pexels-artur-vila-nova-125806131-13351550.jpg" data-toggle="modal" data-target="#obra1">
-                        <img src="https://www.imprentaonline.net/blog/wp-content/webpc-passthru.php?src=https://www.imprentaonline.net/blog/wp-content/uploads/DALL%C2%B7E-2023-10-16-10.41.49-Illustration-depicting-a-humanoid-robot-with-half-of-its-face-transparent-revealing-intricate-circuits-and-gears-inside.-The-robot-is-holding-a-light-1.png&nocache=1" class="img-fluid" alt="Obra 1">
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="#" class="text-secondary">What is HTML</a></h3>
-                        <p class="card-text">HTML stands for Hyper Text Markup Language, It helps to learn web development and designing.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Modal para Tarjeta 1 -->
-            <div class="modal fade" id="obra1" tabindex="-1" role="dialog" aria-labelledby="modalLabel1" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel1">Ficha Técnica - What is HTML</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="https://www.imprentaonline.net/blog/wp-content/webpc-passthru.php?src=https://www.imprentaonline.net/blog/wp-content/uploads/DALL%C2%B7E-2023-10-16-10.41.49-Illustration-depicting-a-humanoid-robot-with-half-of-its-face-transparent-revealing-intricate-circuits-and-gears-inside.-The-robot-is-holding-a-light-1.png&nocache=1" class="img-fluid" alt="Obra 1">
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>Título: What is HTML</h5>
-                                    <p><strong>Descripción:</strong> Una ilustración que representa un robot humanoide con su rostro transparente mostrando circuitos y engranajes dentro.</p>
-                                    <p><strong>Artista:</strong> IA DALL·E</p>
-                                    <p><strong>Fecha:</strong> 2023</p>
-                                    <p><strong>Dimensiones:</strong> 1920x1080 px</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Tarjeta 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card my-3">
-                    <a href="#" data-toggle="modal" data-target="#obra2">
-                        <img src="https://m.facebook.com/photo.php?fbid=152884396077214" class="img-fluid" alt="Obra 2">
-                    </a>
-                    <div class="card-body">
-                        <h3 class="card-title"><a href="#" class="text-secondary">Why We Use HTML</a></h3>
-                        <p class="card-text">We use HTML to make websites that help gain knowledge.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal para Tarjeta 2 -->
-            <div class="modal fade" id="obra2" tabindex="-1" role="dialog" aria-labelledby="modalLabel2" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel2">Ficha Técnica - Why We Use HTML</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="https://m.facebook.com/photo.php?fbid=152884396077214" class="img-fluid" alt="Obra 2">
-                                </div>
-                                <div class="col-md-6">
-                                    <h5>Título: Why We Use HTML</h5>
-                                    <p><strong>Descripción:</strong> Una imagen que representa la importancia del HTML en el desarrollo web.</p>
-                                    <p><strong>Artista:</strong> Desconocido</p>
-                                    <p><strong>Fecha:</strong> 2023</p>
-                                    <p><strong>Dimensiones:</strong> 1280x720 px</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Agrega más tarjetas y modales siguiendo el mismo patrón -->
-        </div>
-    </div>
-</section>
 
 
 
