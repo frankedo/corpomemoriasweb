@@ -215,3 +215,88 @@
 }
 
 
+#museo-virtual-elegante {
+    margin: 60px 0;
+    font-family: 'Georgia', serif;
+}
+
+.section-title-elegante {
+    font-size: 3em;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-elegante h3 {
+    font-size: 2.2em;
+    font-weight: 500;
+    color: #34495e;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.museo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+}
+
+.museo-item:hover {
+    transform: scale(1.03);
+}
+
+.overlay-container img {
+    border-radius: 15px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(44, 62, 80, 0.85);
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+}
+
+.overlay h5 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.overlay p {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+.museo-item:hover .overlay {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .overlay h5 {
+        font-size: 1.3em;
+    }
+
+    .overlay p {
+        font-size: 1em;
+    }
+}
+
+
