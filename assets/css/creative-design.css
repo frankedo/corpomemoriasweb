@@ -11431,8 +11431,8 @@ section.height-auto {
 .img-wrapper {
 position: relative;
           /*lo agregue yo*/
-          width: 720; /*O un tamaño fijo como 300px */
-          height: 540; /* Ajusta según lo que necesites */
+          width: 720px; /*O un tamaño fijo como 300px */
+          height: 540px; /* Ajusta según lo que necesites */
           object-fit: cover; /* Asegura que las imágenes se recorten pero mantengan la proporción */
           display: block; /* Elimina el espacio blanco debajo de las imágenes */
           /*overflow: hidden;*/ /* Oculta el exceso de imagen */
