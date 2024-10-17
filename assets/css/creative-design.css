@@ -11454,8 +11454,8 @@ position: relative;
   position: relative;
   width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
     height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
-  width: 350px; /* Ancho fijo */
-    height: 300px; /* Alto fijo */
+  width: 900px; /* Ancho fijo */
+    height: 540px; /* Alto fijo */
     object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
   border-radius: 0.2rem;
   box-shadow: 0 3px 80px rgba(173, 181, 189, 0.5), 0 0 10px rgba(173, 181, 189, 0.7) !important;
