@@ -11432,7 +11432,7 @@ section.height-auto {
 position: relative;  
 width: 333px; /* Ancho fijo */
     height: 250px; /* Alto fijo */
-    overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+  
 }
 
 .img-wrapper .after {
