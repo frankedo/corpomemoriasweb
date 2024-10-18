@@ -349,3 +349,47 @@
 }
 
 
+ <!-- estilo de las cards Documental  -->
+/* Establecer el mismo tamaño para todas las cards */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-top {
+    height: 200px; /* Ajusta esta altura según tus necesidades */
+    object-fit: cover; /* Mantiene las proporciones de la imagen */
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Para evitar que el texto largo desplace la altura */
+    text-overflow: ellipsis; /* Corta el texto con "..." si es demasiado largo */
+    white-space: nowrap; /* Evita que el texto salte a la siguiente línea */
+}
+
+/* Asegura que todas las cards tengan la misma altura */
+.col-md-4 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.card {
+    max-width: 100%;
+}
+ <!-- finaliza estilo de las cards Documental  -->
+
+
+
