@@ -145,17 +145,17 @@
 
 
 
+<!-- Bootstrap Modal HTML para los videos musicales -->
 <section id="musica">
     <div class="container">
         <h2 class="text-center mb-4">Videos Musicales</h2>
-  <p>Tuvimos la participación especial en la grabación de los videos musicales con los siguientes
-grupos artísticos:</p>
+        <p>Tuvimos la participación especial en la grabación de los videos musicales con los siguientes grupos artísticos:</p>
         <div class="row">
 
             <!-- Video 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <a href="https://youtu.be/4yt-xDqcGIA?si=6yVXCWWfW7OPNqSL" data-lightbox="musica" data-title="¿Dónde están? - Ahiman feat Cuellar">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal1">
                         <img src="ruta_a_imagen1.jpg" class="card-img-top" alt="Video 1">
                     </a>
                     <div class="card-body text-center">
@@ -167,7 +167,7 @@ grupos artísticos:</p>
             <!-- Video 2 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <a href="https://youtu.be/nib_GfI2tJg?si=ox7sF4_78aNqnwOs" data-lightbox="musica" data-title="Refugio de cristal - Bonhomia Inefable">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal2">
                         <img src="ruta_a_imagen2.jpg" class="card-img-top" alt="Video 2">
                     </a>
                     <div class="card-body text-center">
@@ -179,7 +179,7 @@ grupos artísticos:</p>
             <!-- Video 3 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" data-lightbox="musica" data-title="Video Musical 3">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal3">
                         <img src="ruta_a_imagen3.jpg" class="card-img-top" alt="Video 3">
                     </a>
                     <div class="card-body text-center">
@@ -188,10 +188,63 @@ grupos artísticos:</p>
                 </div>
             </div>
 
-            <!-- Agrega más videos de la misma manera si lo necesitas -->
         </div>
     </div>
 </section>
+
+<!-- Modal para Video 1 -->
+<div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModal1Label">¿Dónde están? - Ahiman feat Cuellar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/4yt-xDqcGIA" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Video 2 -->
+<div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModal2Label">Refugio de cristal - Bonhomia Inefable</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/nib_GfI2tJg" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Video 3 -->
+<div class="modal fade" id="videoModal3" tabindex="-1" aria-labelledby="videoModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModal3Label">Video Musical 3</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <section id="documentales">
