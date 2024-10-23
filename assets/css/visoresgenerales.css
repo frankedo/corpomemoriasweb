@@ -1,2 +1,39 @@
+<!-- CSS personalizado para mejorar los estilos -->
+<style>
+    /* Estilos para las tarjetas (cards) */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card-title {
+        font-size: 1.2rem;
+    }
 
+    /* Estilos para el modal */
+    .modal-content {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        border-bottom: none;
+        padding: 15px 20px;
+    }
+
+    .modal-body {
+        padding: 0;
+    }
+
+    .modal .close {
+        outline: none;
+    }
+
+    /* Opcional: Si quieres que el botón de cerrar esté más estilizado */
+    .close span {
+        font-size: 1.5rem;
+    }
+</style>
 
