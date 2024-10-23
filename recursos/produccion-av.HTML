@@ -255,7 +255,7 @@
             <!-- Documental 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <a href="#videoModal1" data-toggle="modal" data-target="#videoModal1">
+                    <a href="#videoModal1" data-bs-toggle="modal" data-bs-target="#videoModal1">
                         <img src="../assets/imgs/IMG-20210422-WA0064.jpg" class="card-img-top" alt="Documental 1">
                     </a>
                     <div class="card-body">
@@ -268,7 +268,7 @@
             <!-- Documental 2 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <a href="#videoModal2" data-toggle="modal" data-target="#videoModal2">
+                    <a href="#videoModal2" data-bs-toggle="modal" data-bs-target="#videoModal2">
                         <img src="../assets/imgs/IMG-20221019-WA0018.jpg" class="card-img-top" alt="Documental 2">
                     </a>
                     <div class="card-body">
@@ -282,14 +282,12 @@
     </div>
     
     <!-- Modal para Documental 1 -->
-    <div class="modal fade" id="videoModal1" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel1" aria-hidden="true">
+    <div class="modal fade" id="videoModal1" tabindex="-1" aria-labelledby="videoModalLabel1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="videoModalLabel1">Documental 1 - Testimonio</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/vwPz82qSL-c" frameborder="0" allowfullscreen></iframe>
@@ -299,14 +297,12 @@
     </div>
 
     <!-- Modal para Documental 2 -->
-    <div class="modal fade" id="videoModal2" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel2" aria-hidden="true">
+    <div class="modal fade" id="videoModal2" tabindex="-1" aria-labelledby="videoModalLabel2" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="videoModalLabel2">Documental 2 - Carta a Chayo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <video width="100%" controls>
@@ -318,6 +314,7 @@
         </div>
     </div>
 </section>
+
 
 
 
