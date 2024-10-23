@@ -275,15 +275,9 @@
             <!-- Cortometraje 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card border-dark">
-                
-
-
-<a href="https://www.youtube.com/embed/MmoB_oDsA1g?autoplay=1" data-lightbox="cortometrajes" data-title="Cortometraje 1 - Huellas de un Desaparecido">
-    <img src="../assets/imgs/imagencorto.png" class="card-img-top" alt="Cortometraje 1">
-</a>
-
-
-
+                    <a href="#videoModal" data-toggle="modal" data-target="#videoModal">
+                        <img src="../assets/imgs/imagencorto.png" class="card-img-top" alt="Cortometraje 1">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">Huellas de un Desaparecido</h5>
                         <p class="card-text">Un emotivo cortometraje sobre la búsqueda incansable de la verdad.</p>
@@ -293,7 +287,25 @@
 
         </div>
     </div>
+    
+    <!-- Modal para el video -->
+    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalLabel">Cortometraje 1 - Huellas de un Desaparecido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/MmoB_oDsA1g" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 
 
 
