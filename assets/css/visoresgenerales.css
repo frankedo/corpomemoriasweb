@@ -9,3 +9,17 @@
     }
 </style>
 
+
+
+
+/*para los modals de documentales*/
+
+.card-img-top {
+    width: 100%;
+    height: 250px; /* Puedes ajustar el tamaño según lo que desees */
+    object-fit: cover;
+}/*final modals de documentales*/
+
+
+
+
