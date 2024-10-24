@@ -672,6 +672,28 @@
     <!-- Creative Design js -->
     <script src="assets/js/creative-design.js"></script>
 
+
+*/Este script activará y desactivará los modals cuando se haga clic en los botones correspondientes.*/
+
+document.querySelectorAll('.open-modal').forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.getElementById(button.getAttribute('data-modal'));
+        modal.style.display = 'block';
+    });
+});
+
+document.querySelectorAll('.close-modal').forEach(span => {
+    span.addEventListener('click', () => {
+        span.closest('.modal').style.display = 'none';
+    });
+});
+
+window.addEventListener('click', event => {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+});
+
  
 
 	
