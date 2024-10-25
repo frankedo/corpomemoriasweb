@@ -354,7 +354,12 @@
         Estamos en crecimiento</p>
         
         <!-- Contact form -->
-        <form name="contact" method="POST" data-netlify="true" class="contact-form col-md-11 col-lg-9 mx-auto">
+      <form name="contact" method="POST" data-netlify="true" class="contact-form col-md-11 col-lg-9 mx-auto">
+    <input type="hidden" name="form-name" value="contact">
+    <!-- el resto de los campos del formulario -->
+
+
+		
             <div class="form-row">
                 <div class="col form-group">
                     <input type="text" class="form-control" name="name" placeholder="Nombre" required>
