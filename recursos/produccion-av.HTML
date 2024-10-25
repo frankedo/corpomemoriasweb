@@ -803,7 +803,7 @@
 
 
 */Este script activará y desactivará los modals cuando se haga clic en los botones correspondientes.*/
-
+<script>
 document.querySelectorAll('.open-modal').forEach(button => {
     button.addEventListener('click', () => {
         const modal = document.getElementById(button.getAttribute('data-modal'));
@@ -822,7 +822,7 @@ window.addEventListener('click', event => {
         event.target.style.display = 'none';
     }
 });
-
+</script>
  
 
 	
