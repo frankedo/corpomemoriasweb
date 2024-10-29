@@ -665,7 +665,78 @@ NUESTRA SEÑORA DEL CARMEN.</p>
     <section class="has-bg-img text-center text-light height-auto" style="background-image: url(../assets/imgs/pexels-thijsvdw-792955.jpg)">
         <h1 class="display-4">Corporación Marlón Memorias y Huellas de un Desaparecido Corpomemorias</h1>
     </section><!-- End of Section -->
+
+<!-- Contact Section -->
+<section id="contact" class="text-center">
+    <!-- container -->
+    <div class="container">
+        <h1>Ponte en contacto</h1>
+        <p class="mb-5">Si tienes alguna pregunta! Por favor contactanos! <br> 
+        Estamos en crecimiento</p>
+        
+        <!-- Contact form -->
     
+	<form id="contact-form" name="contact" method="POST" data-netlify="true" class="contact-form col-md-11 col-lg-9 mx-auto">
+    <input type="hidden" name="form-name" value="contact">
+    <!-- el resto de los campos del formulario -->
+    <div class="form-row">
+        <div class="col form-group">
+            <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+        </div>
+        <div class="col form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <textarea name="message" cols="30" rows="5" class="form-control" placeholder="¡Escríbenos! queremos conocerte." required></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-block" value="Enviar">
+    </div>
+</form>
+
+	    
+	    <!-- End of Contact form -->         
+   
+    
+    </div><!-- End of Container-->      
+</section><!-- End of Contact Section -->
+
+
+  <!--  script para integrar el form de contacto con emailjs y gmail-->
+	<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("IoVyhNq4sr_Fk2EqE"); // Reemplaza "TU_USER_ID" con tu User ID de EmailJS
+    })();
+</script>
+
+
+	
+  <!--script para enviar el formulario: Justo debajo del script de inicialización de EmailJS, agrega el siguiente código:-->
+
+<script type="text/javascript">
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe de manera predeterminada
+
+        // Usa EmailJS para enviar el formulario
+        emailjs.sendForm('service_vtu639p', 'template_653dlbp', this)
+            .then(function() {
+                alert('Mensaje enviado con éxito. ¡Gracias! El equipo de Corpomemorias');
+            }, function(error) {
+                alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
+                console.log('Error:', error);
+            });
+    });
+</script>
+
+
+
+
+
+
+
+
     <!-- Section -->
     <section class="pb-0">
         <!-- Container -->
