@@ -207,26 +207,11 @@
 
 <!-- Agregar el código de JavaScript aquí -->
 <script>
-    fetch('https://instagram-backend2-7zi4.onrender.com') // Cambia esto por la URL real de tu backend
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('instagram-feed');
-            // Verificar si hay publicaciones
-            if (data.data && data.data.length) {
-                data.data.forEach(post => {
-                    const postElement = document.createElement('div');
-                    postElement.innerHTML = `
-                        <a href="${post.permalink}" target="_blank">
-                            <img src="${post.media_url}" alt="${post.caption}" style="width: 100%; max-width: 540px; margin: 10px;">
-                        </a>
-                    `;
-                    container.appendChild(postElement);
-                });
-            } else {
-                container.innerHTML = '<p>No hay publicaciones disponibles.</p>';
-            }
-        })
-        .catch(error => console.error('Error:', error));
+   fetch('https://instagram-backend2-7zi4.onrender.com') // URL anterior
+     .then(response => response.json())
+     .then(data => {
+       // Manejo de los datos
+     });
 </script>
 
 
