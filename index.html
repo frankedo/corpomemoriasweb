@@ -196,6 +196,55 @@
         <h1>Mis publicaciones de Instagram</h1>
         <div id="instagram-feed">
           <!-- Las publicaciones se agregarán aquí automáticamente -->
+<script>
+// 1. Esperar a que el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // 2. Definir la URL del backend donde se obtendrán las publicaciones
+  const apiUrl = 'https://nombre-proyecto.onrender.com/api/instagram'; // Reemplaza con tu URL real
+
+  // 3. Hacer una solicitud fetch a la API
+  fetch(apiUrl)
+    .then(response => {
+      // 4. Verificar si la respuesta es correcta (código 200)
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // 5. Convertir la respuesta a formato JSON
+      return response.json();
+    })
+    .then(data => {
+      // 6. Obtener el contenedor donde se mostrarán las publicaciones
+      const container = document.getElementById('instagram-feed');
+      
+      // 7. Limpiar el contenedor antes de agregar nuevas publicaciones
+      container.innerHTML = '';
+
+      // 8. Iterar sobre cada publicación en los datos obtenidos
+      data.data.forEach(post => {
+        // 9. Crear un nuevo elemento div para cada publicación
+        const postElement = document.createElement('div');
+        
+        // 10. Configurar el contenido HTML de la publicación
+        postElement.innerHTML = `
+          <a href="${post.permalink}" target="_blank">
+            <img src="${post.media_url}" alt="${post.caption}" style="width: 100%; max-width: 540px; border-radius: 5px;">
+          </a>
+        `;
+        
+        // 11. Agregar el nuevo elemento de publicación al contenedor
+        container.appendChild(postElement);
+      });
+    })
+    .catch(error => {
+      // 12. Manejar errores en la solicitud fetch
+      console.error('Error:', error);
+    });
+});
+</script>
+
+
+		
         </div>
       </div>
     </div>
@@ -205,14 +254,7 @@
 </section>
 <!-- End of Section -->
 
-<!-- Agregar el código de JavaScript aquí -->
-<script>
-   fetch('https://instagram-backend2-7zi4.onrender.com') // URL anterior
-     .then(response => response.json())
-     .then(data => {
-       // Manejo de los datos
-     });
-</script>
+
 
 
 
