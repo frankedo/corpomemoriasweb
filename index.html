@@ -184,7 +184,7 @@
 
 
 
- <section id="about">
+<section id="about">
   <!-- Container -->
   <div class="container">
     <!-- About wrapper -->
@@ -193,11 +193,10 @@
         <h1></h1>
       </div>
       <div class="content">
-        <h1>Mis publicaciones de Instagram En construccion</h1>
-        <!-- Aquí pegas el código de inserción de Instagram -->
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C2NxgJ7v3hZ/?igsh=ZnFueHZweHJ3MHh2" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-        </blockquote>
-        <script async src="//www.instagram.com/embed.js"></script>
+        <h1>Mis publicaciones de Instagram</h1>
+        <div id="instagram-feed">
+          <!-- Las publicaciones se agregarán aquí automáticamente -->
+        </div>
       </div>
     </div>
     <!-- End of About Wrapper -->
@@ -205,6 +204,31 @@
   <!-- End of Container -->
 </section>
 <!-- End of Section -->
+
+<!-- Agregar el código de JavaScript aquí -->
+<script>
+    fetch('https://instagram-backend2-7zi4.onrender.com') // Cambia esto por la URL real de tu backend
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('instagram-feed');
+            // Verificar si hay publicaciones
+            if (data.data && data.data.length) {
+                data.data.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <a href="${post.permalink}" target="_blank">
+                            <img src="${post.media_url}" alt="${post.caption}" style="width: 100%; max-width: 540px; margin: 10px;">
+                        </a>
+                    `;
+                    container.appendChild(postElement);
+                });
+            } else {
+                container.innerHTML = '<p>No hay publicaciones disponibles.</p>';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
 
 
 
