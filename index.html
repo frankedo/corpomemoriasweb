@@ -93,78 +93,6 @@
 </section>
 
 
-	<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend de Instagram
-  const container = document.getElementById('instagram-feed');
-  let currentCount = 0; // Contador de publicaciones cargadas
-
-  // Función para cargar publicaciones
-  function loadPosts(count = 5) {
-    // Realizar la solicitud al backend para obtener las publicaciones
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (!data || !data.data) {
-          throw new Error("Los datos de la API no están en el formato esperado.");
-        }
-
-        // Procesar las publicaciones hasta el número solicitado
-        let postsLoaded = 0;
-        data.data.forEach(post => {
-          if (post.media_type === 'IMAGE' && postsLoaded < count) {
-            const postElement = document.createElement('div');
-            postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
-            postElement.innerHTML = `
-              <a href="${post.permalink}" target="_blank">
-                <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
-              </a>
-              <div class="caption">${truncateText(post.caption, 100)}</div>
-            `;
-            container.appendChild(postElement); // Agregar el elemento al contenedor
-            postsLoaded++;
-            currentCount++;
-          }
-        });
-
-        // Si no hay más publicaciones, deshabilitar el botón
-        if (postsLoaded < count) {
-          document.getElementById('load-more').disabled = true;
-        }
-      })
-      .catch(error => {
-        console.error('Error al obtener las publicaciones de Instagram:', error);
-      });
-  }
-
-  // Función para truncar el texto de la descripción
-  function truncateText(text, maxLength) {
-    if (!text) return ''; // Verificar que hay texto
-    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-  }
-
-  // Cargar las primeras publicaciones al inicio
-  loadPosts(5); // Cambia el número aquí para cargar más o menos publicaciones
-
-  // Evento para cargar más publicaciones al hacer clic en el botón
-  document.getElementById('load-more').addEventListener('click', () => {
-    loadPosts(5); // Cargar más publicaciones al hacer clic
-  });
-});
-</script>
-
-
-
-
-
-	
-
-	
 <!-- About Section -->
 <section id="about">
   <!-- Container -->
@@ -640,6 +568,74 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend de Instagram
+  const container = document.getElementById('instagram-feed');
+  let currentCount = 0; // Contador de publicaciones cargadas
+
+  // Función para cargar publicaciones
+  function loadPosts(count = 5) {
+    // Realizar la solicitud al backend para obtener las publicaciones
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (!data || !data.data) {
+          throw new Error("Los datos de la API no están en el formato esperado.");
+        }
+
+        // Procesar las publicaciones hasta el número solicitado
+        let postsLoaded = 0;
+        data.data.forEach(post => {
+          if (post.media_type === 'IMAGE' && postsLoaded < count) {
+            const postElement = document.createElement('div');
+            postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
+            postElement.innerHTML = `
+              <a href="${post.permalink}" target="_blank">
+                <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
+              </a>
+              <div class="caption">${truncateText(post.caption, 100)}</div>
+            `;
+            container.appendChild(postElement); // Agregar el elemento al contenedor
+            postsLoaded++;
+            currentCount++;
+          }
+        });
+
+        // Si no hay más publicaciones, deshabilitar el botón
+        if (postsLoaded < count) {
+          document.getElementById('load-more').disabled = true;
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener las publicaciones de Instagram:', error);
+      });
+  }
+
+  // Función para truncar el texto de la descripción
+  function truncateText(text, maxLength) {
+    if (!text) return ''; // Verificar que hay texto
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  }
+
+  // Cargar las primeras publicaciones al inicio
+  loadPosts(5); // Cambia el número aquí para cargar más o menos publicaciones
+
+  // Evento para cargar más publicaciones al hacer clic en el botón
+  document.getElementById('load-more').addEventListener('click', () => {
+    loadPosts(5); // Cargar más publicaciones al hacer clic
+  });
+});
+</script>
+
+
+
+	
 
 	
 </body>
