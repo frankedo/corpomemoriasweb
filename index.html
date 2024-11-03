@@ -190,69 +190,85 @@
 
 <!-- Código JavaScript -->
 <script>
-// Función para truncar texto largo y añadir puntos suspensivos
-function truncateText(text, maxLength) {
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-}
 
 document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend que obtiene las publicaciones de Instagram
+  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend de Instagram
 
+  // Realizar la solicitud al backend para obtener las publicaciones
   fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`Network response was not ok: ${response.statusText}`);
       }
       return response.json();
     })
     .then(data => {
-      const container = document.getElementById('instagram-feed'); // Contenedor donde se mostrarán las publicaciones
-      container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas publicaciones
+      // Asegúrate de que el contenedor para las publicaciones exista
+      const container = document.getElementById('instagram-feed');
+      if (!container) {
+        console.error("No se encontró el contenedor con id 'instagram-feed'");
+        return;
+      }
+      container.innerHTML = ''; // Limpiar el contenedor antes de agregar publicaciones nuevas
 
+      // Revisar si se recibieron datos correctamente
+      if (!data || !data.data) {
+        throw new Error("Los datos de la API no están en el formato esperado.");
+      }
+
+      // Procesar cada publicación de Instagram
       data.data.forEach(post => {
-        console.log('Tipo de media:', post.media_type); // Verificar el tipo de media recibido
-
         const postElement = document.createElement('div');
-        postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
+        postElement.classList.add('grid-item'); // Agregar clase de estilo
 
-        // Limitar la longitud de la descripción a 100 caracteres
-        const truncatedCaption = truncateText(post.caption || 'Sin descripción', 100);
-
-        // Verificar el tipo de contenido y mostrarlo adecuadamente
+        // Verificar el tipo de media y renderizar la publicación correctamente
         if (post.media_type === 'IMAGE') {
+          // Publicación de imagen
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
-              <img src="${post.media_url}" alt="${truncatedCaption}">
+              <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
             </a>
-            <div class="caption">${truncatedCaption}</div>
+            <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
         } else if (post.media_type === 'VIDEO') {
+          // Publicación de video
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
               <video controls>
                 <source src="${post.media_url}" type="video/mp4">
-                Tu navegador no soporta la etiqueta de video.
+                Tu navegador no soporta la reproducción de video.
               </video>
             </a>
-            <div class="caption">${truncatedCaption}</div>
+            <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
         } else if (post.media_type === 'CAROUSEL_ALBUM') {
-          // En caso de CAROUSEL, mostrar la primera imagen del carrusel
+          // Publicación de carrusel (usaremos la primera imagen del carrusel)
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
-              <img src="${post.media_url}" alt="${truncatedCaption}">
+              <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
             </a>
-            <div class="caption">${truncatedCaption}</div>
+            <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
+        } else {
+          // Tipo de media desconocido
+          console.warn("Tipo de media desconocido:", post.media_type);
         }
 
-        container.appendChild(postElement); // Agregar el nuevo elemento al contenedor
+        // Añadir el elemento de publicación al contenedor
+        container.appendChild(postElement);
       });
     })
     .catch(error => {
-      console.error('Error:', error); // Manejar errores en la solicitud
+      console.error('Error al obtener las publicaciones de Instagram:', error);
     });
 });
+
+// Función para truncar el texto de la descripción y añadir puntos suspensivos
+function truncateText(text, maxLength) {
+  if (!text) return ''; // Verificar que hay texto para truncar
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+}
+
 
 </script>
 
