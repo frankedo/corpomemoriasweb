@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json();
     })
     .then(data => {
-      // Asegúrate de que el contenedor para las publicaciones exista
       const container = document.getElementById('instagram-feed');
       if (!container) {
         console.error("No se encontró el contenedor con id 'instagram-feed'");
@@ -211,19 +210,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       container.innerHTML = ''; // Limpiar el contenedor antes de agregar publicaciones nuevas
 
-      // Revisar si se recibieron datos correctamente
+      // Verificar que hay datos en el formato esperado
       if (!data || !data.data) {
         throw new Error("Los datos de la API no están en el formato esperado.");
       }
 
       // Procesar cada publicación de Instagram
       data.data.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('grid-item'); // Agregar clase de estilo
+        // Comprobar que el `media_type` esté definido
+        if (!post.media_type) {
+          console.warn("Tipo de media desconocido:", post);
+          return; // Saltar a la siguiente publicación si falta el tipo de media
+        }
 
-        // Verificar el tipo de media y renderizar la publicación correctamente
+        const postElement = document.createElement('div');
+        postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
+
+        // Renderizar según el tipo de media
         if (post.media_type === 'IMAGE') {
-          // Publicación de imagen
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
               <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
@@ -231,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
         } else if (post.media_type === 'VIDEO') {
-          // Publicación de video
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
               <video controls>
@@ -242,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
         } else if (post.media_type === 'CAROUSEL_ALBUM') {
-          // Publicación de carrusel (usaremos la primera imagen del carrusel)
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
               <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
@@ -250,12 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
         } else {
-          // Tipo de media desconocido
           console.warn("Tipo de media desconocido:", post.media_type);
         }
 
-        // Añadir el elemento de publicación al contenedor
-        container.appendChild(postElement);
+        container.appendChild(postElement); // Agregar el elemento al contenedor
       });
     })
     .catch(error => {
@@ -263,12 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Función para truncar el texto de la descripción y añadir puntos suspensivos
+// Función para truncar el texto de la descripción
 function truncateText(text, maxLength) {
-  if (!text) return ''; // Verificar que hay texto para truncar
+  if (!text) return ''; // Verificar que hay texto
   return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 }
-
 
 </script>
 
