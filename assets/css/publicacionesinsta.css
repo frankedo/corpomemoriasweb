@@ -32,3 +32,12 @@
   font-size: 14px; /* Tamaño del texto */
   color: #333; /* Color del texto */
 }
+
+
+
+.grid-item .caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
