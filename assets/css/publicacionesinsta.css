@@ -1,3 +1,10 @@
+
+
+.grid-item.show {
+  opacity: 1; /* Hacemos visible */
+  transform: translateY(0); /* Regresa a su posición original */
+}
+
 #instagram-section {
   padding: 20px;
   background-color: #f9f9f9; /* Fondo ligero */
@@ -9,13 +16,13 @@
   gap: 15px; /* Espacio entre tarjetas */
 }
 
+/* Agrega esto a tu archivo CSS */
 .grid-item {
-  background: #fff; /* Fondo blanco para las tarjetas */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  overflow: hidden;
-  transition: transform 0.3s; /* Transición suave al hover */
+  opacity: 0; /* Inicialmente oculto */
+  transform: translateY(20px); /* Desplazado hacia abajo */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones para la animación */
 }
+
 
 .grid-item:hover {
   transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
