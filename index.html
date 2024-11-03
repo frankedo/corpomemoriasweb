@@ -191,60 +191,48 @@
 <!-- Código JavaScript -->
 <script>
 
-document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend de Instagram
+// Función para truncar texto largo y añadir puntos suspensivos
+function truncateText(text, maxLength) {
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+}
 
-  // Realizar la solicitud al backend para obtener las publicaciones
+document.addEventListener('DOMContentLoaded', () => {
+  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend que obtiene las publicaciones de Instagram
+
   fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
+        throw new Error('Network response was not ok');
       }
       return response.json();
     })
     .then(data => {
-      const container = document.getElementById('instagram-feed');
-      if (!container) {
-        console.error("No se encontró el contenedor con id 'instagram-feed'");
-        return;
-      }
-      container.innerHTML = ''; // Limpiar el contenedor antes de agregar publicaciones nuevas
+      const container = document.getElementById('instagram-feed'); // Contenedor donde se mostrarán las publicaciones
+      container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas publicaciones
 
-      // Verificar que hay datos en el formato esperado
-      if (!data || !data.data) {
-        throw new Error("Los datos de la API no están en el formato esperado.");
-      }
+      data.data.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
 
-      // Filtrar y procesar solo publicaciones de tipo imagen
-      data.data
-        .filter(post => post.media_type === 'IMAGE') // Filtrar solo imágenes
-        .forEach(post => {
-          const postElement = document.createElement('div');
-          postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
+        // Limitar la longitud de la descripción a 100 caracteres
+        const truncatedCaption = truncateText(post.caption || 'Sin descripción', 100);
 
-          // Configurar el contenido HTML de la publicación de imagen
-          postElement.innerHTML = `
-            <a href="${post.permalink}" target="_blank">
-              <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
-            </a>
-            <div class="caption">${truncateText(post.caption, 100)}</div>
-          `;
+        // Configurar el contenido HTML de la tarjeta
+        postElement.innerHTML = `
+          <a href="${post.permalink}" target="_blank">
+            <img src="${post.media_url}" alt="${truncatedCaption}">
+          </a>
+          <div class="caption">${truncatedCaption}</div>
+        `;
 
-          container.appendChild(postElement); // Agregar el elemento al contenedor
-        });
+        container.appendChild(postElement); // Agregar el nuevo elemento al contenedor
+      });
     })
     .catch(error => {
-      console.error('Error al obtener las publicaciones de Instagram:', error);
+      console.error('Error:', error); // Manejar errores en la solicitud
     });
 });
 
-// Función para truncar el texto de la descripción
-function truncateText(text, maxLength) {
-  if (!text) return ''; // Verificar que hay texto
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-}
-
-	
   </script>
 
 
