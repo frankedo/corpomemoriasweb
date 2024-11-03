@@ -210,13 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas publicaciones
 
       data.data.forEach(post => {
+        console.log('Tipo de media:', post.media_type); // Verificar el tipo de media recibido
+
         const postElement = document.createElement('div');
         postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
 
         // Limitar la longitud de la descripción a 100 caracteres
         const truncatedCaption = truncateText(post.caption || 'Sin descripción', 100);
 
-        // Verificar si el post es una imagen o un video
+        // Verificar el tipo de contenido y mostrarlo adecuadamente
         if (post.media_type === 'IMAGE') {
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
@@ -229,8 +231,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="${post.permalink}" target="_blank">
               <video controls>
                 <source src="${post.media_url}" type="video/mp4">
-                Your browser does not support the video tag.
+                Tu navegador no soporta la etiqueta de video.
               </video>
+            </a>
+            <div class="caption">${truncatedCaption}</div>
+          `;
+        } else if (post.media_type === 'CAROUSEL_ALBUM') {
+          // En caso de CAROUSEL, mostrar la primera imagen del carrusel
+          postElement.innerHTML = `
+            <a href="${post.permalink}" target="_blank">
+              <img src="${post.media_url}" alt="${truncatedCaption}">
             </a>
             <div class="caption">${truncatedCaption}</div>
           `;
@@ -243,9 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Error:', error); // Manejar errores en la solicitud
     });
 });
-
-     
-       
 
 </script>
 
