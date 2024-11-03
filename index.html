@@ -83,134 +83,86 @@
 </header>
 <!-- End of Page Header -->
 
-
-<section id="instagram-feed-section">
-
-  <div id="instagram-feed" class="grid-container"></div> <!-- Contenedor para las publicaciones -->
+ 
+ <section id="instagram-feed-section">
+  <div class="container">
+    <h2>Mis Publicaciones de Instagram</h2>
+    <div id="instagram-feed" class="grid-container"></div>
+    <button id="load-more" class="load-more-button">Cargar más</button>
+  </div>
 </section>
 
-<!-- Asegúrate de incluir el CSS necesario para el diseño de la grilla -->
-<style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cambia el tamaño mínimo según tus necesidades */
-    gap: 16px; /* Espaciado entre elementos */
-  }
-  .grid-item {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  .grid-item:hover {
-    transform: scale(1.05); /* Efecto al pasar el mouse */
-  }
-  img {
-    width: 100%;
-    height: auto; /* Mantener la proporción de las imágenes */
-  }
-  .caption {
-    padding: 8px; /* Espaciado en el texto */
-  }
-</style>
 
-<script>
-
-	document.addEventListener('DOMContentLoaded', () => {
+	<script>
+document.addEventListener('DOMContentLoaded', () => {
   const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend de Instagram
+  const container = document.getElementById('instagram-feed');
+  let currentCount = 0; // Contador de publicaciones cargadas
 
-  // Realizar la solicitud al backend para obtener las publicaciones
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const container = document.getElementById('instagram-feed');
-      if (!container) {
-        console.error("No se encontró el contenedor con id 'instagram-feed'");
-        return;
-      }
-      container.innerHTML = ''; // Limpiar el contenedor antes de agregar publicaciones nuevas
-
-      // Verificar que hay datos en el formato esperado
-      if (!data || !data.data) {
-        throw new Error("Los datos de la API no están en el formato esperado.");
-      }
-
-      // Procesar cada publicación de Instagram
-      data.data.forEach(post => {
-        if (post.media_type === 'IMAGE') {
-          container.appendChild(createImageElement(post));
-        } else if (post.media_type === 'VIDEO') {
-          container.appendChild(createVideoElement(post));
-        } else if (post.media_type === 'CAROUSEL_ALBUM') {
-          container.appendChild(createCarouselElement(post));
-        } else {
-          console.warn("Tipo de media desconocido:", post.media_type);
+  // Función para cargar publicaciones
+  function loadPosts(count = 5) {
+    // Realizar la solicitud al backend para obtener las publicaciones
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
         }
+        return response.json();
+      })
+      .then(data => {
+        if (!data || !data.data) {
+          throw new Error("Los datos de la API no están en el formato esperado.");
+        }
+
+        // Procesar las publicaciones hasta el número solicitado
+        let postsLoaded = 0;
+        data.data.forEach(post => {
+          if (post.media_type === 'IMAGE' && postsLoaded < count) {
+            const postElement = document.createElement('div');
+            postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
+            postElement.innerHTML = `
+              <a href="${post.permalink}" target="_blank">
+                <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
+              </a>
+              <div class="caption">${truncateText(post.caption, 100)}</div>
+            `;
+            container.appendChild(postElement); // Agregar el elemento al contenedor
+            postsLoaded++;
+            currentCount++;
+          }
+        });
+
+        // Si no hay más publicaciones, deshabilitar el botón
+        if (postsLoaded < count) {
+          document.getElementById('load-more').disabled = true;
+        }
+      })
+      .catch(error => {
+        console.error('Error al obtener las publicaciones de Instagram:', error);
       });
-    })
-    .catch(error => {
-      console.error('Error al obtener las publicaciones de Instagram:', error);
-    });
+  }
+
+  // Función para truncar el texto de la descripción
+  function truncateText(text, maxLength) {
+    if (!text) return ''; // Verificar que hay texto
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  }
+
+  // Cargar las primeras publicaciones al inicio
+  loadPosts(5); // Cambia el número aquí para cargar más o menos publicaciones
+
+  // Evento para cargar más publicaciones al hacer clic en el botón
+  document.getElementById('load-more').addEventListener('click', () => {
+    loadPosts(5); // Cargar más publicaciones al hacer clic
+  });
 });
-
-// Función para crear un elemento de imagen
-function createImageElement(post) {
-  const postElement = document.createElement('div');
-  postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
-  postElement.innerHTML = `
-    <a href="${post.permalink}" target="_blank">
-      <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
-    </a>
-    <div class="caption">${truncateText(post.caption, 100)}</div>
-  `;
-  return postElement;
-}
-
-// Función para crear un elemento de video
-function createVideoElement(post) {
-  const postElement = document.createElement('div');
-  postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
-  postElement.innerHTML = `
-    <a href="${post.permalink}" target="_blank">
-      <video controls>
-        <source src="${post.media_url}" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-      </video>
-    </a>
-    <div class="caption">${truncateText(post.caption, 100)}</div>
-  `;
-  return postElement;
-}
-
-// Función para crear un elemento de carrusel
-function createCarouselElement(post) {
-  const postElement = document.createElement('div');
-  postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
-  postElement.innerHTML = `
-    <a href="${post.permalink}" target="_blank">
-      <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
-    </a>
-    <div class="caption">${truncateText(post.caption, 100)}</div>
-  `;
-  return postElement;
-}
-
-// Función para truncar el texto de la descripción
-function truncateText(text, maxLength) {
-  if (!text) return ''; // Verificar que hay texto
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-}
 </script>
 
 
 
+
+
+	
 
 	
 <!-- About Section -->
