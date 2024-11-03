@@ -1,0 +1,43 @@
+<style>
+    .modal-header {
+        background-color: #007bff;
+        color: white;
+    }
+    .carousel-item img {
+        max-height: 300px; /* Ajustar según tu diseño */
+        object-fit: cover;
+    }
+</style>
+
+
+
+/* Establecer una altura mínima fija para las tarjetas*/
+.card {
+    min-height: 400px; /* Ajusta esta altura según lo necesites */
+    display: flex;
+    flex-direction: column; /* Asegura que el contenido esté apilado verticalmente */
+    justify-content: space-between; /* Distribuye el contenido */
+}
+
+.card-body {
+    flex-grow: 1; /* Permite que el contenido del cuerpo crezca para ocupar espacio */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Tamaño fijo de título */
+    margin-bottom: 1rem; /* Añade margen inferior para espacio */
+}
+
+.card-text {
+    font-size: 1rem; /* Tamaño fijo del texto */
+    flex-grow: 1; /* Hace que el texto del cuerpo ocupe espacio disponible */
+    margin-bottom: 1rem; /* Añade margen inferior */
+}
+
+.btn {
+    margin-top: auto; /* Empuja el botón hacia la parte inferior si hay espacio */
+}
+/* final Establecer una altura mínima fija para las tarjetas*/
+
+
+
