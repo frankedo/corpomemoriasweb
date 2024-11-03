@@ -93,8 +93,8 @@
 </section>
 
 <!-- Código JavaScript -->
+// Código JavaScript
 <script>
-// Función para truncar texto largo
 function truncateText(text, maxLength) {
   return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 }
@@ -128,13 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         container.appendChild(postElement);
+
+        // Agregar un pequeño retraso para la animación
+        setTimeout(() => {
+          postElement.classList.add('show');
+        }, 50 * data.data.indexOf(post)); // Aumenta el retraso para cada tarjeta
       });
     })
     .catch(error => {
       console.error('Error:', error);
     });
 });
-
 </script>
 
 
