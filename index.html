@@ -202,53 +202,48 @@
 
 <!-- Código JavaScript -->
 <script>
-  // Esperar a que el DOM esté completamente cargado
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    // URL del backend que obtiene las publicaciones de Instagram
-    const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; 
+ // Función para truncar texto largo y añadir puntos suspensivos
+function truncateText(text, maxLength) {
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+}
 
-    // Realizar una solicitud fetch a la API
-    fetch(apiUrl)
-      .then(response => {
-        // Verificar que la respuesta es exitosa
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        // Convertir la respuesta en JSON
-        return response.json();
-      })
-      .then(data => {
-        // Obtener el contenedor donde se mostrarán las publicaciones
-        const container = document.getElementById('instagram-feed');
-        
-        // Limpiar el contenedor antes de agregar nuevas publicaciones
-        container.innerHTML = '';
+document.addEventListener('DOMContentLoaded', () => {
+  const apiUrl = 'https://instagram-backend2-7zi4.onrender.com/api/instagram'; // URL del backend que obtiene las publicaciones de Instagram
 
-        // Iterar sobre cada publicación recibida
-        data.data.forEach(post => {
-          
-          // Crear un elemento div para la tarjeta de cada publicación
-          const postElement = document.createElement('div');
-          postElement.classList.add('grid-item'); // Añadir clase para estilos de tarjeta
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById('instagram-feed'); // Contenedor donde se mostrarán las publicaciones
+      container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas publicaciones
 
-          // Configurar el contenido HTML de la tarjeta
-          postElement.innerHTML = `
-            <a href="${post.permalink}" target="_blank">
-              <img src="${post.media_url}" alt="${post.caption}">
-            </a>
-            <div class="caption">${post.caption || 'Sin descripción'}</div>
-          `;
+      data.data.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
 
-          // Agregar el elemento de la publicación al contenedor
-          container.appendChild(postElement);
-        });
-      })
-      .catch(error => {
-        // Manejar errores en la solicitud
-        console.error('Error:', error);
+        // Limitar la longitud de la descripción a 100 caracteres
+        const truncatedCaption = truncateText(post.caption || 'Sin descripción', 100);
+
+        // Configurar el contenido HTML de la tarjeta
+        postElement.innerHTML = `
+          <a href="${post.permalink}" target="_blank">
+            <img src="${post.media_url}" alt="${truncatedCaption}">
+          </a>
+          <div class="caption">${truncatedCaption}</div>
+        `;
+
+        container.appendChild(postElement); // Agregar el nuevo elemento al contenedor
       });
-  });
+    })
+    .catch(error => {
+      console.error('Error:', error); // Manejar errores en la solicitud
+    });
+});
+
 </script>
 
 
