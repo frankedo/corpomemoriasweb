@@ -215,48 +215,23 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error("Los datos de la API no están en el formato esperado.");
       }
 
-      // Procesar cada publicación de Instagram
-      data.data.forEach(post => {
-        // Comprobar que el `media_type` esté definido
-        if (!post.media_type) {
-          console.warn("Tipo de media desconocido:", post);
-          return; // Saltar a la siguiente publicación si falta el tipo de media
-        }
+      // Filtrar y procesar solo publicaciones de tipo imagen
+      data.data
+        .filter(post => post.media_type === 'IMAGE') // Filtrar solo imágenes
+        .forEach(post => {
+          const postElement = document.createElement('div');
+          postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
 
-        const postElement = document.createElement('div');
-        postElement.classList.add('grid-item'); // Clase para estilos de tarjeta
-
-        // Renderizar según el tipo de media
-        if (post.media_type === 'IMAGE') {
+          // Configurar el contenido HTML de la publicación de imagen
           postElement.innerHTML = `
             <a href="${post.permalink}" target="_blank">
               <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
             </a>
             <div class="caption">${truncateText(post.caption, 100)}</div>
           `;
-        } else if (post.media_type === 'VIDEO') {
-          postElement.innerHTML = `
-            <a href="${post.permalink}" target="_blank">
-              <video controls>
-                <source src="${post.media_url}" type="video/mp4">
-                Tu navegador no soporta la reproducción de video.
-              </video>
-            </a>
-            <div class="caption">${truncateText(post.caption, 100)}</div>
-          `;
-        } else if (post.media_type === 'CAROUSEL_ALBUM') {
-          postElement.innerHTML = `
-            <a href="${post.permalink}" target="_blank">
-              <img src="${post.media_url}" alt="${post.caption || 'Publicación de Instagram'}">
-            </a>
-            <div class="caption">${truncateText(post.caption, 100)}</div>
-          `;
-        } else {
-          console.warn("Tipo de media desconocido:", post.media_type);
-        }
 
-        container.appendChild(postElement); // Agregar el elemento al contenedor
-      });
+          container.appendChild(postElement); // Agregar el elemento al contenedor
+        });
     })
     .catch(error => {
       console.error('Error al obtener las publicaciones de Instagram:', error);
@@ -269,7 +244,8 @@ function truncateText(text, maxLength) {
   return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
 }
 
-</script>
+	
+  </script>
 
 
 
