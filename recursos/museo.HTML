@@ -15,26 +15,44 @@
 
 
 
- <style>  <!-- estilo de carrusel del museo -->
+ <!-- estilo de carrusel del museo -->
+
+ <style>
+        /* Ajuste de tamaño del carrusel para las imágenes */
         .carousel-item img {
             width: 100%;
-            object-fit: cover; /* Para asegurar que la imagen cubra el área sin distorsión */
+            height: 250px; /* Ajuste de altura */
+            object-fit: cover;
         }
 
-        .exposicion-descripcion {
+        /* Estilo para la descripción debajo de la imagen */
+        .carousel-caption {
+            position: relative;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el texto */
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .description-container {
             padding: 15px;
             background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            margin-top: 10px;
-            border-radius: 5px;
+            border-top: 1px solid #ddd;
+            text-align: center;
         }
 
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
+        .description-container p {
+            margin: 5px 0;
+            font-size: 14px;
         }
-    </style> <!-- fin estilo de carrusel del museo -->
+    </style>
+
+
+
+       <!-- fin estilo de carrusel del museo -->
 
 
 
