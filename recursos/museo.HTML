@@ -95,32 +95,23 @@
         <div class="tab-content mt-4" id="myTabContent">
             <!-- Exposiciones Actuales -->
             <div class="tab-pane fade show active" id="actuales" role="tabpanel" aria-labelledby="actuales-tab">
-                <div id="carouselActuales" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" data-toggle="modal" data-target="#imageModal" onclick="openModal('exposicion1.jpg', 'Exposición Actual 1', 'Esta exposición explora la memoria histórica de comunidades afectadas por el conflicto a través de artefactos y testimonios.')">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Exposición Actual 1</h5>
-                                <p><strong>Fecha:</strong> Enero 2024 - Marzo 2024</p>
-                                <p><strong>Lugar:</strong> Museo de Corpomemorias</p>
-                                <p><strong>Curador:</strong> Laura Gómez</p>
-                                <p>Esta exposición explora la memoria histórica de comunidades afectadas por el conflicto a través de artefactos y testimonios.</p>
-                            </div>
-                        </div>
-                        <!-- Añade más items aquí -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="../assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="img-fluid" alt="Exposición Actual 1" data-toggle="modal" data-target="#imageModal" onclick="openModal('exposicion1.jpg', 'Exposición Actual 1', 'Esta exposición explora la memoria histórica de comunidades afectadas por el conflicto a través de artefactos y testimonios.')">
                     </div>
-                    <a class="carousel-control-prev" href="#carouselActuales" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Anterior</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselActuales" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Siguiente</span>
-                    </a>
+                    <div class="col-md-6">
+                        <div class="exposicion-descripcion">
+                            <h5>Exposición Actual 1</h5>
+                            <p><strong>Fecha:</strong> Enero 2024 - Marzo 2024</p>
+                            <p><strong>Lugar:</strong> Museo de Corpomemorias</p>
+                            <p><strong>Curador:</strong> Laura Gómez</p>
+                            <p>Esta exposición explora la memoria histórica de comunidades afectadas por el conflicto a través de artefactos y testimonios.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Repite las secciones para Anteriores e Itinerantes aquí -->
+            <!-- Sección para Exposiciones Anteriores y Itinerantes aquí -->
         </div>
     </section>
 
@@ -153,7 +144,6 @@
             document.getElementById('modalDescription').innerText = description;
         }
     </script>
- 
 
    <!-- fin secciones museo -->
 
