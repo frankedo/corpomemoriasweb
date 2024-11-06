@@ -127,7 +127,11 @@
                             <img src="../assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg', 'Exposición Actual 1', 'Exploración de la memoria histórica mediante artefactos y testimonios.')">
                             <div class="carousel-caption">
                                 <h5>Exposición Actual 1</h5>
-                                <p>Descripción de la exposición actual.</p>
+                            </div>
+                            <div class="description-container">
+                                <p><strong>Lugar:</strong> Museo Corpomemorias</p>
+                                <p><strong>Fecha:</strong> Enero 2024 - Mayo 2024</p>
+                                <p><strong>Curador:</strong> Juan Pérez</p>
                             </div>
                         </div>
                     </div>
@@ -151,7 +155,11 @@
                             <img src="../assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="d-block w-100" alt="Exposición Anterior 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg', 'Exposición Anterior 1', 'Detalles adicionales de la exposición anterior.')">
                             <div class="carousel-caption">
                                 <h5>Exposición Anterior 1</h5>
-                                <p>Descripción de la exposición anterior.</p>
+                            </div>
+                            <div class="description-container">
+                                <p><strong>Lugar:</strong> Museo Corpomemorias</p>
+                                <p><strong>Fecha:</strong> Octubre 2023</p>
+                                <p><strong>Curador:</strong> Laura Gómez</p>
                             </div>
                         </div>
                     </div>
@@ -175,7 +183,11 @@
                             <img src="../assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg" class="d-block w-100" alt="Exposición Itinerante 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg', 'Exposición Itinerante 1', 'Información sobre la exposición itinerante.')">
                             <div class="carousel-caption">
                                 <h5>Exposición Itinerante 1</h5>
-                                <p>Descripción de la exposición itinerante.</p>
+                            </div>
+                            <div class="description-container">
+                                <p><strong>Lugar:</strong> Museo Itinerante</p>
+                                <p><strong>Fecha:</strong> Marzo 2024</p>
+                                <p><strong>Curador:</strong> Carlos Martínez</p>
                             </div>
                         </div>
                     </div>
@@ -204,23 +216,21 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <img id="modalImage" src="" class="img-fluid" alt="Imagen de Exposición">
-                    <p id="modalDescription" class="mt-3">Descripción de la exposición</p>
+                    <img id="modalImage" src="" alt="Imagen ampliada" class="img-fluid">
+                    <p id="modalDescription" class="mt-3"></p>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Función para abrir el modal con la imagen ampliada
         function openModal(imageSrc, title, description) {
-            // Asignar la imagen al modal
+            // Cambiar la imagen en el modal
             document.getElementById('modalImage').src = imageSrc;
-            // Asignar el título y la descripción al modal
             document.getElementById('imageModalLabel').innerText = title;
             document.getElementById('modalDescription').innerText = description;
         }
