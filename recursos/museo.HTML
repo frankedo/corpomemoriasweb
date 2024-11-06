@@ -12,7 +12,7 @@
 
     <!-- Bootstrap + Creative Design main styles -->
 	<link rel="stylesheet" href="../assets/css/creative-design.css">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
@@ -71,6 +71,108 @@
 <!-- End of Page Header -->
 
 
+
+
+    <title>Exposiciones - Museo de Corpomemorias</title>
+  
+
+    <section id="exposiciones" class="container">
+        <h2 class="text-center my-4">Exposiciones del Museo de Corpomemorias</h2>
+
+        <!-- Pestañas de navegación -->
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="actuales-tab" data-toggle="tab" href="#actuales" role="tab" aria-controls="actuales" aria-selected="true">Exposiciones Actuales</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="anteriores-tab" data-toggle="tab" href="#anteriores" role="tab" aria-controls="anteriores" aria-selected="false">Exposiciones Anteriores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="itinerantes-tab" data-toggle="tab" href="#itinerantes" role="tab" aria-controls="itinerantes" aria-selected="false">Exposiciones Itinerantes</a>
+            </li>
+        </ul>
+
+        <!-- Contenido de cada sección -->
+        <div class="tab-content mt-4" id="myTabContent">
+            <!-- Exposiciones Actuales -->
+            <div class="tab-pane fade show active" id="actuales" role="tabpanel" aria-labelledby="actuales-tab">
+                <div id="carouselActuales" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="exposicion1.jpg" class="d-block w-100" alt="Exposición Actual 1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Exposición Actual 1</h5>
+                                <p>Descripción de la exposición actual 1.</p>
+                            </div>
+                        </div>
+                        <!-- Añade más items aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselActuales" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselActuales" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Exposiciones Anteriores -->
+            <div class="tab-pane fade" id="anteriores" role="tabpanel" aria-labelledby="anteriores-tab">
+                <div id="carouselAnteriores" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="exposicion-anterior1.jpg" class="d-block w-100" alt="Exposición Anterior 1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Exposición Anterior 1</h5>
+                                <p>Descripción de la exposición anterior 1.</p>
+                            </div>
+                        </div>
+                        <!-- Añade más items aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselAnteriores" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselAnteriores" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Exposiciones Itinerantes -->
+            <div class="tab-pane fade" id="itinerantes" role="tabpanel" aria-labelledby="itinerantes-tab">
+                <div id="carouselItinerantes" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="exposicion-itinerante1.jpg" class="d-block w-100" alt="Exposición Itinerante 1">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Exposición Itinerante 1</h5>
+                                <p>Descripción de la exposición itinerante 1.</p>
+                            </div>
+                        </div>
+                        <!-- Añade más items aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselItinerantes" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselItinerantes" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <!-- fin secciones museo -->
 
 
 
