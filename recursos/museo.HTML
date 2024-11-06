@@ -121,46 +121,73 @@
         <div class="tab-content mt-4" id="myTabContent">
             <!-- Exposiciones Actuales -->
             <div class="tab-pane fade show active" id="actuales" role="tabpanel" aria-labelledby="actuales-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="carouselActuales" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" style="height: 300px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('pexels-eberhardgross-1157970.jpg', 'Exposición Actual 1', 'Exploración de la memoria histórica mediante artefactos y testimonios.')">
-                                </div>
+                <div id="carouselActuales" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg', 'Exposición Actual 1', 'Exploración de la memoria histórica mediante artefactos y testimonios.')">
+                            <div class="carousel-caption">
+                                <h5>Exposición Actual 1</h5>
+                                <p>Descripción de la exposición actual.</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Controles del carrusel -->
+                    <a class="carousel-control-prev" href="#carouselActuales" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselActuales" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Exposiciones Anteriores -->
             <div class="tab-pane fade" id="anteriores" role="tabpanel" aria-labelledby="anteriores-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="carouselAnteriores" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="d-block w-100" alt="Exposición Anterior 1" style="height: 300px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('pexels-nickkwanhk-2745258.jpg', 'Exposición Anterior 1', 'Detalles adicionales de la exposición.')">
-                                </div>
+                <div id="carouselAnteriores" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="d-block w-100" alt="Exposición Anterior 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg', 'Exposición Anterior 1', 'Detalles adicionales de la exposición anterior.')">
+                            <div class="carousel-caption">
+                                <h5>Exposición Anterior 1</h5>
+                                <p>Descripción de la exposición anterior.</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Controles del carrusel -->
+                    <a class="carousel-control-prev" href="#carouselAnteriores" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselAnteriores" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Exposiciones Itinerantes -->
             <div class="tab-pane fade" id="itinerantes" role="tabpanel" aria-labelledby="itinerantes-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="carouselItinerantes" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg" class="d-block w-100" alt="Exposición Itinerante 1" style="height: 300px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('pexels-zhangkaiyv-189848.jpg', 'Exposición Itinerante 1', 'Información sobre la exposición itinerante.')">
-                                </div>
+                <div id="carouselItinerantes" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg" class="d-block w-100" alt="Exposición Itinerante 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg', 'Exposición Itinerante 1', 'Información sobre la exposición itinerante.')">
+                            <div class="carousel-caption">
+                                <h5>Exposición Itinerante 1</h5>
+                                <p>Descripción de la exposición itinerante.</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Controles del carrusel -->
+                    <a class="carousel-control-prev" href="#carouselItinerantes" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselItinerantes" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -187,15 +214,17 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.11/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
-        // Función para abrir el modal y cargar la imagen y detalles
+        // Función para abrir el modal con la imagen ampliada
         function openModal(imageSrc, title, description) {
+            // Asignar la imagen al modal
             document.getElementById('modalImage').src = imageSrc;
+            // Asignar el título y la descripción al modal
             document.getElementById('imageModalLabel').innerText = title;
             document.getElementById('modalDescription').innerText = description;
         }
     </script>
-
    <!-- fin secciones museo -->
 
 
