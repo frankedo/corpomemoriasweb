@@ -26,17 +26,6 @@
         }
 
         /* Estilo para la descripción debajo de la imagen */
-        .carousel-caption {
-            position: relative;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente para el texto */
-            color: #fff;
-            padding: 10px;
-            width: 100%;
-        }
-
         .description-container {
             padding: 15px;
             background-color: #f8f9fa;
@@ -49,7 +38,6 @@
             font-size: 14px;
         }
     </style>
-
 
 
        <!-- fin estilo de carrusel del museo -->
@@ -142,10 +130,7 @@
                 <div id="carouselActuales" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg', 'Exposición Actual 1', 'Exploración de la memoria histórica mediante artefactos y testimonios.')">
-                            <div class="carousel-caption">
-                                <h5>Exposición Actual 1</h5>
-                            </div>
+                            <img src="/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg" class="d-block w-100" alt="Exposición Actual 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-eberhardgross-1157970.jpg', 'Exposición Actual 1', 'Exploración de la memoria histórica mediante artefactos y testimonios.')">
                             <div class="description-container">
                                 <p><strong>Lugar:</strong> Museo Corpomemorias</p>
                                 <p><strong>Fecha:</strong> Enero 2024 - Mayo 2024</p>
@@ -170,10 +155,7 @@
                 <div id="carouselAnteriores" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="d-block w-100" alt="Exposición Anterior 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg', 'Exposición Anterior 1', 'Detalles adicionales de la exposición anterior.')">
-                            <div class="carousel-caption">
-                                <h5>Exposición Anterior 1</h5>
-                            </div>
+                            <img src="/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg" class="d-block w-100" alt="Exposición Anterior 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-nickkwanhk-2745258.jpg', 'Exposición Anterior 1', 'Detalles adicionales de la exposición anterior.')">
                             <div class="description-container">
                                 <p><strong>Lugar:</strong> Museo Corpomemorias</p>
                                 <p><strong>Fecha:</strong> Octubre 2023</p>
@@ -198,10 +180,7 @@
                 <div id="carouselItinerantes" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg" class="d-block w-100" alt="Exposición Itinerante 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg', 'Exposición Itinerante 1', 'Información sobre la exposición itinerante.')">
-                            <div class="carousel-caption">
-                                <h5>Exposición Itinerante 1</h5>
-                            </div>
+                            <img src="/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg" class="d-block w-100" alt="Exposición Itinerante 1" style="height: 250px; object-fit: cover;" data-toggle="modal" data-target="#imageModal" onclick="openModal('/assets/imgs/museovirtualimgs/pexels-zhangkaiyv-189848.jpg', 'Exposición Itinerante 1', 'Información sobre la exposición itinerante.')">
                             <div class="description-container">
                                 <p><strong>Lugar:</strong> Museo Itinerante</p>
                                 <p><strong>Fecha:</strong> Marzo 2024</p>
@@ -241,13 +220,13 @@
         </div>
     </div>
 
+    <!-- Archivos JS de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         function openModal(imageSrc, title, description) {
-            // Cambiar la imagen en el modal
             document.getElementById('modalImage').src = imageSrc;
             document.getElementById('imageModalLabel').innerText = title;
             document.getElementById('modalDescription').innerText = description;
