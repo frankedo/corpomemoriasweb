@@ -167,7 +167,7 @@
     <!-- Contenido de las pestañas -->
     <div class="tab-content" id="myTabContent">
         <!-- Exposiciones Itinerantes -->
-        <div class="tab-pane fade" id="itinerantes" role="tabpanel" aria-labelledby="itinerantes-tab">
+        <div class="tab-pane fade show active" id="itinerantes" role="tabpanel" aria-labelledby="itinerantes-tab">
             <!-- Exposición 1 -->
             <h1 class="mt-4">Exposición 1</h1>
             <div id="carouselItinerantes1" class="carousel slide" data-ride="carousel">
@@ -197,68 +197,6 @@
                 <p><strong>Fecha:</strong> 2016 - 2017</p>
                 <p><strong>Curador:</strong> Corpomemorias</p>
                 <p>La galería fotográfica en conmemoración a las víctimas de desaparición forzada tiene como objetivo honrar y visibilizar a las personas desaparecidas y sus historias...</p>
-            </div>
-
-            <!-- Exposición 2 -->
-            <h1 class="mt-4">Exposición 2</h1>
-            <div id="carouselItinerantes2" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Imagen 1 de la Exposición 2 -->
-                    <div class="carousel-item active">
-                        <img src="../assets/imgs/museovirtualimgs/20161103_165230.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 2.1" onclick="openModal(this)">
-                    </div>
-                    <!-- Imagen 2 de la Exposición 2 -->
-                    <div class="carousel-item">
-                        <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 2.2" onclick="openModal(this)">
-                    </div>
-                </div>
-                <!-- Controles para el carrusel -->
-                <a class="carousel-control-prev" href="#carouselItinerantes2" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselItinerantes2" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
-                </a>
-            </div>
-            <!-- Descripción de la Exposición 2 -->
-            <div class="description-container mt-2">
-                <p><strong>Lugar:</strong> Museo Itinerante Corpomemorias</p>
-                <p><strong>Fecha:</strong> Marzo 2021</p>
-                <p><strong>Curador:</strong> Dr. Juan Pérez</p>
-                <p>Descripción de la exposición itinerante 2...</p>
-            </div>
-
-            <!-- Exposición 3 -->
-            <h1 class="mt-4">Exposición 3</h1>
-            <div id="carouselItinerantes3" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Imagen 1 de la Exposición 3 -->
-                    <div class="carousel-item active">
-                        <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 3.1" onclick="openModal(this)">
-                    </div>
-                    <!-- Imagen 2 de la Exposición 3 -->
-                    <div class="carousel-item">
-                        <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 3.2" onclick="openModal(this)">
-                    </div>
-                </div>
-                <!-- Controles para el carrusel -->
-                <a class="carousel-control-prev" href="#carouselItinerantes3" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselItinerantes3" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
-                </a>
-            </div>
-            <!-- Descripción de la Exposición 3 -->
-            <div class="description-container mt-2">
-                <p><strong>Lugar:</strong> Museo Itinerante Corpomemorias</p>
-                <p><strong>Fecha:</strong> Marzo 2021</p>
-                <p><strong>Curador:</strong> Dr. Juan Pérez</p>
-                <p>Descripción de la exposición itinerante 3...</p>
             </div>
         </div>
 
@@ -350,6 +288,11 @@
 </div>
 
 <script>
+    // Activar la primera pestaña (Exposiciones Itinerantes) por defecto
+    $(document).ready(function () {
+        $('#itinerantes-tab').tab('show');
+    });
+
     function openModal(img) {
         var modal = document.getElementById("modal");
         var modalImg = document.getElementById("modal-img");
@@ -357,6 +300,7 @@
         $(modal).modal('show');
     }
 </script>
+
 
 
 
