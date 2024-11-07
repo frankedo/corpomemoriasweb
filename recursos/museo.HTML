@@ -102,45 +102,34 @@
   <!-- Inicia museo virtual -->
  <div class="container mt-5">
         <h2>Exposición Actual</h2>
-        <div id="currentExhibitionsCarousel" class="carousel slide" data-ride="carousel">
+        <div id="exhibitionCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-
-                <!-- Exposición 1 de Exposición Actual -->
+                <!-- Exposición 1 -->
                 <div class="carousel-item active">
-                    <div id="currentExhibition1Carousel" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" alt="Foto 1" data-toggle="modal" data-target="#imageModal" onclick="openModal(this)">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" alt="Foto 2" data-toggle="modal" data-target="#imageModal" onclick="openModal(this)">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#currentExhibition1Carousel" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
-                        <a class="carousel-control-next" href="#currentExhibition1Carousel" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
+                    <img src="ruta/de/tu/imagen1.jpg" alt="Exposición 1" onclick="openModal(this)">
                     <div class="description-container">
                         <p><strong>Lugar:</strong> Museo ABC</p>
                         <p><strong>Fecha:</strong> Marzo 2021</p>
                         <p><strong>Curador:</strong> Dr. Juan Pérez</p>
-                        <p>Descripción de la exposición 1 en Exposición Actual.</p>
+                        <p>Descripción de la exposición 1.</p>
                     </div>
                 </div>
-
-                <!-- Añadir las demás exposiciones en la misma estructura -->
-
+                <!-- Exposición 2 -->
+                <div class="carousel-item">
+                    <img src="ruta/de/tu/imagen2.jpg" alt="Exposición 2" onclick="openModal(this)">
+                    <div class="description-container">
+                        <p><strong>Lugar:</strong> Museo DEF</p>
+                        <p><strong>Fecha:</strong> Abril 2021</p>
+                        <p><strong>Curador:</strong> Dra. María López</p>
+                        <p>Descripción de la exposición 2.</p>
+                    </div>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#currentExhibitionsCarousel" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#exhibitionCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Anterior</span>
             </a>
-            <a class="carousel-control-next" href="#currentExhibitionsCarousel" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#exhibitionCarousel" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Siguiente</span>
             </a>
@@ -149,7 +138,7 @@
 
     <!-- Modal para ampliar imagen -->
     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <img id="modalImage" src="" alt="Imagen ampliada" class="img-fluid">
@@ -158,13 +147,14 @@
         </div>
     </div>
 
-    <!-- Archivos JS de Bootstrap y funciones de ampliación -->
+    <!-- Archivos JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function openModal(image) {
             document.getElementById("modalImage").src = image.src;
+            $('#imageModal').modal('show');
         }
     </script>
 
