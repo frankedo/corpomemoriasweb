@@ -146,18 +146,19 @@
 <!-- End of Page Header -->
 
 
-
-  <!-- Inicia museo virtual -->
-
+<!-- Inicia museo virtual -->
 <div class="container mt-5">
     <!-- Pestañas de navegación -->
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <!-- Pestaña para Exposiciones Itinerantes -->
         <li class="nav-item">
             <a class="nav-link active" id="itinerantes-tab" data-toggle="tab" href="#itinerantes" role="tab" aria-controls="itinerantes" aria-selected="true">Exposiciones Itinerantes</a>
-        </li>       
+        </li>
+        <!-- Pestaña para Exposiciones Actuales -->
         <li class="nav-item">
             <a class="nav-link" id="actuales-tab" data-toggle="tab" href="#actuales" role="tab" aria-controls="actuales" aria-selected="false">Exposiciones Actuales</a>
         </li>
+        <!-- Pestaña para Exposiciones Anteriores -->
         <li class="nav-item">
             <a class="nav-link" id="anteriores-tab" data-toggle="tab" href="#anteriores" role="tab" aria-controls="anteriores" aria-selected="false">Exposiciones Anteriores</a>
         </li>
@@ -171,13 +172,16 @@
             <h1 class="mt-4">Exposición 1</h1>
             <div id="carouselItinerantes1" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    <!-- Imagen 1 de la Exposición 1 -->
                     <div class="carousel-item active">
                         <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 1.1" onclick="openModal(this)">
                     </div>
+                    <!-- Imagen 2 de la Exposición 1 -->
                     <div class="carousel-item">
                         <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 1.2" onclick="openModal(this)">
                     </div>
                 </div>
+                <!-- Controles para el carrusel -->
                 <a class="carousel-control-prev" href="#carouselItinerantes1" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
@@ -199,13 +203,16 @@
             <h1 class="mt-4">Exposición 2</h1>
             <div id="carouselItinerantes2" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    <!-- Imagen 1 de la Exposición 2 -->
                     <div class="carousel-item active">
                         <img src="../assets/imgs/museovirtualimgs/20161103_165230.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 2.1" onclick="openModal(this)">
                     </div>
+                    <!-- Imagen 2 de la Exposición 2 -->
                     <div class="carousel-item">
                         <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 2.2" onclick="openModal(this)">
                     </div>
                 </div>
+                <!-- Controles para el carrusel -->
                 <a class="carousel-control-prev" href="#carouselItinerantes2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
@@ -227,13 +234,16 @@
             <h1 class="mt-4">Exposición 3</h1>
             <div id="carouselItinerantes3" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    <!-- Imagen 1 de la Exposición 3 -->
                     <div class="carousel-item active">
                         <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 3.1" onclick="openModal(this)">
                     </div>
+                    <!-- Imagen 2 de la Exposición 3 -->
                     <div class="carousel-item">
                         <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Itinerante 3.2" onclick="openModal(this)">
                     </div>
                 </div>
+                <!-- Controles para el carrusel -->
                 <a class="carousel-control-prev" href="#carouselItinerantes3" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
@@ -258,13 +268,16 @@
             <h1 class="mt-4">Exposición 1</h1>
             <div id="carouselActuales1" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    <!-- Imagen 1 de la Exposición Actual 1 -->
                     <div class="carousel-item active">
                         <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Actual 1.1" onclick="openModal(this)">
                     </div>
+                    <!-- Imagen 2 de la Exposición Actual 1 -->
                     <div class="carousel-item">
                         <img src="../assets/imgs/museovirtualimgs/20161103_165230.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Actual 1.2" onclick="openModal(this)">
                     </div>
                 </div>
+                <!-- Controles para el carrusel -->
                 <a class="carousel-control-prev" href="#carouselActuales1" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
@@ -274,46 +287,77 @@
                     <span class="sr-only">Siguiente</span>
                 </a>
             </div>
-            <!-- Descripción de la Exposición 1 -->
+            <!-- Descripción de la Exposición Actual 1 -->
             <div class="description-container mt-2">
-                <p><strong>Lugar:</strong> Museo de Memoria Histórica</p>
+                <p><strong>Lugar:</strong> Museo Corpomemorias</p>
                 <p><strong>Fecha:</strong> 2024</p>
-                <p><strong>Curador:</strong> Corpomemorias</p>
-                <p>Exposición sobre la desaparición forzada en Colombia, mostrando testimonios y arte de las víctimas...</p>
+                <p><strong>Curador:</strong> Artista Jhon Ramírez</p>
+                <p>Descripción de la exposición actual...</p>
+            </div>
+        </div>
+
+        <!-- Exposiciones Anteriores -->
+        <div class="tab-pane fade" id="anteriores" role="tabpanel" aria-labelledby="anteriores-tab">
+            <!-- Exposición 1 -->
+            <h1 class="mt-4">Exposición 1</h1>
+            <div id="carouselAnteriores1" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Imagen 1 de la Exposición Anterior 1 -->
+                    <div class="carousel-item active">
+                        <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Anterior 1.1" onclick="openModal(this)">
+                    </div>
+                    <!-- Imagen 2 de la Exposición Anterior 1 -->
+                    <div class="carousel-item">
+                        <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" style="height: 250px; object-fit: cover; width: 100%;" alt="Exposición Anterior 1.2" onclick="openModal(this)">
+                    </div>
+                </div>
+                <!-- Controles para el carrusel -->
+                <a class="carousel-control-prev" href="#carouselAnteriores1" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselAnteriores1" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </div>
+            <!-- Descripción de la Exposición Anterior 1 -->
+            <div class="description-container mt-2">
+                <p><strong>Lugar:</strong> Museo Virtual Corpomemorias</p>
+                <p><strong>Fecha:</strong> 2022</p>
+                <p><strong>Curador:</strong> Luis Pérez</p>
+                <p>Descripción de la exposición anterior...</p>
             </div>
         </div>
     </div>
 </div>
+<!-- Fin museo virtual -->
 
 <!-- Modal para ampliar imagen -->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-                <img id="modalImage" class="img-fluid" src="" alt="Imagen ampliada">
+                <img src="" class="img-fluid" id="modal-img">
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-<!-- Archivos JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-  // Función para abrir el modal y mostrar la imagen ampliada
-    function openModal(imgElement) {
-        var modal = document.getElementById("imageModal");
-        var modalImage = document.getElementById("modalImage");
-        modalImage.src = imgElement.src;
+    function openModal(img) {
+        var modal = document.getElementById("modal");
+        var modalImg = document.getElementById("modal-img");
+        modalImg.src = img.src;
         $(modal).modal('show');
     }
 </script>
 
-   <!-- fin secciones museo -->
 
 
 
