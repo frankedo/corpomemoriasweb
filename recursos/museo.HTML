@@ -438,40 +438,11 @@
 
 
 <script>
-// JavaScript para optimizar carruseles y modales
-$(document).ready(function () {
-    // Activar carrusel cuando se muestre una pestaña
-    $('#myTab a').on('shown.bs.tab', function (e) {
-        var target = $(e.target).attr("href"); // Obtener la pestaña activa
-        var carousel = $(target).find('.carousel'); // Buscar el carrusel dentro de la pestaña
-        $(carousel).carousel('pause'); // Pausar carrusel
-    });
-
-    // Función para abrir el modal y mostrar la imagen ampliada
-    function openModal(element) {
-        document.getElementById('modalImage').src = element.src;
-        $('#modal').modal('show');
-    }
-
-    // Cerrar el modal al hacer clic fuera de la imagen
-    $(document).on('click', '.modal', function (e) {
-        if ($(e.target).hasClass('modal')) {
-            $('#modal').modal('hide');
-        }
-    });
-
-    // Cerrar modal al presionar tecla Escape
-    $(document).on('keydown', function (e) {
-        if (e.key === "Escape") {
-            $('#modal').modal('hide');
-        }
-    });
-
-    // Prevenir cierre del modal al hacer clic en la imagen
-    $('#modal-img').on('click', function (e) {
-        e.stopPropagation();
-    });
-});
+function openModal(image) {
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = image.src; // Asigna la src de la imagen seleccionada al modal
+    $('#modal').modal('show'); // Muestra el modal
+}
 </script>
 
 <!-- jQuery, Popper.js y Bootstrap JS -->
