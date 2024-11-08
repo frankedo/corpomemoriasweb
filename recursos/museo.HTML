@@ -446,14 +446,10 @@ $(document).ready(function () {
         $(carousel).carousel('pause'); // Pausar carrusel
     });
 
-    // Función para abrir el modal con la imagen ampliada
-    function openModal(img) {
-        var modal = $('#modal');
-        var modalImg = $("#modal-img");
-        modalImg.attr("src", img.src);
-        modal.modal('show');
-        // Detener todos los carruseles al abrir modal
-        $('.carousel').carousel('pause');
+    // Función para abrir el modal y mostrar la imagen ampliada
+    function openModal(element) {
+        document.getElementById('modalImage').src = element.src;
+        $('#modal').modal('show');
     }
 
     // Cerrar el modal al hacer clic fuera de la imagen
