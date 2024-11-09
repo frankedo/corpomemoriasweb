@@ -73,112 +73,105 @@
 <!-- End of Page Header -->
 
 
-<div class="container mt-5">
-  <!-- Pestañas de Exposiciones -->
-  <ul class="nav nav-tabs" id="exposicionesTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="itinerante-tab" data-toggle="tab" href="#itinerante" role="tab" aria-controls="itinerante" aria-selected="true">Exposición Itinerante</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="actual-tab" data-toggle="tab" href="#actual" role="tab" aria-controls="actual" aria-selected="false">Exposición Actual</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="anterior-tab" data-toggle="tab" href="#anterior" role="tab" aria-controls="anterior" aria-selected="false">Exposición Anterior</a>
-    </li>
-  </ul>
+<!-- Inicia museo virtual -->
+<div class="container my-4">
+    <h1 class="text-center">Bienvenidos</h1>
 
-  <!-- Contenido de las pestañas -->
-  <div class="tab-content" id="exposicionesTabContent">
-    <!-- Carrusel Principal para Exposición Itinerante -->
-    <div class="tab-pane fade show active" id="itinerante" role="tabpanel" aria-labelledby="itinerante-tab">
-      <div id="carouselItinerante" class="carousel slide" data-ride="carousel" data-bs-interval="false">
-        <div class="carousel-inner">
-          
-          <!-- Exposición Itinerante 1 -->
-          <div class="carousel-item active">
-            <div class="card my-3">
-              <div class="card-header text-center"><h5>Exposición Conmemorativa a los Desaparecidos</h5></div>
-              <div class="card-body">
-                <div id="carouselItinerante1" class="carousel slide" data-bs-interval="false">
-                  <div class="carousel-inner">
+    <!-- Pestañas de Exposiciones -->
+    <ul class="nav nav-tabs" id="museumTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="itinerante-tab" data-toggle="tab" href="#itinerante" role="tab">Exposición Itinerante</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="actual-tab" data-toggle="tab" href="#actual" role="tab">Exposición Actual</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="anterior-tab" data-toggle="tab" href="#anterior" role="tab">Exposición Anterior</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="museumTabsContent">
+        <!-- Exposición Itinerante -->
+        <div class="tab-pane fade show active" id="itinerante" role="tabpanel">
+            <!-- Carrusel General para Exposiciones Itinerantes -->
+            <div id="carouselItinerante" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Exposición Itinerante 1 -->
                     <div class="carousel-item active">
-                      <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" class="d-block w-100" alt="Imagen 1">
+                        <div class="card">
+                            <div class="card-header">Exposición Itinerante 1</div>
+                            <div class="card-body">
+                                <div id="carouselItinerante1" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="../assets/imgs/museovirtualimgs/20161103_165205.jpg" class="d-block w-100" alt="Imagen 1">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" class="d-block w-100" alt="Imagen 2">
+                                        </div>
+                                    </div>
+                                    <!-- Controles internos para las imágenes de la exposición -->
+                                    <a class="carousel-control-prev" href="#carouselItinerante1" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Anterior</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselItinerante1" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Siguiente</span>
+                                    </a>
+                                </div>
+                                <p class="mt-3"><strong>Descripción:</strong> Descripción de exposición itinerante 1</p>
+                                <p><strong>Lugar:</strong> Lugar de exposición itinerante 1</p>
+                                <p><strong>Fecha:</strong> Fecha de exposición itinerante 1</p>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Exposición Itinerante 2 -->
                     <div class="carousel-item">
-                      <img src="../assets/imgs/museovirtualimgs/20170306_163916.jpg" class="d-block w-100" alt="Imagen 2">
+                        <div class="card">
+                            <div class="card-header">Exposición Itinerante 2</div>
+                            <div class="card-body">
+                                <div id="carouselItinerante2" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" class="d-block w-100" alt="Imagen 3">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../assets/imgs/museovirtualimgs/IMG_20~1.JPG" class="d-block w-100" alt="Imagen 4">
+                                        </div>
+                                    </div>
+                                    <!-- Controles internos para las imágenes de la exposición -->
+                                    <a class="carousel-control-prev" href="#carouselItinerante2" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Anterior</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselItinerante2" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Siguiente</span>
+                                    </a>
+                                </div>
+                                <p class="mt-3"><strong>Descripción:</strong> Descripción de exposición itinerante 2</p>
+                                <p><strong>Lugar:</strong> Lugar de exposición itinerante 2</p>
+                                <p><strong>Fecha:</strong> Fecha de exposición itinerante 2</p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <!-- Controles para el carrusel de imágenes de la exposición -->
-                  <a class="carousel-control-prev" href="#carouselItinerante1" role="button" data-slide="prev">
+                </div>
+                <!-- Controles para el carrusel general de exposiciones -->
+                <a class="carousel-control-prev" href="#carouselItinerante" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Anterior</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselItinerante1" role="button" data-slide="next">
+                </a>
+                <a class="carousel-control-next" href="#carouselItinerante" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Siguiente</span>
-                  </a>
-                </div>
-                <!-- Descripción de la exposición -->
-                <p class="mt-3"><strong>Descripción:</strong> Exposición de arte en memoria de los desaparecidos.</p>
-                <p><strong>Lugar:</strong> Museo de Corpomemorias</p>
-                <p><strong>Fecha:</strong> 3 de noviembre de 2016</p>
-              </div>
+                </a>
             </div>
-          </div>
-
-          <!-- Exposición Itinerante 2 -->
-          <div class="carousel-item">
-            <div class="card my-3">
-              <div class="card-header text-center"><h5>Exposición en el Conversatorio de Arte y Desaparición Forzada</h5></div>
-              <div class="card-body">
-                <div id="carouselItinerante2" class="carousel slide" data-bs-interval="false">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="../assets/imgs/museovirtualimgs/IMG_20201210_074552_863.jpg" class="d-block w-100" alt="Imagen 3">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="../assets/imgs/museovirtualimgs/IMG_20~1.JPG" class="d-block w-100" alt="Imagen 4">
-                    </div>
-                  </div>
-                  <!-- Controles para el carrusel de imágenes de la exposición -->
-                  <a class="carousel-control-prev" href="#carouselItinerante2" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselItinerante2" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
-                  </a>
-                </div>
-                <!-- Descripción de la exposición -->
-                <p class="mt-3"><strong>Descripción:</strong> Conversatorio sobre el impacto del arte en la memoria histórica.</p>
-                <p><strong>Lugar:</strong> Centro Cultural Aguachica</p>
-                <p><strong>Fecha:</strong> 10 de diciembre de 2020</p>
-              </div>
-            </div>
-          </div>
-          
         </div>
-        <!-- Controles externos para el carrusel principal de exposiciones -->
-        <a class="carousel-control-prev" href="#carouselItinerante" role="button" data-slide="prev" style="position: absolute; left: -50px;">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselItinerante" role="button" data-slide="next" style="position: absolute; right: -50px;">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Siguiente</span>
-        </a>
-      </div>
+
+        <!-- Repetir la misma estructura para las pestañas "Exposición Actual" y "Exposición Anterior" -->
+        <!-- Reemplazar "carouselItinerante" y demás IDs por "carouselActual" y "carouselAnterior" según corresponda -->
     </div>
-    
-    <!-- Código similar para las pestañas de "Exposición Actual" y "Exposición Anterior" -->
-    <div class="tab-pane fade" id="actual" role="tabpanel" aria-labelledby="actual-tab">
-      <!-- Código similar para el carrusel de "Exposición Actual" -->
-    </div>
-    <div class="tab-pane fade" id="anterior" role="tabpanel" aria-labelledby="anterior-tab">
-      <!-- Código similar para el carrusel de "Exposición Anterior" -->
-    </div>
-  </div>
 </div>
 
 
@@ -199,14 +192,10 @@
   </div>
 </div>
 
-<script>
-  document.querySelectorAll('.clickable-image').forEach(img => {
-    img.addEventListener('click', function() {
-      document.getElementById('modalImage').src = this.src;
-      $('#imageModal').modal('show');
-    });
-  });
-</script>
+<!-- Scripts de jQuery, Popper y Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 
