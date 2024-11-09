@@ -67,12 +67,43 @@
 
 
 <!-- Inicia museo virtual -->
-<section id="exposicion-itinerante" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Exposición Itinerante</h2>
-        <div id="exposicion-itinerante-contenido" class="row"></div>
-    </div>
-</section>
+
+
+<!-- Header de Exposiciones -->
+    <header class="text-center py-5 bg-dark text-white">
+        <h1>Exposiciones de Corpomemorias</h1>
+        <p class="lead">Explora nuestras exposiciones itinerantes, actuales y pasadas, cada una con el esfuerzo de nuestros curadores.</p>
+    </header>
+
+    <!-- Sección de Exposición Itinerante -->
+    <section id="exposicion-itinerante" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Exposición Itinerante</h2>
+            <p class="text-center mb-5">Exhibiciones a nivel nacional, recorriendo ciudades y compartiendo nuestra misión.</p>
+            <!-- Contenedor donde se insertarán las tarjetas de exposición itinerante -->
+            <div id="exposicion-itinerante-contenido" class="row"></div>
+        </div>
+    </section>
+
+    <!-- Sección de Exposición Actual (repetir estructura para otras categorías si es necesario) -->
+    <section id="exposicion-actual" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Exposición Actual</h2>
+            <p class="text-center mb-5">Descubre nuestras exhibiciones actuales.</p>
+            <!-- Contenedor donde se insertarán las tarjetas de exposición actual -->
+            <div id="exposicion-actual-contenido" class="row"></div>
+        </div>
+    </section>
+
+    <!-- Modal para Detalle de Exposición (opcional, se puede implementar para ver detalles de cada exposición) -->
+
+    <!-- Scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 <!-- fin museo virtual -->
 
 
@@ -165,7 +196,6 @@
 
 
 
-
 <script> <!-- escritp de museo -->
    // Función para cargar y procesar el archivo JSON
    fetch('exposiciones.json')
@@ -218,6 +248,61 @@
        return card;
    }
 </script><!--  fin scritp de museo -->
+
+
+
+<!-- JavaScript para la funcionalidad del modal y las tarjetas -->
+<script>
+    // Aquí va todo el código JavaScript que te proporcioné
+    function crearTarjetaExposicion(exposicion) {
+        // Código de la función crearTarjetaExposicion
+    }
+
+    function mostrarDetalleExposicion(exposicion) {
+        // Código de la función mostrarDetalleExposicion
+    }
+
+    // Otros scripts necesarios, como los datos de ejemplo o los eventos de carga
+</script>
+
+
+
+
+<!-- Modal para Detalles de la Exposición -->
+<div class="modal fade" id="detalleExposicionModal" tabindex="-1" aria-labelledby="detalleExposicionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleExposicionModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Carousel para las imágenes de la exposición -->
+                <div id="modalCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" id="modalCarouselInner">
+                        <!-- Las imágenes se cargarán dinámicamente aquí -->
+                    </div>
+                    <a class="carousel-control-prev" href="#modalCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#modalCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <hr>
+                <p id="modalFecha"></p>
+                <p id="modalLugar"></p>
+                <p id="modalCurador"></p>
+                <p id="modalDescripcion"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
