@@ -28,7 +28,42 @@
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  
+
+<!-- css tarjetas museo -->
+  .card {
+    width: 100%; /* Asegura que cada tarjeta ocupe todo el espacio de su contenedor */
+    height: 100%; /* Ajusta para que todas las tarjetas tengan la misma altura */
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    height: 200px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    width: 100%;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.carousel-item {
+    height: 200px;
+}
+<!-- fin css tarjetas museo -->
+
 
 
 
