@@ -33,17 +33,11 @@
 <style><!-- css tarjetas museo -->
 
 .card {
-    width: auto;
-    height:auto;
+    width: 100%;  /* Ocupa todo el ancho disponible */
+    height: 400px;  /* Establece una altura fija para todas las tarjetas */
     display: flex;
     flex-direction: column;
-}
-
-.card img {
-    height: auto;
-    max-height: 200px; /* Limita la altura máxima */
-    object-fit: cover; /* Asegura que la imagen cubra sin distorsión */
-    width: 100%;
+    overflow: hidden;  /* Evita que el contenido desborde la tarjeta */
 }
 
 .card-body {
@@ -51,21 +45,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;  /* Evita que el contenido dentro del card-body se desborde */
 }
 
 .card-title {
     font-size: 1.25rem;
     font-weight: bold;
+    white-space: nowrap;  /* Evita que el título se divida en varias líneas */
+    overflow: hidden;  /* Oculta el texto que se desborda */
+    text-overflow: ellipsis;  /* Agrega "..." al final si el texto es demasiado largo */
 }
 
-.card-text {
-    font-size: 1rem;
-}
 
-.carousel-item img {
-    height: 200px; /* Igual que en las tarjetas */
-    object-fit: cover;
-    width: 100%;
+.modal-body img {
+    height: 100%;  /* Ajusta la imagen a la altura completa del modal */
+    width: auto;  /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor sin distorsión */
 }
 
 
