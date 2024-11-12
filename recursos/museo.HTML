@@ -32,27 +32,34 @@
 
 <style><!-- css tarjetas museo -->
 
+.card {
+    width: 100%;  /* Ocupa todo el ancho del contenedor */
+    height: 400px;  /* Establece una altura fija */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;  /* Evita que se vea contenido desbordado */
+}
+
+.card img {
+    width: 100%;  /* Ajusta la imagen al 100% del ancho de la tarjeta */
+    height: 200px;  /* Establece una altura fija para las imágenes */
+    object-fit: cover;  /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
 .card-body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;  /* Evita que el contenido dentro del card-body se desborde */
+    overflow: hidden;  /* Evita que el contenido se desborde */
 }
 
 .card-title {
     font-size: 1.25rem;
     font-weight: bold;
-    white-space: nowrap;  /* Evita que el título se divida en varias líneas */
-    overflow: hidden;  /* Oculta el texto que se desborda */
-    text-overflow: ellipsis;  /* Agrega "..." al final si el texto es demasiado largo */
-}
-
-
-.modal-body img {
-    height: 100%;  /* Ajusta la imagen a la altura completa del modal */
-    width: auto;  /* Mantiene la proporción de la imagen */
-    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor sin distorsión */
+    white-space: nowrap;  /* Evita el salto de línea */
+    overflow: hidden;  /* Oculta el texto que excede el contenedor */
+    text-overflow: ellipsis;  /* Agrega "..." al final del texto largo */
 }
 
 
