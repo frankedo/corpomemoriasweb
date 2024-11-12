@@ -29,6 +29,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
+<!-- para la imagen 360 -->
+<link rel="stylesheet" href="https://cdn.pannellum.org/2.5/pannellum.css"/>
+    <script src="https://cdn.pannellum.org/2.5/pannellum.js"></script>
+<!-- para la imagen 360 -->
+
+
 
 <style><!-- css tarjetas museo -->
 
@@ -224,6 +230,17 @@
 <!-- Fin del museo virtual -->
 
 
+
+
+ <div id="panorama" style="width: 100%; height: 500px;"></div>
+
+    <script>
+        pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "panorama": "URL_DE_TU_IMAGEN_360.jpg",
+            "autoLoad": true
+        });
+    </script>
 
 
 
