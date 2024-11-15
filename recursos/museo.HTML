@@ -232,21 +232,51 @@
 
 
 
- <div id="panorama" style="width: 100%; height: 500px;"></div>
+  <div id="panorama" style="width: 100%; height: 100vh;"></div>
 
     <script>
         pannellum.viewer('panorama', {
-            "type": "equirectangular",
-            "panorama": "../assets/imgs/museovirtualimgs/IMAGE_STITCHING_jpeg(1)_11zon.jpeg",  // Reemplaza con la URL de tu imagen
-            "autoLoad": true,
-            "autoRotate": -2,  // Ajusta para una rotación automática lenta
-            "showControls": true,  // Muestra los controles de navegación
-            "hfov": 110,  // Campo de visión inicial (ajústalo según tu imagen)
-            "pitch": 0,  // Posición vertical inicial
-            "yaw": 0  // Posición horizontal inicial
+            "default": {
+                "firstScene": "escena1",
+                "autoLoad": true,
+                "showControls": true
+            },
+            "scenes": {
+                "escena1": {
+                    "type": "equirectangular",
+                    "panorama": "../assets/imgs/museovirtualimgs/IMAGE_STITCHING_jpeg(1)_11zon.jpeg", // URL de tu primera imagen
+                    "hfov": 110,
+                    "pitch": 0,
+                    "yaw": 0,
+                    "hotSpots": [
+                        {
+                            "pitch": 0,
+                            "yaw": 30,
+                            "type": "scene",
+                            "text": "Ir a Escena 2",
+                            "sceneId": "escena2"
+                        }
+                    ]
+                },
+                "escena2": {
+                    "type": "equirectangular",
+                    "panorama": "../assets/imgs/museovirtualimgs/WhatsApp Image 2024-11-15 at 15.03.01.jpeg", // URL de tu segunda imagen
+                    "hfov": 110,
+                    "pitch": 0,
+                    "yaw": 0,
+                    "hotSpots": [
+                        {
+                            "pitch": 0,
+                            "yaw": -30,
+                            "type": "scene",
+                            "text": "Regresar a Escena 1",
+                            "sceneId": "escena1"
+                        }
+                    ]
+                }
+            }
         });
     </script>
-
 
 
      <!-- Section -->
