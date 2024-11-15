@@ -237,8 +237,13 @@
     <script>
         pannellum.viewer('panorama', {
             "type": "equirectangular",
-            "panorama": "../assets/imgs/museovirtualimgs/IMAGE_STITCHING_jpeg(1)_11zon.jpeg",
-            "autoLoad": true
+            "panorama": "../assets/imgs/museovirtualimgs/IMAGE_STITCHING_jpeg(1)_11zon.jpeg",  // Reemplaza con la URL de tu imagen
+            "autoLoad": true,
+            "autoRotate": -2,  // Ajusta para una rotación automática lenta
+            "showControls": true,  // Muestra los controles de navegación
+            "hfov": 110,  // Campo de visión inicial (ajústalo según tu imagen)
+            "pitch": 0,  // Posición vertical inicial
+            "yaw": 0  // Posición horizontal inicial
         });
     </script>
 
