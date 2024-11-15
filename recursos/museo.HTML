@@ -232,7 +232,7 @@
 
 
 
-  <div id="panorama" style="width: 100%; height: 100vh;"></div>
+  <div id="panorama" style="width: 100%; height: 500px;"></div>
 
     <script>
         pannellum.viewer('panorama', {
@@ -278,13 +278,6 @@
         });
     </script>
 
-script>
-    window.addEventListener('resize', function () {
-        const panorama = document.getElementById('panorama');
-        panorama.style.height = window.innerHeight + 'px';
-        panorama.style.width = window.innerWidth + 'px';
-    });
-</script>
 
      <!-- Section -->
     <section class="has-bg-img text-center text-light height-auto" style="background-image: url(../assets/imgs/pexels-thijsvdw-792955.jpg)">
