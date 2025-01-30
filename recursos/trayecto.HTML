@@ -259,54 +259,58 @@ de los hechos victimizantes, la colcha de la memoria. En el minuto
 
 -------
 
-  <!-- Contenedor de la Línea de Tiempo -->
-  <div id="timeline-embed"></div>
-
   <script>
-    // Configuración de Supabase
-    const supabaseUrl = 'https://your-project-id.supabase.co';  // Reemplaza con tu URL de Supabase (de Render)
-    const supabaseKey = 'your-anon-key';  // Reemplaza con tu clave de API de Supabase
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  // 📌 URL de tu backend en Render
+  const backendUrl = 'https://supabase-backend.onrender.com/timeline';
 
-    async function obtenerDatos() {
-      // Obtener datos desde Supabase (modifica la tabla y los campos según tu estructura)
-      const { data, error } = await supabase
-        .from('eventos')  // Reemplaza 'eventos' con el nombre de tu tabla en Supabase
-        .select('*');  // Asegúrate de que estás seleccionando los campos correctos de tu tabla
+  async function obtenerDatos() {
+    try {
+      // 📌 Petición al backend para obtener los eventos desde Supabase
+      const response = await fetch(backendUrl);
 
-      if (error) {
-        console.error('Error al obtener datos:', error);
-      } else {
-        // Formatear los datos para TimelineJS
-        const timelineData = {
-          "events": data.map(evento => ({
-            "start_date": {
-              "year": evento.año,  // Reemplaza 'año' con el nombre de tu campo de año
-              "month": evento.mes,  // Reemplaza 'mes' con el nombre de tu campo de mes (si lo tienes)
-              "day": evento.dia     // Reemplaza 'dia' con el nombre de tu campo de día (si lo tienes)
-            },
-            "text": {
-              "headline": evento.titulo,  // Reemplaza 'titulo' con el nombre de tu campo de título
-              "text": evento.descripcion  // Reemplaza 'descripcion' con el nombre de tu campo de descripción
-            },
-            "media": {
-              "url": evento.imagen_url,  // Reemplaza 'imagen_url' con el campo que contiene la URL de la imagen (si tienes)
-              "caption": evento.imagen_caption  // Reemplaza 'imagen_caption' con el campo para pie de imagen (si tienes)
-            }
-          }))
-        };
-
-        // Crear la línea de tiempo
-        var timeline = new TL.Timeline('timeline-embed', timelineData);
+      if (!response.ok) {
+        throw new Error(`Error en la respuesta del servidor: ${response.status}`);
       }
+
+      const data = await response.json();
+      console.log('📌 Datos obtenidos:', data);
+
+      // 📌 Formatear los datos para TimelineJS
+      const timelineData = {
+        "events": data.map(evento => ({
+          "start_date": {
+            "year": evento.año,  // 🔄 Reemplaza según la estructura de tu tabla
+            "month": evento.mes || 1,  // 🔄 Opcional, por defecto 1 si no hay mes
+            "day": evento.dia || 1     // 🔄 Opcional, por defecto 1 si no hay día
+          },
+          "text": {
+            "headline": evento.titulo,  // 🔄 Campo de título del evento
+            "text": evento.descripcion  // 🔄 Campo de descripción
+          },
+          "media": {
+            "url": evento.imagen_url || '',  // 🔄 Campo de imagen (opcional)
+            "caption": evento.imagen_caption || ''  // 🔄 Pie de imagen (opcional)
+          }
+        }))
+      };
+
+      // 📌 Crear la línea de tiempo con los datos obtenidos
+      var timeline = new TL.Timeline('timeline-embed', timelineData, {
+        start_at_end: false,
+        timenav_position: 'bottom',
+        optimal_tick_width: 200,
+        height: 600
+      });
+
+    } catch (error) {
+      console.error('❌ Error al obtener la línea de tiempo:', error);
     }
+  }
 
-    // Llamar la función para obtener los datos
-    obtenerDatos();
-  </script>
+  // 📌 Llamar a la función para obtener los datos del backend
+  obtenerDatos();
+</script>
 
-</body>
-</html>
 
    
 ------
