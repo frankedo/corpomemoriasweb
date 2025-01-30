@@ -7,8 +7,15 @@
     <meta name="author" content="Devcrud">
     <title>Corpomemorias</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
 
+  <!-- Estilo de TimelineJS -->
+  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+  
+  <!-- Script de TimelineJS -->
+  <script type="text/javascript" src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+
+  <!-- Script de Supabase (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
 
 
     <!-- font icons -->
@@ -47,17 +54,6 @@
             </div>
         </div>
     </nav><!-- End of Page Navbar -->   
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Page Header -->
@@ -263,6 +259,54 @@ de los hechos victimizantes, la colcha de la memoria. En el minuto
 
 -------
 
+  <!-- Contenedor de la Línea de Tiempo -->
+  <div id="timeline-embed"></div>
+
+  <script>
+    // Configuración de Supabase
+    const supabaseUrl = 'https://your-project-id.supabase.co';  // Reemplaza con tu URL de Supabase (de Render)
+    const supabaseKey = 'your-anon-key';  // Reemplaza con tu clave de API de Supabase
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function obtenerDatos() {
+      // Obtener datos desde Supabase (modifica la tabla y los campos según tu estructura)
+      const { data, error } = await supabase
+        .from('eventos')  // Reemplaza 'eventos' con el nombre de tu tabla en Supabase
+        .select('*');  // Asegúrate de que estás seleccionando los campos correctos de tu tabla
+
+      if (error) {
+        console.error('Error al obtener datos:', error);
+      } else {
+        // Formatear los datos para TimelineJS
+        const timelineData = {
+          "events": data.map(evento => ({
+            "start_date": {
+              "year": evento.año,  // Reemplaza 'año' con el nombre de tu campo de año
+              "month": evento.mes,  // Reemplaza 'mes' con el nombre de tu campo de mes (si lo tienes)
+              "day": evento.dia     // Reemplaza 'dia' con el nombre de tu campo de día (si lo tienes)
+            },
+            "text": {
+              "headline": evento.titulo,  // Reemplaza 'titulo' con el nombre de tu campo de título
+              "text": evento.descripcion  // Reemplaza 'descripcion' con el nombre de tu campo de descripción
+            },
+            "media": {
+              "url": evento.imagen_url,  // Reemplaza 'imagen_url' con el campo que contiene la URL de la imagen (si tienes)
+              "caption": evento.imagen_caption  // Reemplaza 'imagen_caption' con el campo para pie de imagen (si tienes)
+            }
+          }))
+        };
+
+        // Crear la línea de tiempo
+        var timeline = new TL.Timeline('timeline-embed', timelineData);
+      }
+    }
+
+    // Llamar la función para obtener los datos
+    obtenerDatos();
+  </script>
+
+</body>
+</html>
 
    
 ------
