@@ -259,36 +259,76 @@ de los hechos victimizantes, la colcha de la memoria. En el minuto
 
 -------
 
-  <div class="timeline-container">
-    <div class="timeline">
-      <!-- Evento 1 -->
-      <div class="timeline-item">
-        <div class="timeline-date">2025-01-29</div>
-        <div class="timeline-content">
-          <h3>Inicio del Proyecto</h3>
-          <p>El proyecto de memoria histórica comenzó con el objetivo de visibilizar la lucha por la desaparición forzada.</p>
-        </div>
-      </div>
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #timeline-embed {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
 
-      <!-- Evento 2 -->
-      <div class="timeline-item">
-        <div class="timeline-date">2025-03-15</div>
-        <div class="timeline-content">
-          <h3>Evento de Conmemoración</h3>
-          <p>Se realizó una exposición conmemorativa a los desaparecidos en el evento "Recuerdos Vivos".</p>
-        </div>
-      </div>
+    <h2>Línea de Tiempo Dinámica</h2>
+    <div id="timeline-embed"></div>
 
-      <!-- Puedes agregar más eventos aquí -->
-    </div>
-  </div>
-  
-  <script src="app.js"></script>
+    <script>
+        // ✅ Conéctate a Supabase con tus credenciales
+        const supabaseUrl = "https://TUSUPABASE.supabase.co";
+        const supabaseKey = "TU_CLAVE_SECRETA";
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+        async function obtenerEventos() {
+            const { data, error } = await supabase
+                .from('linea_tiempo')
+                .select('*')
+                .order('fecha', { ascending: true });
 
+            if (error) {
+                console.error("Error obteniendo eventos:", error);
+                return;
+            }
 
+            let eventos = data.map(evento => ({
+                "media": {
+                    "url": evento.imagen_url || "",
+                    "caption": evento.detalle,
+                    "credit": evento.autor || "Fuente desconocida"
+                },
+                "start_date": {
+                    "year": evento.fecha.split('-')[0],
+                    "month": evento.fecha.split('-')[1] || "",
+                    "day": evento.fecha.split('-')[2] || ""
+                },
+                "text": {
+                    "headline": evento.titulo,
+                    "text": `<p>${evento.detalle}</p>`
+                }
+            }));
 
+            // ✅ Generar la línea de tiempo con los datos obtenidos
+            window.timeline = new TL.Timeline('timeline-embed', { 
+                title: {
+                    "media": {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Colombia_relief_location_map.jpg",
+                        "caption": "Mapa de Colombia",
+                        "credit": "Wikipedia"
+                    },
+                    "text": {
+                        "headline": "Memoria Histórica en Colombia",
+                        "text": "<p>Una línea de tiempo sobre la desaparición forzada y la memoria histórica en Colombia.</p>"
+                    }
+                },
+                "events": eventos
+            });
+        }
 
+        // ✅ Llamamos a la función para cargar los datos al iniciar la página
+        obtenerEventos();
+    </script>
 
 ------
 
