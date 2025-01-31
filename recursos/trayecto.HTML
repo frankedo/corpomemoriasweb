@@ -8,14 +8,17 @@
     <title>Corpomemorias</title>
 
 
-  <!-- Estilo de TimelineJS -->
-  <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
-  
-  <!-- Script de TimelineJS -->
-  <script type="text/javascript" src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+<!-- Estilos de TimelineJS -->
+    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
 
-  <!-- Script de Supabase (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.js"></script>
+    <style>
+        /* Ajustes de diseño opcionales */
+        #timeline-embed {
+            width: 100%;
+            height: 600px; /* Ajusta la altura según necesites */
+        }
+    </style>
+
 
 
     <!-- font icons -->
@@ -258,71 +261,38 @@ de los hechos victimizantes, la colcha de la memoria. En el minuto
 </p> 
 
 -------
+<h1>Línea de Tiempo</h1>
+    <div id="timeline-embed"></div> <!-- Contenedor donde se mostrará la línea de tiempo -->
 
-  <script>
-const express = require('express');
-const { createClient } = require('@supabase/supabase-js');
-const cors = require('cors');
-require('dotenv').config();
+    <!-- TimelineJS -->
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 
-const app = express();
-const port = process.env.PORT || 10000;
+    <script>
+        // URL de tu backend en Render
+        const apiUrl = "https://supabase-backend.onrender.com/timeline";
 
-// Permitir solicitudes desde cualquier origen
-app.use(cors());
+        async function cargarTimeline() {
+            try {
+                // Obtener los datos de la API
+                const response = await fetch(apiUrl);
+                const data = await response.json();
 
-// Configurar Supabase
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
+                // Verificar si los datos son correctos
+                if (!data.events || data.events.length === 0) {
+                    console.error("No hay datos disponibles para la línea de tiempo.");
+                    return;
+                }
 
-// Ruta para obtener la línea de tiempo
-app.get('/timeline', async (req, res) => {
-  try {
-    // Obtener los datos de la tabla 'linea_tiempo'
-    const { data, error } = await supabase
-      .from('linea_tiempo') // Nombre de la tabla
-      .select('id, fecha, evento, descripcion, imagen'); // Columnas que necesitas
-
-    if (error) {
-      console.error("Error al obtener datos", error);
-      return res.status(500).json({ message: "Error al obtener datos", error: error.message });
-    }
-
-    // Formato de los datos para la línea de tiempo
-    const timelineData = {
-      "events": data.map(item => ({
-        "start_date": {
-          "year": new Date(item.fecha).getFullYear(),  // Año de la fecha
-          "month": new Date(item.fecha).getMonth() + 1, // Mes (sumamos 1 para que sea entre 1 y 12)
-          "day": new Date(item.fecha).getDate()          // Día de la fecha
-        },
-        "text": {
-          "headline": item.evento,   // El nombre del evento
-          "text": item.descripcion   // Descripción del evento
-        },
-        "media": {
-          "url": item.imagen,       // URL de la imagen
-          "caption": "Imagen relacionada con el evento"  // Puedes personalizar la leyenda
+                // Crear la línea de tiempo con los datos obtenidos
+                new TL.Timeline("timeline-embed", data);
+            } catch (error) {
+                console.error("Error al cargar la línea de tiempo:", error);
+            }
         }
-      }))
-    };
 
-    return res.status(200).json(timelineData);
-  } catch (error) {
-    console.error("Error inesperado", error);
-    return res.status(500).json({ message: "Error inesperado", error: error.message });
-  }
-});
-
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
-});
-
-</script>
-
+        // Cargar la línea de tiempo cuando se cargue la página
+        window.onload = cargarTimeline;
+    </script>
 
    
 ------
