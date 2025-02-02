@@ -262,38 +262,58 @@ de los hechos victimizantes, la colcha de la memoria. En el minuto
 
 -------
 <h1>Línea de Tiempo</h1>
-    <div id="timeline-embed"></div> <!-- Contenedor donde se mostrará la línea de tiempo -->
+<div id="timeline-embed"></div> <!-- Contenedor donde se mostrará la línea de tiempo -->
 
-    <!-- TimelineJS -->
-    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+<!-- TimelineJS -->
+<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 
-    <script>
-        // URL de tu backend en Render
-        const apiUrl = "https://supabase-backend.onrender.com/timeline";
+<script>
+    // URL de tu backend en Render
+    const apiUrl = "https://supabase-backend.onrender.com/timeline";
 
-        async function cargarTimeline() {
-            try {
-                // Obtener los datos de la API
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+    async function cargarTimeline() {
+        try {
+            // Obtener los datos de la API
+            const response = await fetch(apiUrl);
+            const data = await response.json();
 
-                // Verificar si los datos son correctos
-                if (!data.events || data.events.length === 0) {
-                    console.error("No hay datos disponibles para la línea de tiempo.");
-                    return;
-                }
-
-                // Crear la línea de tiempo con los datos obtenidos
-                new TL.Timeline("timeline-embed", data);
-            } catch (error) {
-                console.error("Error al cargar la línea de tiempo:", error);
+            // Verificar si los datos son correctos
+            if (!Array.isArray(data) || data.length === 0) {
+                console.error("No hay datos disponibles para la línea de tiempo.");
+                return;
             }
+
+            // Transformar los datos al formato de TimelineJS
+            const timelineData = {
+                title: {
+                    text: { headline: "Línea de Tiempo" }
+                },
+                events: data.map(evento => ({
+                    start_date: {
+                        year: evento.fecha.split("-")[0],
+                        month: evento.fecha.split("-")[1],
+                        day: evento.fecha.split("-")[2],
+                    },
+                    text: {
+                        headline: evento.evento,
+                        text: evento.descripcion
+                    },
+                    media: {
+                        url: evento.imagen
+                    }
+                }))
+            };
+
+            // Crear la línea de tiempo con los datos transformados
+            new TL.Timeline("timeline-embed", timelineData);
+        } catch (error) {
+            console.error("Error al cargar la línea de tiempo:", error);
         }
+    }
 
-        // Cargar la línea de tiempo cuando se cargue la página
-        window.onload = cargarTimeline;
-    </script>
-
+    // Cargar la línea de tiempo cuando se cargue la página
+    window.onload = cargarTimeline;
+</script>
    
 ------
 
