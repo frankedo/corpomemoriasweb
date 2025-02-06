@@ -8,6 +8,23 @@
     <meta name="author" content="Devcrud">
     <title>Corpomemorias</title>
 
+
+
+  <!-- cdn para el mapa en cesium y estilo -->
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.99/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.99/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>  <!-- fin cdn para el mapa en cesium y estilo -->
+
+
+
+
     <!-- font icons -->
     <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
 
@@ -277,6 +294,71 @@
             }
         });
     </script>
+
+
+
+   // 📍mapa de Lugares de memoria histórica en Aguachica
+<div id="cesiumContainer"></div>
+    <script>
+        // Inicializar el visor Cesium sin token
+        const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider: new Cesium.UrlTemplateImageryProvider({
+                url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png' // Mapa gratuito de OpenStreetMap
+            }),
+            terrainProvider: Cesium.createWorldTerrain(), // Activa relieve 3D
+            baseLayerPicker: false, // Oculta la selección de capas
+            timeline: false, // Oculta la línea de tiempo
+            animation: false // Oculta los controles de animación
+        });
+
+        // 📍 Lugares de memoria histórica en Aguachica
+        const lugares = [
+            { nombre: "Plaza Principal", lat: 8.3125, lon: -73.615, alt: 50 },
+            { nombre: "Parque San Roque", lat: 8.315, lon: -73.612, alt: 50 },
+            { nombre: "Cementerio Central", lat: 8.318, lon: -73.620, alt: 50 }
+        ];
+
+        // 📍 Agregar marcadores y etiquetas a los lugares
+        lugares.forEach(lugar => {
+            viewer.entities.add({
+                position: Cesium.Cartesian3.fromDegrees(lugar.lon, lugar.lat, lugar.alt),
+                point: { pixelSize: 10, color: Cesium.Color.RED },
+                label: {
+                    text: lugar.nombre,
+                    font: "16px sans-serif",
+                    fillColor: Cesium.Color.WHITE,
+                    outlineColor: Cesium.Color.BLACK,
+                    outlineWidth: 3,
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    pixelOffset: new Cesium.Cartesian2(0, -20)
+                }
+            });
+        });
+
+        // 🔄 Recorrido inmersivo por los lugares
+        async function recorrerLugares() {
+            for (const lugar of lugares) {
+                await viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(lugar.lon, lugar.lat, 200), // Altura de la cámara
+                    orientation: {
+                        heading: Cesium.Math.toRadians(90), // Mirar hacia el este
+                        pitch: Cesium.Math.toRadians(-20), // Inclinación hacia abajo
+                        roll: 0
+                    },
+                    duration: 4 // Tiempo de transición
+                });
+            }
+        }
+
+        // Iniciar recorrido al cargar la página
+        recorrerLugares();
+    </script>
+
+
+
+
+
 
 
      <!-- Section -->
