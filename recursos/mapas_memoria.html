@@ -6,8 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with Creative Design landing page.">
     <meta name="author" content="Devcrud">
-    <title>Mapas de Memoria</title>
+    <title>Mapas de Memoria Aguachica - Cesar</title>
 
+
+<!-- 📌 Estilos de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- 📌 Estilos CSS -->
+    <style>
+        /* 📌 Asegurar que el mapa ocupe toda la pantalla */
+        #map { height: 100vh; }
+    </style>
+
+	
 
     <!-- font icons -->
     <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
@@ -65,6 +76,102 @@
 <!-- End of Page Header -->
 
 
+
+
+
+
+
+
+
+
+    
+
+    <!-- 📌 Contenedor del mapa -->
+    <div id="map"></div>
+
+    <!-- 📌 Scripts de Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- 📌 Script de Leaflet Routing Machine para rutas -->
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+    <!-- 📌 Script para cargar el mapa y obtener los datos del backend -->
+    <script>
+        // 📌 1. Inicializar el mapa en Aguachica, Cesar
+        var map = L.map('map').setView([8.3, -73.6164], 14); // Coordenadas centrales de Aguachica
+
+        // 📌 2. Agregar un mapa base de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 📌 3. Función para obtener los datos del backend
+        async function fetchLugares() {
+            try {
+                const response = await fetch('https://tu-backend.com/lugares'); // Reemplaza con la URL real de tu backend
+                const lugares = await response.json();
+
+                // 📌 4. Agregar marcadores para cada lugar
+                lugares.forEach(lugar => {
+                    let marker = L.marker([lugar.lat, lugar.lon]).addTo(map)
+                        .bindPopup(`
+                            <h3>${lugar.nombre}</h3>
+                            <p>${lugar.descripcion}</p>
+                            <p><strong>Fecha Conmemorativa:</strong> ${lugar.fecha}</p>
+                            <img src="${lugar.foto}" alt="Imagen del lugar" width="200px">
+                        `);
+                });
+
+                // 📌 5. Dibujar la ruta de la cicloruta con Leaflet Routing Machine
+                L.Routing.control({
+                    waypoints: lugares.map(lugar => L.latLng(lugar.lat, lugar.lon)), // Convertir lugares en waypoints
+                    routeWhileDragging: true, // Permitir mover la ruta
+                    show: true, // Mostrar la ruta
+                }).addTo(map);
+
+            } catch (error) {
+                console.error('Error al obtener los lugares:', error);
+            }
+        }
+
+        // 📌 6. Llamar la función para cargar los datos al mapa
+        fetchLugares();
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
      <!-- Section -->
     <section class="has-bg-img text-center text-light height-auto" style="background-image: url(../assets/imgs/pexels-thijsvdw-792955.jpg)">
