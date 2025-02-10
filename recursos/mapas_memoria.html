@@ -84,10 +84,7 @@
 <!-- 📌 Scripts de Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- 📌 Script de Leaflet Routing Machine para rutas -->
-<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-
-<!-- 📌 Script para cargar el mapa y obtener los datos del backend -->
+<!-- 📌 Script para cargar el mapa con los lugares de memoria -->
 <script>
     // 📌 1. Inicializar el mapa en Aguachica, Cesar
     var map = L.map('map').setView([8.3, -73.6164], 14); // Coordenadas centrales de Aguachica
@@ -105,9 +102,9 @@
 
             console.log("✅ Lugares obtenidos:", lugares); // Verificar en consola
 
-            // 📌 4. Agregar marcadores para cada lugar
+            // 📌 4. Agregar solo los marcadores de cada lugar
             lugares.forEach(lugar => {
-                let marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map) // Coordenadas corregidas
+                L.marker([lugar.latitud, lugar.longitud]).addTo(map) // Coordenadas correctas
                     .bindPopup(`
                         <h3>${lugar.nombre_lugar}</h3>
                         <p>${lugar.descripcion}</p>
@@ -116,23 +113,15 @@
                     `);
             });
 
-            // 📌 5. Dibujar la ruta con Leaflet Routing Machine
-            if (lugares.length > 1) { // Solo dibujar si hay más de un punto
-                L.Routing.control({
-                    waypoints: lugares.map(lugar => L.latLng(lugar.latitud, lugar.longitud)), // Coordenadas corregidas
-                    routeWhileDragging: true, // Permitir mover la ruta
-                    show: true, // Mostrar la ruta en el mapa
-                }).addTo(map);
-            }
-
         } catch (error) {
             console.error('❌ Error al obtener los lugares:', error);
         }
     }
 
-    // 📌 6. Llamar la función para cargar los datos en el mapa
+    // 📌 5. Llamar la función para cargar los datos en el mapa
     fetchLugares();
 </script>
+
 
 
 
