@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Design landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Archivo Digital Corpomemorias</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { margin-top: 20px; }
+        .card { margin-bottom: 20px; }
+        .small-text { font-size: 0.9em; color: gray; }
+    </style>
+
+
+  
+
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <!-- Page Navbar -->
+    <nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><strong class="text-primary">Corporación</strong> <span class="text-dark">Marlón Memorias</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav><!-- End of Page Navbar -->   
+
+<!-- Page Header -->
+<header id="home" class="header">
+    <div class="overlay"></div>
+    <div class="header-content" style="display: flex; flex-direction: column; align-items: center;">
+      
+        
+            <p>Corporación Marlón Memorias y Huellas de un Desaparecido</p>
+            <h6>Archivo Digital Corpomemorias</h6> 
+        <!-- Botón de WhatsApp ajustado con ancho fijo y centrado -->
+        <a href="https://wa.me/+573044868541?text=¡Hola!%20Quisiera%20más%20información" target="_blank" class="btn btn-outline-light" 
+           style="display: flex; align-items: center; width: 250px; justify-content: center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp" 
+                 style="width: 20px; height: 20px; margin-right: 8px;">
+           Conéctate con nosotros
+        </a>
+    </div>      
+</header>
+<!-- End of Page Header -->
+
+
+<!-- About Section -->
+    <section id="mapa_memoria">
+        <!-- Container -->
+        <div class="container">
+            <!-- About wrapper -->
+            <div class="about-wrapper">
+                <div class="after"></div>
+                <div class="content">
+
+
+
+ <!-- Filtros -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <select id="filterCategory" class="form-control">
+                    <option value="all">Todos</option>
+                    <option value="fotos">Fotos</option>
+                    <option value="videos">Videos</option>
+                    <option value="documentos">Documentos</option>
+                    <option value="testimonios">Testimonios</option>
+                    <option value="audios">Audios</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contenedor de archivos -->
+        <div id="archivoGrid" class="row">
+            <!-- Contenido dinámico cargado con JS -->
+        </div>
+    </div>
+
+  
+
+                  
+
+                            <div class="col">
+                         </div>
+                    </div><!-- End of Row -->                   
+                  </div>
+            </div><!-- End of About Wrapper -->         
+        </div>  <!-- End of Container-->        
+     </section><!--End of Section -->
+
+
+	
+
+     <!-- Section -->
+    <section class="has-bg-img text-center text-light height-auto" style="background-image: url(../assets/imgs/pexels-thijsvdw-792955.jpg)">
+        <h1 class="display-4">Corporación Marlón Memorias y Huellas de un Desaparecido Corpomemorias</h1>
+    </section><!-- End of Section -->
+    
+    <!-- Section -->
+    <section class="pb-0">
+        <!-- Container -->
+        <div class="container">
+            <!-- Pre footer -->
+            <div class="pre-footer">
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">SOBRE NUESTRA CORPORACIÓN</h6>
+                    </li>
+                    <li class="list-body">
+                        <p>Por la paz, la memoria y la reconciliación.</p>
+                        <a href="#"><strong class="text-primary">Célular:</strong> <span class="text-dark">3044868541</span></a>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">USEFUL LINKS</h6>
+                    </li>
+                    <li class="list-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="assets/vendors/bootstrap/Bootstrap5cardsGallery.html" target="_blank">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                                <a href="#">Link 4</a>
+                            </div>
+                            <div class="col">
+                                <a href="#">Link 5</a>
+                                <a href="#">Link 6</a>
+                                <a href="#">Link 7</a>
+                                <a href="#">Link 8</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="list-head">
+                        <h6 class="font-weight-bold">INFORMACIÓN DE CONTACTO</h6>
+                    </li>
+                    <li class="list-body">
+                        <p>Podras contactarnos por éste medio</p>
+                        <p><i class="ti-location-pin"></i> Aguachica, Cesar, Colombia</p>
+                        <p><i class="ti-email"></i>  huellasdeundesaparecido@outlook.com</p>
+			<p><i class="ti-email"></i>  corpomemorias@gmail.com</p>
+			<p><i class="ti-email"></i>  huellasdeundesaparecido@gmail.com</p>
+                        <div class="social-links">
+                            <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-twitter-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+                            <a href="javascript:void(0)" class="link"><i class="ti-rss"></i></a>
+                        </div>
+                    </li>
+                </ul> 
+            </div><!-- End of Pre footer -->            
+
+
+   <  !-- foooter -->
+            <footer class="footer">            
+                <p>Copyright <script>document.write(new Date().getFullYear())</script> &copy; CORPOMEMORIAS frankedopemo Todos los derechos reservados TEMA:  <a href="http://www.devcrud.com">DevCRUD</a></p>
+            </footer><!-- End of Footer-->  
+
+            
+        </div><!--End of Container -->      
+    </section><!-- End of Section -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Creative Design js -->
+    <script src="assets/js/creative-design.js"></script>
+
+
+
+
+
+
+
+	
+</body>
+</html>
