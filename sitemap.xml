@@ -2,49 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>https://corpomemorias.netlify.app/</loc>
-      <lastmod>2024-02-15</lastmod>
-      <priority>1.0</priority>
+       <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/ambitocomunitario.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/ambitoeducativo.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/ambitosocial.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/archivo_digital.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/conmemoracion.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/cultural.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/encuentros.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/galeriamemo.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/galeriapicto.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/mapas_memoria.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/museo.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/produccion-av.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/talleres.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
    <url>
       <loc>https://corpomemorias.netlify.app/recursos/trayecto.html</loc>
+      <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
    </url>
 </urlset>
