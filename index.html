@@ -52,39 +52,7 @@
         }
     </style>
 
-    <!-- Fondo oscuro -->
-    <div id="popupOverlay" class="popup-overlay"></div>
-
-    <!-- Contenido del popup -->
-    <div id="popup" class="popup">
-      
-        <h2>¡Bienvenido!</h2>
-        <p>Tu ayuda es importante.</p>
-
-        <!-- Imagen dentro del popup -->
-        <img src="assets/imgs/1727378767183.jpg" alt="Imagen de Popup">
-	<span class="close-btn" onclick="closePopup()">X (cerrar)</span>
-    </div>
-
-    <script>
-        // Función para abrir el popup automáticamente
-        function openPopup() {
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('popupOverlay').style.display = 'block';
-        }
-
-        // Función para cerrar el popup
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
-
-        // Abrir el popup automáticamente cuando la página cargue
-        window.onload = function() {
-            openPopup();
-        };
-    </script>
-
+  
 
 
 
@@ -120,7 +88,55 @@
 <link rel="stylesheet" href="assets/css/publicacionesinsta.css">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    
+
+
+
+  <!-- Fondo oscuro -->
+    <div id="popupOverlay" class="popup-overlay"></div>
+
+    <!-- Contenido del popup -->
+    <div id="popup" class="popup">
+      
+        <h2>¡Bienvenido!</h2>
+        <p>Tu ayuda es importante.</p>
+
+        <!-- Imagen dentro del popup -->
+        <img src="assets/imgs/1727378767183.jpg" alt="Imagen de Popup">
+	<span class="close-btn" onclick="closePopup()">X (cerrar)</span>
+    </div>
+
+    <script>
+        // Función para abrir el popup automáticamente
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popupOverlay').style.display = 'block';
+        }
+
+        // Función para cerrar el popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+
+        // Abrir el popup automáticamente cuando la página cargue
+        window.onload = function() {
+            openPopup();
+        };
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
     <!-- Page Navbar -->
     <nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top" data-spy="affix" data-offset-top="20">
         <div class="container">
