@@ -41,6 +41,13 @@
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+	<!-- PARA LOS BOTONES COMPARTIR-->
+	<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+
 
 	
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -50,6 +57,36 @@
   
 
 </head>
+
+
+
+ <!-- SCRIPT DE LOS BOTONES COMPARTIR -->
+<script>
+function shareCard(platform, title, url) {
+  let shareUrl = '';
+
+  switch (platform) {
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      break;
+    case 'twitter':
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+      break;
+    case 'whatsapp':
+      shareUrl = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
+      break;
+  }
+
+  window.open(shareUrl, '_blank');
+}
+</script>
+
+
+
+
+
+
+	
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
     <!-- Page Navbar -->
@@ -143,12 +180,26 @@
                 <a href="${archivo.url}" target="_blank" class="btn btn-primary">Ver Archivo</a>
 
 
+ <!-- Botones para compartir -->
+        <div class="share-buttons mt-2 d-flex justify-content-around">
+          <button class="btn btn-sm btn-outline-primary" onclick="shareCard('facebook', '${item.titulo}', '${item.enlace}')">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-info" onclick="shareCard('twitter', '${item.titulo}', '${item.enlace}')">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-success" onclick="shareCard('whatsapp', '${item.titulo}', '${item.enlace}')">
+            <i class="fab fa-whatsapp"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
 
-				
-              </div>
-            </div>
-          `;
 
+
+
+		
           contenedor.innerHTML += card;
         });
     } catch (error) {
