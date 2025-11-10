@@ -167,39 +167,32 @@ function shareCard(platform, title, url) {
           const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
 
           const card = `
-            <div class="card">
-              <!-- 🆕 Imagen (se muestra solo si existe en la base de datos) -->
-              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
-
+            <div class="card h-100 shadow-sm">
+              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}" style="object-fit: cover; height: 200px;">` : ""}
               <div class="card-body">
                 <h5 class="card-title">${archivo.titulo}</h5>
                 <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
                 <p class="small-text">📅 ${fechaFormateada}</p>
                 ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
                 ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-                <a href="${archivo.url}" target="_blank" class="btn btn-primary">Ver Archivo</a>
+                <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm">Ver Archivo</a>
 
+                <!-- Botones para compartir -->
+                <div class="share-buttons mt-3 d-flex justify-content-around">
+                  <button class="btn btn-sm btn-outline-primary" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.url}')">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" onclick="shareCard('twitter', '${archivo.titulo}', '${archivo.url}')">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-success" onclick="shareCard('whatsapp', '${archivo.titulo}', '${archivo.url}')">
+                    <i class="fab fa-whatsapp"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
 
- <!-- Botones para compartir -->
-        <div class="share-buttons mt-2 d-flex justify-content-around">
-          <button class="btn btn-sm btn-outline-primary" onclick="shareCard('facebook', '${item.titulo}', '${item.enlace}')">
-            <i class="fab fa-facebook-f"></i>
-          </button>
-          <button class="btn btn-sm btn-outline-info" onclick="shareCard('twitter', '${item.titulo}', '${item.enlace}')">
-            <i class="fab fa-twitter"></i>
-          </button>
-          <button class="btn btn-sm btn-outline-success" onclick="shareCard('whatsapp', '${item.titulo}', '${item.enlace}')">
-            <i class="fab fa-whatsapp"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  `;
-
-
-
-
-		
           contenedor.innerHTML += card;
         });
     } catch (error) {
@@ -207,12 +200,29 @@ function shareCard(platform, title, url) {
     }
   }
 
-  document.getElementById("filterCategory").addEventListener("change", (e) => {
-    cargarArchivos(e.target.value);
-  });
+  // Función para compartir en redes
+  function shareCard(platform, title, url) {
+    let shareUrl = "";
 
-  cargarArchivos();
+    switch (platform) {
+      case "facebook":
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case "twitter":
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+        break;
+      case "whatsapp":
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+        break;
+    }
+
+    window.open(shareUrl, "_blank");
+  }
 </script>
+
+
+
+					
 
 <!-- 🖼️ Estilo para las imágenes -->
 <style>
