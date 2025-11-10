@@ -180,106 +180,57 @@
 
 <!-- 🖼️ Estilo para las imágenes -->
 <style>
-.card-img-top {
-  width: 100%;
-  height: 250px; /* puedes ajustar esta altura según tu diseño */
-  object-fit: contain; /* muestra la imagen completa sin recortar */
-  background-color: #000; /* opcional: relleno detrás si la imagen no llena todo el espacio */
-}
-
-.card {
-  width: 250px; /* ancho más compacto */
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin: 10px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: scale(1.03);
-}
-
-.card img {
-  width: 100%;
-  height: 180px; /* altura fija para que se vea cuadrada */
-  object-fit: cover; /* evita recortes feos */
-  border-bottom: 1px solid #ddd;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.card-title {
-  font-size: 1rem;
-  margin-bottom: 5px;
-}
-
-.card-text {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.small-text {
-  font-size: 0.8rem;
-  color: #777;
-  margin-bottom: 4px;
-}
-
-.btn-primary {
-  font-size: 0.85rem;
-  padding: 5px 10px;
-  border-radius: 6px;
-}
-
-
-	<style>
-/* Contenedor de las tarjetas */
+/* Contenedor general */
 #archivoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* cuadrícula adaptable */
-  gap: 20px; /* espacio entre tarjetas */
-  justify-items: center; /* centra las tarjetas en cada columna */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  justify-items: center;
   padding: 20px 0;
 }
 
-/* Estilos de las tarjetas (más compactas y cuadradas) */
+/* Tarjeta horizontal */
 .card {
-  width: 250px;
+  display: flex;
+  flex-direction: row; /* imagen a la izquierda, texto a la derecha */
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.2s ease;
   background-color: #fff;
+  transition: transform 0.2s ease;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
+/* Imagen al lado izquierdo */
 .card img {
-  width: 100%;
-  height: 180px;
+  width: 45%;
+  height: 100%;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
 }
 
+/* Contenido de texto */
 .card-body {
   padding: 10px;
+  flex: 1;
+  text-align: left;
 }
 
 .card-title {
   font-size: 1rem;
-  margin-bottom: 5px;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .card-text {
   font-size: 0.9rem;
   color: #555;
+  margin-bottom: 6px;
 }
 
 .small-text {
@@ -289,11 +240,26 @@
 }
 
 .btn-primary {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   padding: 5px 10px;
   border-radius: 6px;
 }
-	
+
+/* Diseño adaptable en pantallas pequeñas */
+@media (max-width: 600px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+}
 </style>
 
   
