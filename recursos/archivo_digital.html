@@ -112,68 +112,80 @@
 
 
 
-  <!-- Filtros -->
-        <div class="row mb-3">
-            <div class="col-md-4">
-                <select id="filterCategory" class="form-control">
-                    <option value="all">Todos</option>
-					<option value="festivales">Festivales</option>
-                    <option value="fotos">Fotos</option>
-                    <option value="videos">Videos</option>
-                    <option value="documentos">Documentos</option>
-                    <option value="testimonios">Testimonios</option>
-                    <option value="audios">Audios</option>
-                </select>
+ <!-- Filtros -->
+<div class="row mb-3">
+  <div class="col-md-4">
+    <select id="filterCategory" class="form-control">
+      <option value="all">Todos</option>
+      <option value="festivales">Festivales</option> <!-- 🆕 Nueva opción -->
+      <option value="fotos">Fotos</option>
+      <option value="videos">Videos</option>
+      <option value="documentos">Documentos</option>
+      <option value="testimonios">Testimonios</option>
+      <option value="audios">Audios</option>
+    </select>
+  </div>
+</div>
+
+<!-- Contenedor de archivos -->
+<div id="archivoGrid" class="grid-container">
+  <!-- Contenido dinámico cargado con JS -->
+</div>
+
+<script>
+  const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
+
+  async function cargarArchivos(filtro = "all") {
+    try {
+      const response = await fetch(`${backendUrl}/archivo_digital`);
+      const data = await response.json();
+
+      const contenedor = document.getElementById("archivoGrid");
+      contenedor.innerHTML = "";
+
+      data
+        .filter(archivo => filtro === "all" || archivo.tipo === filtro)
+        .forEach(archivo => {
+          const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
+
+          const card = `
+            <div class="card">
+              <!-- 🆕 Imagen (se muestra solo si existe en la base de datos) -->
+              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
+
+              <div class="card-body">
+                <h5 class="card-title">${archivo.titulo}</h5>
+                <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
+                <p class="small-text">📅 ${fechaFormateada}</p>
+                ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
+                ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
+                <a href="${archivo.url}" target="_blank" class="btn btn-primary">Ver Archivo</a>
+              </div>
             </div>
-        </div>
+          `;
 
-        <!-- Contenedor de archivos -->
-        <div id="archivoGrid" class="grid-container">
-            <!-- Contenido dinámico cargado con JS -->
-        </div>
-    </div>
-
-    <script>
-        const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
-
-        async function cargarArchivos(filtro = "all") {
-            try {
-                const response = await fetch(`${backendUrl}/archivo_digital`);
-                const data = await response.json();
-
-                const contenedor = document.getElementById("archivoGrid");
-                contenedor.innerHTML = "";
-
-                data.filter(archivo => filtro === "all" || archivo.tipo === filtro)
-                    .forEach(archivo => {
-                        const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
-
-                        const card = `
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">${archivo.titulo}</h5>
-                                    <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
-                                    <p class="small-text">📅 ${fechaFormateada}</p>
-                                    ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
-                                    ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-                                    <a href="${archivo.url}" target="_blank" class="btn btn-primary">Ver Archivo</a>
-                                </div>
-                            </div>`;
-
-                        contenedor.innerHTML += card;
-                    });
-            } catch (error) {
-                console.error("Error al cargar archivos:", error);
-            }
-        }
-
-        document.getElementById("filterCategory").addEventListener("change", (e) => {
-            cargarArchivos(e.target.value);
+          contenedor.innerHTML += card;
         });
+    } catch (error) {
+      console.error("Error al cargar archivos:", error);
+    }
+  }
 
-        cargarArchivos();
-    </script>
-    </div>
+  document.getElementById("filterCategory").addEventListener("change", (e) => {
+    cargarArchivos(e.target.value);
+  });
+
+  cargarArchivos();
+</script>
+
+<!-- 🖼️ Estilo para las imágenes -->
+<style>
+  .card-img-top {
+    height: 200px;         /* Todas las imágenes del mismo alto */
+    object-fit: cover;     /* Recorta sin deformar */
+    border-radius: 0.5rem; /* Bordes suaves */
+  }
+</style>
 
   
 
