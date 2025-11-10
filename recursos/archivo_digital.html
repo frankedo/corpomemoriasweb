@@ -145,15 +145,7 @@ function shareCard(platform, title, url) {
 </div>
 
 <!-- Contenedor de archivos -->
-<div id="archivoGrid" class="grid-container">
-  <!-- Contenido dinámico cargado con JS -->
-</div>
-
-<!-- Íconos de redes -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+<div id="archivoGrid" class="grid-container"></div>
 
 <script>
   const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
@@ -162,7 +154,6 @@ function shareCard(platform, title, url) {
     try {
       const response = await fetch(`${backendUrl}/archivo_digital`);
       const data = await response.json();
-
       const contenedor = document.getElementById("archivoGrid");
       contenedor.innerHTML = "";
 
@@ -172,27 +163,30 @@ function shareCard(platform, title, url) {
           const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
 
           const card = `
-            <div class="card h-100 shadow-sm">
-              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}" style="object-fit: cover; height: 200px;">` : ""}
+            <div class="card">
+              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
               <div class="card-body">
                 <h5 class="card-title">${archivo.titulo}</h5>
                 <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
                 <p class="small-text">📅 ${fechaFormateada}</p>
                 ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
                 ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-                <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm">Ver Archivo</a>
 
-                <!-- 🔗 Botones para compartir -->
-                <div class="d-flex justify-content-around mt-3">
-                  <button class="btn btn-sm btn-outline-primary" title="Compartir en Facebook" onclick="shareCard('facebook', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-info" title="Compartir en X (Twitter)" onclick="shareCard('twitter', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button class="btn btn-sm btn-outline-success" title="Compartir en WhatsApp" onclick="shareCard('whatsapp', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
-                    <i class="fab fa-whatsapp"></i>
-                  </button>
+                <!-- 🔗 Botones alineados en una misma línea -->
+                <div class="d-flex align-items-center mt-2">
+                  <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm mr-2">Ver Archivo</a>
+
+                  <div class="share-buttons d-flex">
+                    <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-info ml-1" onclick="shareCard('twitter', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                      <i class="fab fa-twitter"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-success ml-1" onclick="shareCard('whatsapp', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                      <i class="fab fa-whatsapp"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -205,8 +199,8 @@ function shareCard(platform, title, url) {
     }
   }
 
-  // 📢 Función para compartir
-  function shareCard(platform, title, url) {
+  function shareCard(platform, title, description, url) {
+    const text = `${title} - ${description}\n${url}`;
     let shareUrl = "";
 
     switch (platform) {
@@ -214,23 +208,43 @@ function shareCard(platform, title, url) {
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
         break;
       case "twitter":
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         break;
       case "whatsapp":
-        shareUrl = `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
         break;
     }
 
     window.open(shareUrl, "_blank");
   }
 
-  // 🎬 Eventos
   document.getElementById("filterCategory").addEventListener("change", (e) => {
     cargarArchivos(e.target.value);
   });
 
   cargarArchivos();
 </script>
+
+<style>
+  /* 🧩 Estilos para mantener la imagen intacta */
+  .card-img-top {
+    object-fit: cover;
+    width: 100%;
+    height: 200px; /* puedes ajustar */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  /* 🔘 Compactar los botones de compartir */
+  .share-buttons .btn {
+    padding: 4px 8px;
+  }
+
+  .share-buttons i {
+    font-size: 0.9rem;
+  }
+</style>
+
 
 
 					
