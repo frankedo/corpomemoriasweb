@@ -233,10 +233,66 @@
   padding: 5px 10px;
   border-radius: 6px;
 }
-</style>
 
 
+	<style>
+/* Contenedor de las tarjetas */
+#archivoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* cuadrícula adaptable */
+  gap: 20px; /* espacio entre tarjetas */
+  justify-items: center; /* centra las tarjetas en cada columna */
+  padding: 20px 0;
+}
 
+/* Estilos de las tarjetas (más compactas y cuadradas) */
+.card {
+  width: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.small-text {
+  font-size: 0.8rem;
+  color: #777;
+  margin-bottom: 4px;
+}
+
+.btn-primary {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
 	
 </style>
 
