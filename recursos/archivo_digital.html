@@ -129,13 +129,12 @@ function shareCard(platform, title, url) {
                 <div class="content">
 
 
-
 <!-- Filtros -->
 <div class="row mb-3">
   <div class="col-md-4">
     <select id="filterCategory" class="form-control">
       <option value="all">Todos</option>
-      <option value="festivales">Festivales</option> <!-- 🆕 Nueva opción -->
+      <option value="festivales">Festivales</option>
       <option value="fotos">Fotos</option>
       <option value="videos">Videos</option>
       <option value="documentos">Documentos</option>
@@ -149,6 +148,12 @@ function shareCard(platform, title, url) {
 <div id="archivoGrid" class="grid-container">
   <!-- Contenido dinámico cargado con JS -->
 </div>
+
+<!-- Íconos de redes -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
 
 <script>
   const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
@@ -167,17 +172,28 @@ function shareCard(platform, title, url) {
           const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
 
           const card = `
-            <div class="card">
-              <!-- 🆕 Imagen (se muestra solo si existe en la base de datos) -->
-              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
-
+            <div class="card h-100 shadow-sm">
+              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}" style="object-fit: cover; height: 200px;">` : ""}
               <div class="card-body">
                 <h5 class="card-title">${archivo.titulo}</h5>
                 <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
                 <p class="small-text">📅 ${fechaFormateada}</p>
                 ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
                 ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-                <a href="${archivo.url}" target="_blank" class="btn btn-primary">Ver Archivo</a>
+                <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm">Ver Archivo</a>
+
+                <!-- 🔗 Botones para compartir -->
+                <div class="d-flex justify-content-around mt-3">
+                  <button class="btn btn-sm btn-outline-primary" title="Compartir en Facebook" onclick="shareCard('facebook', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="Compartir en X (Twitter)" onclick="shareCard('twitter', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-success" title="Compartir en WhatsApp" onclick="shareCard('whatsapp', '${archivo.titulo.replace(/'/g, "\\'")}', '${archivo.url}')">
+                    <i class="fab fa-whatsapp"></i>
+                  </button>
+                </div>
               </div>
             </div>
           `;
@@ -189,6 +205,26 @@ function shareCard(platform, title, url) {
     }
   }
 
+  // 📢 Función para compartir
+  function shareCard(platform, title, url) {
+    let shareUrl = "";
+
+    switch (platform) {
+      case "facebook":
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+        break;
+      case "twitter":
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+        break;
+      case "whatsapp":
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+        break;
+    }
+
+    window.open(shareUrl, "_blank");
+  }
+
+  // 🎬 Eventos
   document.getElementById("filterCategory").addEventListener("change", (e) => {
     cargarArchivos(e.target.value);
   });
