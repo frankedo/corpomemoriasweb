@@ -247,21 +247,16 @@ function shareCard(platform, title, url) {
 /* Contenedor general */
 #archivoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ajusta a 3 por fila en pantallas grandes */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 por fila en pantallas grandes */
   gap: 20px;
-  justify-content: center; /* centra las tarjetas en el contenedor */
+  justify-content: center; /* centra las tarjetas */
   padding: 20px 0;
 }
 
-
-/* Tarjeta horizontal */
+/* Tarjeta con imagen arriba */
 .card {
   display: flex;
-
-	flex-direction: column; /* imagen arriba, texto abajo */
-  align-items: center;
-  /* flex-direction: row; /* imagen a la izquierda, texto a la derecha */
-  align-items: center;
+  flex-direction: column; /* imagen arriba, texto abajo */
   width: 100%;
   max-width: 400px;
   border-radius: 12px;
@@ -275,21 +270,20 @@ function shareCard(platform, title, url) {
   transform: scale(1.02);
 }
 
-/* Imagen al lado izquierdo */
+/* Imagen superior */
 .card img {
-  width: 45%;
-  height: 100%; /* asegura que el fondo cubra todo el alto */
-  object-fit: contain; /* mantiene proporciones sin recortar */
+  width: 100%;              /* ocupa todo el ancho de la tarjeta */
+  height: 200px;            /* altura fija para mantener proporción */
+  object-fit: contain;      /* muestra la imagen completa sin recortar */
   background-color: #FFD54F; /* 🌻 fondo amarillo girasol */
   display: block;
-  padding: 10px; /* deja aire dentro del área amarilla */
+  padding: 10px;            /* aire dentro del área amarilla */
   box-sizing: border-box;
 }
 
 /* Contenido de texto */
 .card-body {
-  padding: 10px;
-  flex: 1;
+  padding: 15px;
   text-align: left;
 }
 
@@ -319,14 +313,12 @@ function shareCard(platform, title, url) {
 
 /* Diseño adaptable en pantallas pequeñas */
 @media (max-width: 600px) {
-  .card {
-    flex-direction: column;
+  #archivoGrid {
+    grid-template-columns: 1fr; /* una por fila en pantallas pequeñas */
   }
 
   .card img {
-    width: 100%;
     height: 180px;
-    border-right: none;
   }
 
   .card-body {
@@ -334,6 +326,7 @@ function shareCard(platform, title, url) {
   }
 }
 </style>
+
 
   
 
