@@ -249,7 +249,7 @@ function shareCard(platform, title, url) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 por fila en pantallas grandes */
   gap: 20px;
-  justify-content: center; /* centra las tarjetas */
+  justify-content: center;
   padding: 20px 0;
 }
 
@@ -273,11 +273,10 @@ function shareCard(platform, title, url) {
 /* Imagen superior */
 .card img {
   width: 100%;              /* ocupa todo el ancho de la tarjeta */
-  height: 200px;            /* altura fija para mantener proporción */
-  object-fit: contain;      /* muestra la imagen completa sin recortar */
-  background-color: #FFD54F; /* 🌻 fondo amarillo girasol */
+  height: 220px;            /* altura fija uniforme */
+  object-fit: contain;      /* muestra la imagen completa sin recorte */
+  background: none;         /* sin color de fondo */
   display: block;
-  padding: 10px;            /* aire dentro del área amarilla */
   box-sizing: border-box;
 }
 
@@ -326,9 +325,7 @@ function shareCard(platform, title, url) {
   }
 }
 </style>
-
-
-  
+ 
 
                   
 
