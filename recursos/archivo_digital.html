@@ -134,9 +134,9 @@ function shareCard(platform, title, url) {
   <div class="col-md-4">
     <select id="filterCategory" class="form-control">
       <option value="all">Todos</option> 
-      <option value="audiovisuales">Audiovisuales</option>
-      <option value="culturales">Culturales</option>
-      <option value="documentos">Documentos</option>
+	  <option value="audiovisuales">Audiovisuales</option>
+	  <option value="culturales">Culturales</option>
+	  <option value="documentos">Documentos</option>
       <option value="fotos">Fotos</option>
       <option value="podcasts">Podcasts</option>
       <option value="testimonios">Testimonios</option>
@@ -147,9 +147,6 @@ function shareCard(platform, title, url) {
 <!-- Contenedor de archivos -->
 <div id="archivoGrid" class="grid-container"></div>
 
-<!-- ========================== -->
-<!--       SCRIPT PRINCIPAL     -->
-<!-- ========================== -->
 <script>
   const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
 
@@ -167,16 +164,20 @@ function shareCard(platform, title, url) {
 
           const card = `
             <div class="card">
+			
               ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
+			
               <div class="card-body">
                 <h5 class="card-title">${archivo.titulo}</h5>
                 <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
                 <p class="small-text">📅 ${fechaFormateada}</p>
                 ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
                 ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-                
+
+                <!-- 🔗 Botones alineados en una misma línea -->
                 <div class="d-flex align-items-center mt-2">
                   <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm mr-2">Ver Más</a>
+
                   <div class="share-buttons d-flex">
                     <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
                       <i class="fab fa-facebook-f"></i>
@@ -226,29 +227,42 @@ function shareCard(platform, title, url) {
   cargarArchivos();
 </script>
 
-<!-- ========================== -->
-<!--         ESTILOS CSS        -->
-<!-- ========================== -->
+<style>
+
+	
+  /* 🔘 Compactar los botones de compartir */
+  .share-buttons .btn {
+    padding: 4px 8px;
+  }
+
+  .share-buttons i {
+    font-size: 0.9rem;
+  }
+</style>
+
+			
+
+<!-- 🖼️ Estilo para las imágenes -->
 <style>
 /* Contenedor general */
 #archivoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 por fila en pantallas grandes */
   gap: 20px;
   justify-content: center;
   padding: 20px 0;
 }
 
-/* Tarjetas */
+/* Tarjeta con imagen arriba */
 .card {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* imagen arriba, texto abajo */
   width: 100%;
   max-width: 400px;
-  border-radius: 12px !important;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-  background-color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
   transition: transform 0.2s ease;
 }
 
@@ -256,81 +270,82 @@ function shareCard(platform, title, url) {
   transform: scale(1.02);
 }
 
-/* Imagen */
+/* ✅ Imagen superior: altura estandar + fondo girasol */
 .card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  object-position: center;
-  background-color: #FFD54F; /* 🌻 color girasol */
+  width: 100%;              /* ocupa todo el ancho */
+  height: 220px;            /* ✅ altura fija uniforme */
+  object-fit: cover;        /* ✅ recorta imágenes verticales */
+  object-position: center;  /* ✅ centra el recorte */
+  background-color: #FFD54F; /* 🌻 color girasol de fondo */
   display: block;
   box-sizing: border-box;
 }
 
-/* Cuerpo de la tarjeta */
+
+/* Contenido de texto */
 .card-body {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 12px;
+  flex-direction: column;   /* organiza texto y botón en columna */
+  justify-content: space-between; /* separa texto arriba, botón abajo */
+  height: 100%;             /* asegura altura uniforme */
+  padding: 12px;            /* ✅ un poco menos de padding vertical */
   text-align: left;
 }
 
+/* ✅ Elimina espacios excesivos entre párrafos */
 .card-body p {
-  margin: 0;
-  line-height: 1.2;
+  margin: 0;                /* ✅ sin margen entre párrafos */
+  line-height: 1.2;         /* ✅ texto más compacto */
 }
 
-/* Título */
+/* ✅ Título más compacto */
 .card-title {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 3px;       /* ✅ menos espacio debajo del título */
   line-height: 1.2;
 }
 
-/* Descripción */
+/* ✅ Texto del cuerpo más compacto */
 .card-text {
   font-size: 0.9rem;
   color: #555;
-  margin-bottom: 3px;
+  margin-bottom: 3px;       /* ✅ menos espacio */
   line-height: 1.2;
 }
 
-/* Texto pequeño (autor, fecha, fuente) */
+/* ✅ Texto pequeño (autor, fecha, fuente) ajustado */
 .small-text {
   font-size: 0.8rem;
   color: #777;
-  margin: 0;
-  line-height: 1.1;
+  margin: 0;                /* ✅ sin márgenes verticales */
+  line-height: 1.1;         /* ✅ menor separación entre líneas */
 }
 
-/* Botones */
+/* ✅ Alineación precisa de autor, fecha, fuente */
+.card-body .autor,
+.card-body .fecha,
+.card-body .fuente {
+  margin: 0 !important;     /* ✅ elimina todo espacio vertical */
+  line-height: 1.1;         /* ✅ texto compacto */
+}
+
+/* Botón */
 .btn-primary {
   font-size: 0.8rem;
   padding: 5px 10px;
   border-radius: 6px;
-  align-self: start;
+  align-self: start;        /* ✅ mantiene los botones alineados al mismo nivel */
 }
 
-/* Compactar botones de compartir */
-.share-buttons .btn {
-  padding: 4px 8px;
-}
-
-.share-buttons i {
-  font-size: 0.9rem;
-}
-
-/* Diseño adaptable */
+/* Diseño adaptable en pantallas pequeñas */
 @media (max-width: 600px) {
   #archivoGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* una por fila */
   }
 
   .card img {
-    height: 180px;
+    height: 180px;          /* ✅ altura estándar también en móvil */
   }
 
   .card-body {
@@ -338,7 +353,6 @@ function shareCard(platform, title, url) {
   }
 }
 </style>
- 
 
                   
 
