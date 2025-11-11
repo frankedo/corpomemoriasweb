@@ -273,12 +273,14 @@ function shareCard(platform, title, url) {
 /* ✅ Imagen superior: altura estandar + fondo girasol */
 .card img {
   width: 100%;              /* ocupa todo el ancho */
-  height: 220px;            /* ✅ altura fija uniforme para todas las imágenes */
-  
+  height: 220px;            /* ✅ altura fija uniforme */
+  object-fit: cover;        /* ✅ recorta imágenes verticales */
+  object-position: center;  /* ✅ centra el recorte */
   background-color: #FFD54F; /* 🌻 color girasol de fondo */
   display: block;
   box-sizing: border-box;
 }
+
 
 /* Contenido de texto */
 .card-body {
