@@ -256,7 +256,10 @@ function shareCard(platform, title, url) {
 /* Tarjeta horizontal */
 .card {
   display: flex;
-  flex-direction: row; /* imagen a la izquierda, texto a la derecha */
+
+	flex-direction: column; /* imagen arriba, texto abajo */
+  align-items: center;
+  /* flex-direction: row; /* imagen a la izquierda, texto a la derecha */
   align-items: center;
   width: 100%;
   max-width: 400px;
