@@ -260,27 +260,34 @@ function shareCard(platform, title, url) {
   width: 100%;
   max-width: 400px;
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   background-color: #fff;
   transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
 .card:hover {
   transform: scale(1.02);
 }
 
-/* Imagen al lado izquierdo */
-.card img {
+/* 🌻 Contenedor de imagen con fondo amarillo girasol */
+.card-img-container {
   width: 45%;
-  height: 100%;
+  background-color: #FFD54F; /* amarillo girasol */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  overflow: hidden;
+}
+
+/* Imagen dentro del contenedor */
+.card-img-container img {
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  background-color: #FFD54F; /* 🌻 amarillo girasol */
-  display: block;
   padding: 10px;
-  box-sizing: border-box;
-  border-top-left-radius: 12px;   /* borde redondeado arriba */
-  border-bottom-left-radius: 12px; /* borde redondeado abajo */
 }
 
 /* Contenido de texto */
@@ -320,10 +327,14 @@ function shareCard(platform, title, url) {
     flex-direction: column;
   }
 
-  .card img {
+  .card-img-container {
+    width: 100%;
+    border-radius: 0; /* sin bordes redondeados en móvil */
+  }
+
+  .card-img-container img {
     width: 100%;
     height: 180px;
-    border-radius: 0; /* quita bordes redondeados en vista vertical */
   }
 
   .card-body {
@@ -331,7 +342,6 @@ function shareCard(platform, title, url) {
   }
 }
 </style>
-
 
   
 
