@@ -270,12 +270,12 @@ function shareCard(platform, title, url) {
   transform: scale(1.02);
 }
 
-/* Imagen superior */
+/* ✅ Imagen superior: altura estandar + fondo girasol */
 .card img {
-  width: 100%;              /* ocupa todo el ancho de la tarjeta */
-  height: 220px;            /* altura fija uniforme */
-  object-fit: contain;      /* muestra la imagen completa sin recorte */
- background-color: #FFD54F; /* 🌻 amarillo girasol */
+  width: 100%;              /* ocupa todo el ancho */
+  height: 220px;            /* ✅ altura fija uniforme para todas las imágenes */
+  object-fit: contain;      /* ✅ muestra la imagen completa sin recorte */
+  background-color: #FFD54F; /* 🌻 color girasol de fondo */
   display: block;
   box-sizing: border-box;
 }
@@ -286,63 +286,64 @@ function shareCard(platform, title, url) {
   flex-direction: column;   /* organiza texto y botón en columna */
   justify-content: space-between; /* separa texto arriba, botón abajo */
   height: 100%;             /* asegura altura uniforme */
-  padding: 15px;
+  padding: 12px;            /* ✅ un poco menos de padding vertical */
   text-align: left;
 }
 
+/* ✅ Elimina espacios excesivos entre párrafos */
 .card-body p {
-  margin-bottom: 3px; /* menos espacio entre líneas */
-  line-height: 1.2; /* hace que el texto quede más junto */
+  margin: 0;                /* ✅ sin margen entre párrafos */
+  line-height: 1.2;         /* ✅ texto más compacto */
 }
 
-
-	
-
-
+/* ✅ Título más compacto */
 .card-title {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 5px;
-	 line-height: 1.2;
+  margin-bottom: 3px;       /* ✅ menos espacio debajo del título */
+  line-height: 1.2;
 }
 
+/* ✅ Texto del cuerpo más compacto */
 .card-text {
   font-size: 0.9rem;
   color: #555;
-  margin-bottom: 6px;
-	 line-height: 1.2;
+  margin-bottom: 3px;       /* ✅ menos espacio */
+  line-height: 1.2;
 }
 
+/* ✅ Texto pequeño (autor, fecha, fuente) ajustado */
 .small-text {
-	 line-height: 1.2;
   font-size: 0.8rem;
   color: #777;
-  margin-bottom: 4px;
+  margin: 0;                /* ✅ sin márgenes verticales */
+  line-height: 1.1;         /* ✅ menor separación entre líneas */
 }
 
+/* ✅ Alineación precisa de autor, fecha, fuente */
+.card-body .autor,
+.card-body .fecha,
+.card-body .fuente {
+  margin: 0 !important;     /* ✅ elimina todo espacio vertical */
+  line-height: 1.1;         /* ✅ texto compacto */
+}
+
+/* Botón */
 .btn-primary {
   font-size: 0.8rem;
   padding: 5px 10px;
   border-radius: 6px;
+  align-self: start;        /* ✅ mantiene los botones alineados al mismo nivel */
 }
 
-.card-body .autor,
-.card-body .fecha,
-.card-body .fuente {
-  margin-bottom: 2px !important;
-  line-height: 1.1;
-}
-
-
-	
 /* Diseño adaptable en pantallas pequeñas */
 @media (max-width: 600px) {
   #archivoGrid {
-    grid-template-columns: 1fr; /* una por fila en pantallas pequeñas */
+    grid-template-columns: 1fr; /* una por fila */
   }
 
   .card img {
-    height: 180px;
+    height: 180px;          /* ✅ altura estándar también en móvil */
   }
 
   .card-body {
@@ -350,6 +351,7 @@ function shareCard(platform, title, url) {
   }
 }
 </style>
+
  
 
                   
