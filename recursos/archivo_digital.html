@@ -282,9 +282,14 @@ function shareCard(platform, title, url) {
 
 /* Contenido de texto */
 .card-body {
+  display: flex;
+  flex-direction: column;   /* organiza texto y botón en columna */
+  justify-content: space-between; /* separa texto arriba, botón abajo */
+  height: 100%;             /* asegura altura uniforme */
   padding: 15px;
   text-align: left;
 }
+
 
 .card-title {
   font-size: 1rem;
