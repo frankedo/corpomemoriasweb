@@ -273,12 +273,14 @@ function shareCard(platform, title, url) {
 /* Imagen al lado izquierdo */
 .card img {
   width: 45%;
-  height: 100%; /* asegura que el fondo cubra todo el alto */
-  object-fit: contain; /* mantiene proporciones sin recortar */
-  background-color: #FFD54F; /* 🌻 fondo amarillo girasol */
+  height: 100%;
+  object-fit: contain;
+  background-color: #FFD54F; /* 🌻 amarillo girasol */
   display: block;
-  padding: 10px; /* deja aire dentro del área amarilla */
+  padding: 10px;
   box-sizing: border-box;
+  border-top-left-radius: 12px;   /* borde redondeado arriba */
+  border-bottom-left-radius: 12px; /* borde redondeado abajo */
 }
 
 /* Contenido de texto */
@@ -321,7 +323,7 @@ function shareCard(platform, title, url) {
   .card img {
     width: 100%;
     height: 180px;
-    border-right: none;
+    border-radius: 0; /* quita bordes redondeados en vista vertical */
   }
 
   .card-body {
