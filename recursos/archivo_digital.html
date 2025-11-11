@@ -165,7 +165,9 @@ function shareCard(platform, title, url) {
 
           const card = `
             <div class="card">
+			<div class="card-img-container">
               ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
+			  </div>
               <div class="card-body">
                 <h5 class="card-title">${archivo.titulo}</h5>
                 <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
