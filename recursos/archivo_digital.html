@@ -146,119 +146,127 @@ function shareCard(platform, title, url) {
   </div>
 </div>
 
-<!-- Contenedor de archivos -->
+
+<!-- 🔽 CONTENEDOR DE ARCHIVOS -->
 <div id="archivoGrid" class="grid-container"></div>
 
+<!-- 🔽 SCRIPT PRINCIPAL -->
 <script>
-  const backendUrl = "https://supabase-backend.onrender.com"; // Tu backend en Render
+const backendUrl = "https://supabase-backend.onrender.com"; // ✅ Tu backend en Render
 
-  async function cargarArchivos(filtro = "all") {
-    try {
-      const response = await fetch(`${backendUrl}/archivo_digital`);
-      const data = await response.json();
-      const contenedor = document.getElementById("archivoGrid");
-      contenedor.innerHTML = "";
+async function cargarArchivos(filtro = "all") {
+  try {
+    // ✅ Evita cache en el fetch
+    const response = await fetch(`${backendUrl}/archivo_digital?nocache=${Date.now()}`);
+    const data = await response.json();
+    const contenedor = document.getElementById("archivoGrid");
+    contenedor.innerHTML = "";
 
-      data
-        .filter(archivo => filtro === "all" || archivo.tipo === filtro)
-        .forEach(archivo => {
-          const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
+    data
+      .filter(archivo => filtro === "all" || archivo.tipo === filtro)
+      .forEach(archivo => {
+        const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
 
-          const card = `
-            <div class="card">
-			
-              ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
-			
-              <div class="card-body">
-                <h5 class="card-title">${archivo.titulo}</h5>
-                <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
-                <p class="small-text">📅 ${fechaFormateada}</p>
-                ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
-                ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
-
-                <!-- 🔗 Botones alineados en una misma línea -->
-                <div class="d-flex align-items-center mt-2">
-                  <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm mr-2">Ver Más</a>
-
-                  <div class="share-buttons d-flex">
-                    <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
-                      <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-info ml-1" onclick="shareCard('twitter', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
-                      <i class="fab fa-twitter"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-success ml-1" onclick="shareCard('whatsapp', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
-                      <i class="fab fa-whatsapp"></i>
-                    </button>
-                  </div>
+        // ✅ Estructura uniforme para TODAS las tarjetas
+        const card = `
+          <div class="card">
+            ${archivo.imagen ? `<img src="${archivo.imagen}" class="card-img-top" alt="${archivo.titulo}">` : ""}
+            <div class="card-body">
+              <h5 class="card-title">${archivo.titulo}</h5>
+              <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
+              <p class="small-text">📅 ${fechaFormateada}</p>
+              ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
+              ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
+              
+              <!-- 🔗 Botones alineados -->
+              <div class="d-flex align-items-center mt-2">
+                <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm mr-2">Ver Más</a>
+                <div class="share-buttons d-flex">
+                  <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info ml-1" onclick="shareCard('twitter', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-success ml-1" onclick="shareCard('whatsapp', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                    <i class="fab fa-whatsapp"></i>
+                  </button>
                 </div>
               </div>
             </div>
-          `;
+          </div>
+        `;
+        contenedor.innerHTML += card;
+      });
 
-          contenedor.innerHTML += card;
-        });
-    } catch (error) {
-      console.error("Error al cargar archivos:", error);
-    }
+    // ✅ Forzar estilos a TODAS las tarjetas (viejas y nuevas)
+    aplicarEstilosTarjetas();
+  } catch (error) {
+    console.error("Error al cargar archivos:", error);
   }
+}
 
-  function shareCard(platform, title, description, url) {
-    const text = `${title} - ${description}\n${url}`;
-    let shareUrl = "";
-
-    switch (platform) {
-      case "facebook":
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        break;
-      case "twitter":
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
-        break;
-      case "whatsapp":
-        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-        break;
-    }
-
-    window.open(shareUrl, "_blank");
+// ✅ Función de compartir
+function shareCard(platform, title, description, url) {
+  const text = `${title} - ${description}\n${url}`;
+  let shareUrl = "";
+  switch (platform) {
+    case "facebook":
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      break;
+    case "twitter":
+      shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      break;
+    case "whatsapp":
+      shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+      break;
   }
+  window.open(shareUrl, "_blank");
+}
 
-  document.getElementById("filterCategory").addEventListener("change", (e) => {
-    cargarArchivos(e.target.value);
+// ✅ Aplicar estilos a todas las cards existentes (por si hay cache o diferencias previas)
+function aplicarEstilosTarjetas() {
+  document.querySelectorAll(".card").forEach(card => {
+    // Forzar clases y estructura coherente
+    card.classList.add("card");
+    const img = card.querySelector("img");
+    if (img) {
+      img.classList.add("card-img-top");
+      img.style.width = "100%";
+      img.style.height = "220px";
+      img.style.objectFit = "cover";
+      img.style.objectPosition = "center";
+      img.style.backgroundColor = "#FFD54F"; // 🌻 fondo girasol
+      img.style.display = "block";
+      img.style.boxSizing = "border-box";
+    }
   });
+}
 
-  cargarArchivos();
+document.getElementById("filterCategory").addEventListener("change", (e) => {
+  cargarArchivos(e.target.value);
+});
+
+// ✅ Cargar al inicio
+cargarArchivos();
 </script>
 
+<!-- 🔽 ESTILOS GENERALES -->
 <style>
 
-	
-  /* 🔘 Compactar los botones de compartir */
-  .share-buttons .btn {
-    padding: 4px 8px;
-  }
-
-  .share-buttons i {
-    font-size: 0.9rem;
-  }
-</style>
-
-			
-
-<!-- 🖼️ Estilo para las imágenes -->
-<style>
-/* Contenedor general */
+/* 🧱 GRID GENERAL */
 #archivoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 por fila en pantallas grandes */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 por fila */
   gap: 20px;
   justify-content: center;
   padding: 20px 0;
 }
 
-/* Tarjeta con imagen arriba */
+/* 🪶 TARJETA */
 .card {
   display: flex;
-  flex-direction: column; /* imagen arriba, texto abajo */
+  flex-direction: column; /* Imagen arriba, texto abajo */
   width: 100%;
   max-width: 400px;
   border-radius: 12px;
@@ -267,95 +275,88 @@ function shareCard(platform, title, url) {
   background-color: #fff;
   transition: transform 0.2s ease;
 }
-
 .card:hover {
   transform: scale(1.02);
 }
 
-/* ✅ Imagen superior: altura estandar + fondo girasol */
+/* 🖼️ IMAGEN */
 .card img {
-  width: 100%;              /* ocupa todo el ancho */
-  height: 220px;            /* ✅ altura fija uniforme */
-  object-fit: cover;        /* ✅ recorta imágenes verticales */
-  object-position: center;  /* ✅ centra el recorte */
-  background-color: #FFD54F; /* 🌻 color girasol de fondo */
+  width: 100%;
+  height: 220px;            /* Altura estándar */
+  object-fit: cover;        /* Recorta imágenes verticales */
+  object-position: center;  /* Centra recorte */
+  background-color: #FFD54F; /* 🌻 Fondo girasol */
   display: block;
   box-sizing: border-box;
 }
 
-
-/* Contenido de texto */
+/* 🧾 CONTENIDO */
 .card-body {
   display: flex;
-  flex-direction: column;   /* organiza texto y botón en columna */
-  justify-content: space-between; /* separa texto arriba, botón abajo */
-  height: 100%;             /* asegura altura uniforme */
-  padding: 12px;            /* ✅ un poco menos de padding vertical */
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 12px;
   text-align: left;
 }
 
-/* ✅ Elimina espacios excesivos entre párrafos */
-.card-body p {
-  margin: 0;                /* ✅ sin margen entre párrafos */
-  line-height: 1.2;         /* ✅ texto más compacto */
-}
-
-/* ✅ Título más compacto */
+/* 🧩 TÍTULO */
 .card-title {
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 3px;       /* ✅ menos espacio debajo del título */
+  margin-bottom: 3px;
   line-height: 1.2;
 }
 
-/* ✅ Texto del cuerpo más compacto */
+/* ✍️ DESCRIPCIÓN */
 .card-text {
   font-size: 0.9rem;
   color: #555;
-  margin-bottom: 3px;       /* ✅ menos espacio */
+  margin-bottom: 3px;
   line-height: 1.2;
 }
 
-/* ✅ Texto pequeño (autor, fecha, fuente) ajustado */
+/* 🕓 DATOS PEQUEÑOS */
 .small-text {
   font-size: 0.8rem;
   color: #777;
-  margin: 0;                /* ✅ sin márgenes verticales */
-  line-height: 1.1;         /* ✅ menor separación entre líneas */
+  margin: 0;
+  line-height: 1.1;
 }
 
-/* ✅ Alineación precisa de autor, fecha, fuente */
-.card-body .autor,
-.card-body .fecha,
-.card-body .fuente {
-  margin: 0 !important;     /* ✅ elimina todo espacio vertical */
-  line-height: 1.1;         /* ✅ texto compacto */
-}
-
-/* Botón */
+/* 🔗 BOTONES */
 .btn-primary {
   font-size: 0.8rem;
   padding: 5px 10px;
   border-radius: 6px;
-  align-self: start;        /* ✅ mantiene los botones alineados al mismo nivel */
+  align-self: start;
 }
 
-/* Diseño adaptable en pantallas pequeñas */
+/* 🤝 BOTONES DE COMPARTIR */
+.share-buttons .btn {
+  padding: 4px 8px;
+}
+.share-buttons i {
+  font-size: 0.9rem;
+}
+
+/* 📱 RESPONSIVO */
 @media (max-width: 600px) {
   #archivoGrid {
-    grid-template-columns: 1fr; /* una por fila */
+    grid-template-columns: 1fr;
   }
-
   .card img {
-    height: 180px;          /* ✅ altura estándar también en móvil */
+    height: 180px;
   }
-
   .card-body {
     text-align: center;
   }
 }
 </style>
 
+
+
+					
 					
 
                             <div class="col">
