@@ -60,41 +60,6 @@
 
 
 
-<style><!-- css tarjetas museo -->
-
-.card {
-    width: 100%;  /* Ocupa todo el ancho del contenedor */
-    height: 400px;  /* Establece una altura fija */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;  /* Evita que se vea contenido desbordado */
-}
-
-.card img {
-    width: 100%;  /* Ajusta la imagen al 100% del ancho de la tarjeta */
-    height: 200px;  /* Establece una altura fija para las imágenes */
-    object-fit: cover;  /* Asegura que la imagen cubra el área sin distorsionarse */
-}
-
-.card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;  /* Evita que el contenido se desborde */
-}
-
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    white-space: nowrap;  /* Evita el salto de línea */
-    overflow: hidden;  /* Oculta el texto que excede el contenedor */
-    text-overflow: ellipsis;  /* Agrega "..." al final del texto largo */
-}
-
-
-</style><!-- fin css tarjetas museo -->
-
 
 
 
@@ -118,7 +83,7 @@
       
         
             <p>Corporación Marlón Memorias y Huellas de un Desaparecido</p>
-            <h6>Museo Huellas de un Desaparecido</h6> 
+            <h6>Observatorio de Memoria y Desaparición Forzada</h6> 
         <!-- Botón de WhatsApp ajustado con ancho fijo y centrado -->
         <a href="https://wa.me/+573044868541?text=¡Hola!%20Quisiera%20más%20información" target="_blank" class="btn btn-outline-light" 
            style="display: flex; align-items: center; width: 250px; justify-content: center;">
@@ -131,181 +96,14 @@
 <!-- End of Page Header -->
 
 
-<!-- Inicia museo virtual -->
 
-<!-- Sección de Exposición Itinerante -->
-<section id="exposicion-itinerante" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-4">Exposición Itinerante</h2>
-        <p class="text-center mb-5">Exhibiciones a nivel nacional, recorriendo ciudades y compartiendo nuestra misión.</p>
-        <div id="exposicion-itinerante-contenido" class="row"></div>
-    </div>
-</section>
 
-<!-- Modal para Detalles de la Exposición -->
-<div class="modal fade" id="detalleExposicionModal" tabindex="-1" aria-labelledby="detalleExposicionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detalleExposicionModalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Carousel para las imágenes de la exposición -->
-                <div id="modalCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" id="modalCarouselInner"></div>
-                    <a class="carousel-control-prev" href="#modalCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#modalCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <hr>
-                <p id="modalFecha"></p>
-                <p id="modalLugar"></p>
-                <p id="modalCurador"></p>
-                <p id="modalDescripcion"></p>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Scripts de Bootstrap y jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- Script para cargar y procesar el archivo JSON -->
-<script>
-    // Cargar el archivo JSON   
-    fetch('https://frankedo.github.io/museocorpomemorias/exposiciones.json')
-        .then(response => response.json())
-        .then(data => {
-            cargarExposiciones(data.exposiciones);
-        })
-        .catch(error => console.error('Error al cargar el archivo JSON:', error));
-
-    // Función para cargar exposiciones
-    function cargarExposiciones(exposiciones) {
-        const contenedorItinerante = document.getElementById('exposicion-itinerante-contenido');
-        exposiciones.forEach(exposicion => {
-            const card = crearTarjetaExposicion(exposicion);
-            if (exposicion.tipo === "itinerante") {
-                contenedorItinerante.appendChild(card);
-            }
-        });
-    }
-
-    // Función para crear la tarjeta de exposición
-    function crearTarjetaExposicion(exposicion) {
-        const card = document.createElement('div');
-        card.className = 'col-md-6 mb-4';
-        card.innerHTML = `
-            <div class="card" onclick="mostrarDetalleExposicion(${JSON.stringify(exposicion).replace(/"/g, '&quot;')})">
-                <div id="carousel-${exposicion.nombre.replace(/\s+/g, '')}" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        ${exposicion.fotos.map((foto, index) => `
-                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                <img src="${foto}" class="d-block w-100" alt="Imagen de la Exposición">
-                            </div>
-                        `).join('')}
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel-${exposicion.nombre.replace(/\s+/g, '')}" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-${exposicion.nombre.replace(/\s+/g, '')}" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">${exposicion.nombre}</h5>
-                    <p class="card-text">Fecha: ${exposicion.fecha}</p>
-                    <p class="card-text">Lugar: ${exposicion.lugar}</p>
-                    <p class="card-text">Curador: ${exposicion.curador}</p>
-                </div>
-            </div>
-        `;
-        return card;
-    }
-
-    // Función para mostrar el detalle de la exposición en el modal
-    function mostrarDetalleExposicion(exposicion) {
-        document.getElementById('detalleExposicionModalLabel').textContent = exposicion.nombre;
-        document.getElementById('modalFecha').textContent = `Fecha: ${exposicion.fecha}`;
-        document.getElementById('modalLugar').textContent = `Lugar: ${exposicion.lugar}`;
-        document.getElementById('modalCurador').textContent = `Curador: ${exposicion.curador}`;
-        document.getElementById('modalDescripcion').textContent = exposicion.descripcion;
-
-        // Llenar el carousel del modal con imágenes
-        const modalCarouselInner = document.getElementById('modalCarouselInner');
-        modalCarouselInner.innerHTML = exposicion.fotos.map((foto, index) => `
-            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                <img src="${foto}" class="d-block w-100" alt="Imagen de la Exposición">
-            </div>
-        `).join('');
-
-        $('#detalleExposicionModal').modal('show');
-    }
-</script>
-
-<!-- Fin del museo virtual -->
-
-
-
-
-  <div id="panorama" style="width: 100%; height: 500px;"></div>
-
-    <script>
-        pannellum.viewer('panorama', {
-            "default": {
-                "firstScene": "escena1",
-                "autoLoad": true,
-                "showControls": true
-            },
-            "scenes": {
-                "escena1": {
-                    "type": "equirectangular",
-                    "panorama": "../assets/imgs/museovirtualimgs/IMG_20201210_074552_863(1)(1).jpg", // URL de tu primera imagen
-                    "hfov": 110,
-                    "pitch": 0,
-                    "yaw": 0,
-                    "hotSpots": [
-                        {
-                            "pitch": 0,
-                            "yaw": 30,
-                            "type": "scene",
-                            "text": "Ir a Escena 2",
-                            "sceneId": "escena2"
-                        }
-                    ]
-                },
-                "escena2": {
-                    "type": "equirectangular",
-                    "panorama": "", // URL de tu segunda imagen
-                    "hfov": 110,
-                    "pitch": 0,
-                    "yaw": 0,
-                    "hotSpots": [
-                        {
-                            "pitch": 0,
-                            "yaw": -30,
-                            "type": "scene",
-                            "text": "Regresar a Escena 1",
-                            "sceneId": "escena1"
-                        }
-                    ]
-                }
-            }
-        });
-    </script>
-
-
-
-  
-
 
 
 
