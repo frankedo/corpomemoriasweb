@@ -113,67 +113,54 @@
         </div>
     </div>
 
-    <!-- GRID -->
-    <div id="publicacionesGrid"></div>
 
-</div>
 
+<!-- publicaciones.html (fragmento relevante) -->
+<div id="publicacionesGrid"></div>
 
 <script>
-const backendUrl = "https://supabase-backend.onrender.com"; // tu backend
+const backendUrl = "https://supabase-backend.onrender.com"; // tu backend render
 
 async function cargarPublicaciones(filtro = "all"){
-    const res = await fetch(`${backendUrl}/publicaciones`);
-    const data = await res.json();
+  const res = await fetch(`${backendUrl}/publicaciones`);
+  const data = await res.json();
+  const grid = document.getElementById("publicacionesGrid");
+  grid.innerHTML = "";
+  data.filter(pub => filtro === "all" || pub.tipo === filtro)
+     .forEach(pub => {
+       const year = pub.fecha ? new Date(pub.fecha).getFullYear() : new Date(pub.created_at).getFullYear();
+       const thumbHtml = pub.url_portada
+         ? `<img src="${pub.url_portada}" style="width:100%;height:260px;object-fit:cover;" alt="Portada">`
+         : `<div class="pdf-thumb"><iframe src="https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(pub.url_pdf)}#page=1"></iframe></div>`;
 
-    const grid = document.getElementById("publicacionesGrid");
-    grid.innerHTML = "";
-
-    data
-        .filter(pub => filtro === "all" || pub.tipo === filtro)
-        .forEach(pub => {
-            const fecha = new Date(pub.fecha).getFullYear();
-
-            const card = `
-                <div class="pub-card">
-
-                    <!-- Miniatura desde el PDF -->
-                    <div class="pdf-thumb">
-                        <iframe src="https://docs.google.com/gview?embedded=1&url=${pub.url}#page=1"></iframe>
-                    </div>
-
-                    <div class="pub-body">
-                        <div class="pub-title">${pub.titulo}</div>
-                        <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
-                        <div class="pub-date">📅 ${fecha}</div>
-
-                        <div class="buttons">
-                            <a href="${pub.url}" target="_blank" class="btn-yellow">Leer PDF</a>
-
-                            <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${pub.url}')">
-                                Compartir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            grid.innerHTML += card;
-        });
+       const card = `
+         <div class="pub-card">
+           ${thumbHtml}
+           <div class="pub-body">
+             <div class="pub-title">${pub.titulo}</div>
+             <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
+             <div class="pub-date">📅 ${year}</div>
+             <div class="buttons">
+               <a href="${pub.url_pdf}" target="_blank" class="btn-yellow">Leer PDF</a>
+               <button class="btn-yellow" onclick="sharePub('${escapeQuotes(pub.titulo)}','${encodeURIComponent(pub.url_pdf)}')">Compartir</button>
+             </div>
+           </div>
+         </div>
+       `;
+       grid.innerHTML += card;
+     });
 }
 
-function sharePub(titulo, url){
-    const text = `${titulo} - ${url}`;
-    const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
-    window.open(shareUrl, "_blank");
-}
+function escapeQuotes(s){ return s.replace(/'/g,"\\'").replace(/"/g,'\"'); }
+function sharePub(titulo, url){ window.open(`https://wa.me/?text=${encodeURIComponent(titulo+' - '+decodeURIComponent(url))}`,'_blank') }
 
-document.getElementById("filterPublicaciones")
-        .addEventListener("change", e => cargarPublicaciones(e.target.value));
-
+document.getElementById('filterPublicaciones').addEventListener('change', e => cargarPublicaciones(e.target.value));
 cargarPublicaciones();
 </script>
 
+
+
+    
 </body>
 </html>
 
