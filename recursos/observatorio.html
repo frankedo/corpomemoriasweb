@@ -31,7 +31,49 @@
 
 <link rel="icon" href="../assets/imgs/favicon.ico" type="image/x-icon">
 
+  <style>
+        /* Estilos para el popup */
+        .popup {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            z-index: 100;
+        }
+        
+        /* Fondo oscuro cuando el popup está activo */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+        
+        /* Estilos para el botón de cerrar */
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            color: red;
+        }
 
+        /* Imagen dentro del popup */
+        .popup img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+
+   
 
 	
  <!-- core  -->
@@ -68,7 +110,38 @@
 	
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
+ <!-- Fondo oscuro -->
+    <div id="popupOverlay" class="popup-overlay"></div>
 
+    <!-- Contenido del popup -->
+    <div id="popup" class="popup">
+      
+        <h2>¡Bienvenido!</h2>
+        <p>Tu ayuda es importante.</p>
+
+        <!-- Imagen dentro del popup -->
+        <img src="assets/imgs/1727378767183.jpg" alt="Imagen de Popup">
+	<span class="close-btn" onclick="closePopup()">X (cerrar)</span>
+    </div>
+
+    <script>
+        // Función para abrir el popup automáticamente
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popupOverlay').style.display = 'block';
+        }
+
+        // Función para cerrar el popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+
+        // Abrir el popup automáticamente cuando la página cargue
+        window.onload = function() {
+            openPopup();
+        };
+    </script>
 
  
     <!-- Page Navbar -->
@@ -127,6 +200,48 @@
 
 
 
+<!-- ======== Banner Rotativo Corpomemorias ======== -->
+<div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#bannerCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#bannerCarousel" data-slide-to="1"></li>
+    <li data-target="#bannerCarousel" data-slide-to="2"></li>
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/imgs/Encabezado_Formulario_ESP.png" class="d-block w-100" alt="Exposición Corpomemorias 1">
+         </div>
+
+    <div class="carousel-item">
+      <!-- ======== PONER AQUI OTRO BANNER ======== -->
+    </div>
+
+    <div class="carousel-item">
+     <!-- ======== PONER AQUI OTRO BANNER ======== -->
+  </div>
+
+  <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Siguiente</span>
+  </a>
+</div>
+<!-- ======== Fin Banner Rotativo ======== -->
+
+
+
+
+
+
+
+
+
+	
+ 
 <!-- About Section -->
 <section id="about">
   <!-- Container -->
@@ -188,6 +303,10 @@
           </div>
           <div class="col">
 			<p><b>OBSERVATORIO DE MEMORIA Y DESAPARICIÓN FORZADA</b></p>
+
+<p>escribir aqui observatorio</p>
+            <p><a href="../recursos/observatorio">Read More...</a></p>
+			  
             <p><b>Líneas de Acción</b></p>
             <p><b>Culturales y Conmemorativas</b></p>
             <p>Participaciones, movimientos, conmemoraciones, incidencias y manifestaciones culturales en diferentes espacios.</p>
@@ -233,9 +352,148 @@
 </section>
 <!--End of Section -->
 
+	
+    <!-- section -->
+    <section>
+        <!-- Container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <div class="img-wrapper">
+                        <div class="after"></div>
+                             <img src="../assets/imgs/Fotos_entrega_dinga_aguachica_cesar_5-1024x768.jpeg" class="w-100" alt="About Us">
+                         </div>
+                </div>
+                <div class="col-md-5">
+                    <h6 class="title mb-3">16 años de lucha incansable, una madre nunca se rinde.</h6>
+                    <p>Los años de lucha y persistencia de ‘Chayo’ buscando a su hijo dieron origen a la Corporación Marlon Memorias y huellas de un desaparecido (Corpomemorias), que hoy acompaña a 23 madres buscadoras de Aguachica en el trámite y búsqueda de sus seres queridos, además de motivarlas a no perder la esperanza.   </p>
+                    <p class="text-muted">Por la memoria y dignididad de Marlón Peña Moreno. Amante del fútbol, el Rock y la Aguapanela.</p>
+                      <a <button class="btn btn-outline-primary btn-sm"  href="https://www.jep.gov.co/Sala-de-Prensa/Paginas/-jep-realiza-entrega-digna-de-marlon-pena-un-joven-deportista-que-fue-buscado-por-mas-de-16-anos-en-aguachica-cesar.aspx">Read More...</button>  </a>        
+			
+		</div>
+            </div>
+            <!-- End of Row -->
+        </div>  
+        <!-- End of Container -->
+    </section><!-- End of Section -->   
 
 
- <!-- Section -->
+	
+    <!-- section -->
+    <section>
+        <!-- Container -->
+        <div class="container">
+            <!-- Row -->
+            <div class="row justify-content-between align-items-center">                
+                <div class="col-md-5">
+                    <h6 class="title mb-3">La búsqueda la hacemos todos y todas.</h6>
+                    <p>Fueron más de 16 años incansables y continuos sin encontrar respuestas en el Estado que condujeran al paradero de Marlon Peña, un joven deportista, amante del fútbol, del rock y de la aguapanela; al que su familia todavía recuerda por su corazón generoso, uno que se desprendía de lo que tenía para compartirlo con quienes más lo necesitaban.</p>
+                    <p class="text-muted">Seguiremos en la lucha.</p>
+                    <a <button class="btn btn-outline-primary btn-sm"  href="https://unidadbusqueda.gov.co/actualidad/aguachica-cesar-entrega-digna-jep-2023/">Read More...</button>  </a>   
+                </div>
+                <div class="col-md-6">
+                    <div class="img-wrapper">
+                        <div class="after right"></div>
+                        <img src="../assets/imgs/1727463551254.jpg" class="w-100" alt="About Us">
+                    </div>                      
+                </div>
+            </div><!-- End of Row -->           
+        </div><!-- End of Container-->      
+    </section><!-- End of Section -->
+
+
+
+	
+
+    <!-- Features Section -->
+    <section class="has-bg-img" id="features">
+        <div class="overlay"></div>
+        <!-- Button trigger modal -->
+        <a data-toggle="modal" href="#exampleModalCenter">
+            <i></i>
+        </a>
+        <!-- Modal -->
+        < <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+			<iframe width="100%" height="450" class="border-0" src="https://www.youtube.com/embed/CSi3tGYOBbI" allowfullscreen></iframe>
+                    </iframe>
+                </div>
+            </div>
+        </div><!-- End of Modal -->     
+    </section><!-- End of features Section -->  
+
+
+
+
+
+	
+    <!-- Section -->
+    <section>
+        <!-- Container -->
+        <div class="container">
+            <!-- Row -->
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <div class="img-wrapper">
+                        <div class="after"></div>
+                        <img src="../assets/imgs/IMG_20220625_113322_7.jpg" class="w-100" alt="About us">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                   <CENTER> <h6 class="title mb-3">CONOCE NUESTRA TRAYECTORIA</h6></CENTER>
+			 <CENTER>  <h6 class="title mb-3">Un legado de búsqueda a través de la memoria</h6></CENTER>
+                   <justify> <p>“La memoria, es muy importante porque así se recuerda todo lo que ha sucedido; en una desaparición he pensado que es más dolorosa, puesto que una madre ha tenido su criatura por nueve meses en su vientre y no saber de ese ser, es muy destructivo; porque, en el momento que supe que mi hijo no estaba en su cama, para mí fue terrible, lo que sentí, fue que, mi cuerpo se dobló”. (Relato de Gliceria Moreno Tibaduiza, tiene 69 años, es lideresa social quien habla por los desaparecidos en Aguachica, gracias a ella se visibilizó la desaparición, ella es la madre del desaparecido Marlon Peña Moreno, futbolista de 27 años que desapareció el 21 de marzo de 2007, caso emblemático de Aguachica, Gracias a lucha de Chayo como la conocen en el territorio, logró ubicar el cuerpo óseo de su hijo, con apoyo de la JEP).</p></justify>
+                    <!-- <p class="text-muted">link 
+			   <a href="https://www.jep.gov.co/Sala-de-Prensa/Paginas/-jep-realiza-entrega-digna-de-marlon-pena-un-joven-deportista-que-fue-buscado-por-mas-de-16-anos-en-aguachica-cesar.aspx">La incansable búsqueda de 'Chayo'</a>--> 
+		    </p>			
+                   <a <button class="btn btn-outline-primary btn-sm" href="recursos/trayecto.HTML">Conoce más</button></a>
+                
+
+			
+		
+		
+		
+		
+		</div>
+            </div><!-- End of Row -->           
+        </div><!-- End of Container-->      
+    </section><!-- End of Section -->   
+
+    <!-- Testmonial Section -->
+    <section class="text-center pt-5" id="testmonial">
+        <!-- Container -->
+        <div class="container">
+            <h3 class="mt-3 mb-5 pb-5">MADRES FUNDADORAS</h3>
+            <!-- Row -->
+            <div class="row">
+                <div class="col-sm-10 col-md-4 m-auto">
+                    <div class="testmonial-wrapper">
+                        <img src="assets/imgs/chay.jpeg" alt="Client Image">
+                        <h6 class="title mb-3">Chayo Moreno</h6>
+                        <p>Madre buscadora/fundadora Corpomemorias, artesana, luchadora, incansable, activista</p>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-4 m-auto">
+                    <div class="testmonial-wrapper">
+                        <img src="assets/imgs/isa.jpeg" alt="Client Image">
+                        <h6 class="title mb-3">Isa Pemo</h6>
+                        <p>Madre buscadora/fundadora Corpomemorias, Psicóloga, activista.</p>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-4 m-auto">
+                    <div class="testmonial-wrapper">
+                        <img src="assets/imgs/lilo.jpeg" alt="Client Image">
+                        <h6 class="title mb-3">Lilo Pemo</h6>
+                        <p>Madre buscadora/fundadora, vicepresidente Corpomemorias, activista</p>
+                    </div>
+                </div>
+            </div><!-- end of Row -->           
+        </div><!-- End of Cotanier -->  
+    </section><!-- End of Testmonial Section -->
+
+    <!-- Section -->
     <section class="has-bg-img text-center text-light height-auto" style="background-image: url(assets/imgs/pexels-thijsvdw-792955.jpg)">
         <h1 class="display-4">Corporación Marlón Memorias y Huellas de un Desaparecido Corpomemorias</h1>
     </section><!-- End of Section -->
@@ -367,4 +625,3 @@
 </html>
 
   
-	
