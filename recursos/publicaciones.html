@@ -111,50 +111,46 @@
 <div id="tarjetas" class="tarjetas-grid"></div>
 
 <script>
+
 const BASE_URL = "https://supabase-backend-1-g0bt.onrender.com";
 
-async function cargarPublicaciones(filtro = 'all') {
+async function cargarPublicaciones() {
     try {
         const res = await fetch(`${BASE_URL}/publicaciones`);
-        let publicaciones = await res.json();
+        const publicaciones = await res.json();
 
-        if(filtro !== 'all') {
-            publicaciones = publicaciones.filter(pub => pub.tipo === filtro);
-        }
-
-        const cont = document.getElementById('tarjetas');
-        cont.innerHTML = "";
+        const contenedor = document.getElementById('tarjetas');
+        contenedor.innerHTML = "";
 
         publicaciones.forEach(pub => {
             const card = document.createElement('div');
-            card.className = 'card';
+            card.classList.add('card');
 
             const img = document.createElement('img');
-            img.src = `${BASE_URL}/publicaciones/portada/${pub.id}`;
+            img.src = pub.url_portada || "https://via.placeholder.com/300x400?text=Sin+portada";
             img.alt = pub.titulo;
-            img.onerror = () => img.src = "https://via.placeholder.com/300x400?text=Sin+portada";
 
             const titulo = document.createElement('h3');
             titulo.textContent = pub.titulo;
 
-            const desc = document.createElement('p');
-            desc.textContent = pub.descripcion;
+            const descripcion = document.createElement('p');
+            descripcion.textContent = pub.descripcion;
 
-            card.append(img, titulo, desc);
-            cont.appendChild(card);
+            card.appendChild(img);
+            card.appendChild(titulo);
+            card.appendChild(descripcion);
+
+            contenedor.appendChild(card);
         });
-    } catch(e) {
-        console.error(e);
+
+    } catch (error) {
+        console.error("Error cargando publicaciones:", error);
     }
 }
 
-// Evento filtro
-document.getElementById('filterPublicaciones').addEventListener('change', (e) => {
-    cargarPublicaciones(e.target.value);
-});
-
-// Cargar todas al inicio
 cargarPublicaciones();
+    
+      
 </script>
 
 
