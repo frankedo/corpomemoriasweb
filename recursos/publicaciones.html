@@ -115,49 +115,100 @@
 
 
 
-<!-- publicaciones.html (fragmento relevante) -->
-<div id="publicacionesGrid"></div>
+
+
+    <!-- Contenedor de las tarjetas -->
+<div id="tarjetas" class="tarjetas-grid"></div>
 
 <script>
-const backendUrl = "https://supabase-backend.onrender.com"; // tu backend render
+// URL base de tu backend
+const BASE_URL = "https://supabase-backend-1-g0bt.onrender.com";
 
-async function cargarPublicaciones(filtro = "all"){
-  const res = await fetch(`${backendUrl}/publicaciones`);
-  const data = await res.json();
-  const grid = document.getElementById("publicacionesGrid");
-  grid.innerHTML = "";
-  data.filter(pub => filtro === "all" || pub.tipo === filtro)
-     .forEach(pub => {
-       const year = pub.fecha ? new Date(pub.fecha).getFullYear() : new Date(pub.created_at).getFullYear();
-       const thumbHtml = pub.url_portada
-         ? `<img src="${pub.url_portada}" style="width:100%;height:260px;object-fit:cover;" alt="Portada">`
-         : `<div class="pdf-thumb"><iframe src="https://docs.google.com/gview?embedded=1&url=${encodeURIComponent(pub.url_pdf)}#page=1"></iframe></div>`;
+// Función para obtener las publicaciones desde tu API
+async function cargarPublicaciones() {
+    try {
+        const res = await fetch(`${BASE_URL}/publicaciones`);
+        const publicaciones = await res.json();
 
-       const card = `
-         <div class="pub-card">
-           ${thumbHtml}
-           <div class="pub-body">
-             <div class="pub-title">${pub.titulo}</div>
-             <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
-             <div class="pub-date">📅 ${year}</div>
-             <div class="buttons">
-               <a href="${pub.url_pdf}" target="_blank" class="btn-yellow">Leer PDF</a>
-               <button class="btn-yellow" onclick="sharePub('${escapeQuotes(pub.titulo)}','${encodeURIComponent(pub.url_pdf)}')">Compartir</button>
-             </div>
-           </div>
-         </div>
-       `;
-       grid.innerHTML += card;
-     });
+        const contenedor = document.getElementById('tarjetas');
+        contenedor.innerHTML = ""; // limpiar antes de renderizar
+
+        publicaciones.forEach(pub => {
+            // Crear tarjeta
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            // Imagen de portada (ruta que genera la portada automáticamente)
+            const img = document.createElement('img');
+            img.src = `${BASE_URL}/publicaciones/portada/${pub.id}`;
+            img.alt = pub.titulo;
+            img.onerror = () => { 
+                // Si falla, mostrar una portada genérica
+                img.src = "https://via.placeholder.com/300x400?text=Sin+portada"; 
+            };
+
+            // Título y descripción
+            const titulo = document.createElement('h3');
+            titulo.textContent = pub.titulo;
+
+            const descripcion = document.createElement('p');
+            descripcion.textContent = pub.descripcion;
+
+            // Agregar elementos a la tarjeta
+            card.appendChild(img);
+            card.appendChild(titulo);
+            card.appendChild(descripcion);
+
+            // Agregar tarjeta al contenedor
+            contenedor.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("Error cargando publicaciones:", error);
+    }
 }
 
-function escapeQuotes(s){ return s.replace(/'/g,"\\'").replace(/"/g,'\"'); }
-function sharePub(titulo, url){ window.open(`https://wa.me/?text=${encodeURIComponent(titulo+' - '+decodeURIComponent(url))}`,'_blank') }
-
-document.getElementById('filterPublicaciones').addEventListener('change', e => cargarPublicaciones(e.target.value));
+// Ejecutar al cargar la página
 cargarPublicaciones();
 </script>
 
+<style>
+/* Estilos básicos para la grilla de tarjetas */
+.tarjetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+    
 
 
     
