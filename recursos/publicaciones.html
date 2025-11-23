@@ -99,79 +99,73 @@
 
 <div class="container mt-4">
 
-    <!-- FILTRO -->
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <select id="filterPublicaciones" class="form-control">
-                <option value="all">Todas</option>
-                <option value="informe">Informes</option>
-                <option value="boletin">Boletines</option>
-                <option value="revista">Revistas</option>
-                <option value="libro">Libros</option>
-                <option value="taller">Talleres</option>
-            </select>
-        </div>
-    </div>
+<select id="filterPublicaciones">
+    <option value="all">Todas</option>
+    <option value="informe">Informes</option>
+    <option value="boletin">Boletines</option>
+    <option value="revista">Revistas</option>
+    <option value="libro">Libros</option>
+    <option value="taller">Talleres</option>
+</select>
 
-
-
-
-
-    <!-- Contenedor de las tarjetas -->
 <div id="tarjetas" class="tarjetas-grid"></div>
 
 <script>
-// URL base de tu backend
 const BASE_URL = "https://supabase-backend-1-g0bt.onrender.com";
 
-// Función para obtener las publicaciones desde tu API
-async function cargarPublicaciones() {
+async function cargarPublicaciones(filtro = 'all') {
     try {
         const res = await fetch(`${BASE_URL}/publicaciones`);
-        const publicaciones = await res.json();
+        let publicaciones = await res.json();
 
-        const contenedor = document.getElementById('tarjetas');
-        contenedor.innerHTML = ""; // limpiar antes de renderizar
+        if(filtro !== 'all') {
+            publicaciones = publicaciones.filter(pub => pub.tipo === filtro);
+        }
+
+        const cont = document.getElementById('tarjetas');
+        cont.innerHTML = "";
 
         publicaciones.forEach(pub => {
-            // Crear tarjeta
             const card = document.createElement('div');
-            card.classList.add('card');
+            card.className = 'card';
 
-            // Imagen de portada (ruta que genera la portada automáticamente)
             const img = document.createElement('img');
             img.src = `${BASE_URL}/publicaciones/portada/${pub.id}`;
             img.alt = pub.titulo;
-            img.onerror = () => { 
-                // Si falla, mostrar una portada genérica
-                img.src = "https://via.placeholder.com/300x400?text=Sin+portada"; 
-            };
+            img.onerror = () => img.src = "https://via.placeholder.com/300x400?text=Sin+portada";
 
-            // Título y descripción
             const titulo = document.createElement('h3');
             titulo.textContent = pub.titulo;
 
-            const descripcion = document.createElement('p');
-            descripcion.textContent = pub.descripcion;
+            const desc = document.createElement('p');
+            desc.textContent = pub.descripcion;
 
-            // Agregar elementos a la tarjeta
-            card.appendChild(img);
-            card.appendChild(titulo);
-            card.appendChild(descripcion);
-
-            // Agregar tarjeta al contenedor
-            contenedor.appendChild(card);
+            card.append(img, titulo, desc);
+            cont.appendChild(card);
         });
-
-    } catch (error) {
-        console.error("Error cargando publicaciones:", error);
+    } catch(e) {
+        console.error(e);
     }
 }
 
-// Ejecutar al cargar la página
+// Evento filtro
+document.getElementById('filterPublicaciones').addEventListener('change', (e) => {
+    cargarPublicaciones(e.target.value);
+});
+
+// Cargar todas al inicio
 cargarPublicaciones();
 </script>
 
+
+
+
+
+    
+
+
+
+    
 <style>
 /* Estilos básicos para la grilla de tarjetas */
 .tarjetas-grid {
