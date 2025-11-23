@@ -97,21 +97,26 @@
     </div>
 </header>
 
+
+
 <div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <select id="filterPublicaciones" class="form-control">
+                <option value="all">Todas</option>
+                <option value="informe">Informes</option>
+                <option value="boletin">Boletines</option>
+                <option value="revista">Revistas</option>
+                <option value="libro">Libros</option>
+                <option value="taller">Talleres</option>
+            </select>
+        </div>
+    </div>
 
-<select id="filterPublicaciones">
-    <option value="all">Todas</option>
-    <option value="informe">Informes</option>
-    <option value="boletin">Boletines</option>
-    <option value="revista">Revistas</option>
-    <option value="libro">Libros</option>
-    <option value="taller">Talleres</option>
-</select>
-
-<div id="tarjetas" class="tarjetas-grid"></div>
+    <div id="tarjetas" class="tarjetas-grid"></div>
+</div>
 
 <script>
-
 const BASE_URL = "https://supabase-backend-1-g0bt.onrender.com";
 
 async function cargarPublicaciones() {
@@ -149,21 +154,9 @@ async function cargarPublicaciones() {
 }
 
 cargarPublicaciones();
-    
-      
 </script>
 
-
-
-
-
-    
-
-
-
-    
 <style>
-/* Estilos básicos para la grilla de tarjetas */
 .tarjetas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -190,15 +183,6 @@ cargarPublicaciones();
 </style>
 
 
-
-
-
-
-
-
-
-
-    
 
 
     
