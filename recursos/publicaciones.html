@@ -97,9 +97,9 @@
     </div>
 </header>
 
-
-
 <div class="container mt-4">
+
+    <!-- FILTRO -->
     <div class="row mb-3">
         <div class="col-md-4">
             <select id="filterPublicaciones" class="form-control">
@@ -113,79 +113,66 @@
         </div>
     </div>
 
-    <div id="tarjetas" class="tarjetas-grid"></div>
+    <!-- GRID -->
+    <div id="publicacionesGrid"></div>
+
 </div>
 
+
 <script>
-const BASE_URL = "https://supabase-backend-1-g0bt.onrender.com";
+const backendUrl = "https://supabase-backend.onrender.com"; // tu backend
 
-async function cargarPublicaciones() {
-    try {
-        const res = await fetch(`${BASE_URL}/publicaciones`);
-        const publicaciones = await res.json();
+async function cargarPublicaciones(filtro = "all"){
+    const res = await fetch(`${backendUrl}/publicaciones`);
+    const data = await res.json();
 
-        const contenedor = document.getElementById('tarjetas');
-        contenedor.innerHTML = "";
+    const grid = document.getElementById("publicacionesGrid");
+    grid.innerHTML = "";
 
-        publicaciones.forEach(pub => {
-            const card = document.createElement('div');
-            card.classList.add('card');
+    data
+        .filter(pub => filtro === "all" || pub.tipo === filtro)
+        .forEach(pub => {
+            const fecha = new Date(pub.fecha).getFullYear();
 
-            const img = document.createElement('img');
-            img.src = pub.url_portada || "https://via.placeholder.com/300x400?text=Sin+portada";
-            img.alt = pub.titulo;
+            const card = `
+                <div class="pub-card">
 
-            const titulo = document.createElement('h3');
-            titulo.textContent = pub.titulo;
+                    <!-- Miniatura desde el PDF -->
+                    <div class="pdf-thumb">
+                        <iframe src="https://docs.google.com/gview?embedded=1&url=${pub.url}#page=1"></iframe>
+                    </div>
 
-            const descripcion = document.createElement('p');
-            descripcion.textContent = pub.descripcion;
+                    <div class="pub-body">
+                        <div class="pub-title">${pub.titulo}</div>
+                        <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
+                        <div class="pub-date">📅 ${fecha}</div>
 
-            card.appendChild(img);
-            card.appendChild(titulo);
-            card.appendChild(descripcion);
+                        <div class="buttons">
+                            <a href="${pub.url}" target="_blank" class="btn-yellow">Leer PDF</a>
 
-            contenedor.appendChild(card);
+                            <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${pub.url}')">
+                                Compartir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            grid.innerHTML += card;
         });
-
-    } catch (error) {
-        console.error("Error cargando publicaciones:", error);
-    }
 }
+
+function sharePub(titulo, url){
+    const text = `${titulo} - ${url}`;
+    const shareUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(shareUrl, "_blank");
+}
+
+document.getElementById("filterPublicaciones")
+        .addEventListener("change", e => cargarPublicaciones(e.target.value));
 
 cargarPublicaciones();
 </script>
 
-<style>
-.tarjetas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-    padding: 10px;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-</style>
-
-
-
-
-    
 </body>
 </html>
-
