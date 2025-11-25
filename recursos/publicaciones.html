@@ -139,7 +139,7 @@ async function cargarPublicaciones(filtro = "all"){
 
                     <!-- Miniatura desde el PDF -->
                     <div class="pdf-thumb">
-                        <iframe src="https://docs.google.com/gview?embedded=1&url=${pub.url}#page=1"></iframe>
+                        <iframe src="https://docs.google.com/gview?embedded=1&url=${url_pdf}#page=1"></iframe>
                     </div>
 
                     <div class="pub-body">
@@ -148,9 +148,9 @@ async function cargarPublicaciones(filtro = "all"){
                         <div class="pub-date">📅 ${fecha}</div>
 
                         <div class="buttons">
-                            <a href="${pub.url}" target="_blank" class="btn-yellow">Leer PDF</a>
+                            <a href="${url_pdf}" target="_blank" class="btn-yellow">Leer PDF</a>
 
-                            <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${pub.url}')">
+                            <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${url_pdf}')">
                                 Compartir
                             </button>
                         </div>
