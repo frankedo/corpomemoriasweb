@@ -35,52 +35,54 @@
 
 
 <style>
-    .card {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Hace que la tarjeta tome toda la altura disponible del contenedor */
+}
 
-    .card-img-top {
-        height: 250px;
-        object-fit: cover;
-        background: #f0f0f0;
-    }
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+    background: #f0f0f0;
+}
 
-    .loader {
-        width: 100%;
-        height: 250px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #eee;
-        color: #555;
-        font-size: 18px;
-    }
+.loader {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eee;
+    color: #555;
+    font-size: 18px;
+}
 
-    /* Eliminar espacios dentro de la tarjeta */
-    .card-body h5,
-    .card-body p {
-        margin: 0;
-        padding: 0;
-        line-height: 1; /* Opcional: compacta aún más */
-    }
+.card-body {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Hace que el contenido de la tarjeta estire toda la tarjeta */
+}
 
-    .card-body {
-        padding: 0.5rem; /* Ajusta según lo necesites */
-    }
+.card-body h5,
+.card-body p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.card-text {
+    flex-grow: 1; /* Empuja el botón de "Ver PDF" hacia abajo, igualando alturas */
+}
+
+.btn-block {
+    margin-top: auto; /* Mantiene el botón abajo de la tarjeta */
+}
 </style>
-
-
-	
-
-
-
-
-
-
-
-
 
 
 
