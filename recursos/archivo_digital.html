@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 
+
      <meta charset="utf-8">
     <meta name="google-site-verification@corpomemorias.netlify.app" content="6Jg75i6_BVhEGzpzF3FTG7wEbW5mF48oGYLUYFc8Gyk">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,8 +34,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js" defer></script>
     <!-- font icons -->
     <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
-        <!-- Bootstrap + Creative Design main styles -->
-    <link rel="stylesheet" href="../assets/css/creative-design.css">
+
+
+<!-- Bootstrap + Creative Design main styles -->
+<link rel="stylesheet" href="../assets/css/creative-design.css">
+<!-- Estilos de tarjetas generales -->
+<link rel="stylesheet" href="../assets/css/card-general.css">
+
+
+	
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <!-- Popper.js, required for Bootstrap tooltips -->
@@ -175,9 +183,9 @@ async function cargarArchivos(filtro = "all") {
             <div class="card-body-general">
               <h5 class="card-title-general">${archivo.titulo}</h5>
               <p class="card-text-general">${archivo.descripcion || "Sin descripción"}</p>
-              <p class="small-text">📅 ${fechaFormateada}</p>
-              ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
-              ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
+              <p class="small-text-general">📅 ${fechaFormateada}</p>
+              ${archivo.autor ? `<p class="small-text-general">✍️ ${archivo.autor}</p>` : ""}
+              ${archivo.fuente ? `<p class="small-text-general">🔗 Fuente: ${archivo.fuente}</p>` : ""}
 
               <!-- 🔗 Botones de acción -->
               <div class="d-flex align-items-center mt-2">
