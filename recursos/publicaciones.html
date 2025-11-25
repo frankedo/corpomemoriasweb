@@ -106,39 +106,13 @@
     <div id="lista-publicaciones" class="row"></div>
 </div>
 
-<!-- PDF.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script>
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
 
-async function obtenerPortadaPDF(urlPDF) {
-    try {
-        const loadingTask = pdfjsLib.getDocument(urlPDF);
-        const pdf = await loadingTask.promise;
-        const page = await pdf.getPage(1);
 
-        const viewport = page.getViewport({ scale: 1.5 });
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        await page.render({ canvasContext: context, viewport }).promise;
-
-        return canvas.toDataURL();
-    } catch (err) {
-        console.error("Error cargando portada:", err);
-        return "https://placehold.co/300x400?text=Sin+Portada";
-    }
-}
-</script>
 
 <!-- SCRIPT PRINCIPAL -->
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-    const contenedor = document.getElementById("lista-publicaciones");
+    const contenedor = document.getElementById("lista-publicaciones"); // debe ser un div grid
     const filtroTipo = document.getElementById("filtroTipo");
 
     const backendURL = "https://supabase-backend-1-g0bt.onrender.com";
@@ -156,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             let tipo = filtroTipo.value;
 
             let filtradas = publicaciones.filter(p => {
-                return tipo ? p.tipo === tipo : true;
+                return tipo && tipo !== "all" ? p.tipo === tipo : true;
             });
 
             renderizarTarjetas(filtradas);
@@ -165,40 +139,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (err) {
         console.error("Error cargando publicaciones:", err);
         contenedor.innerHTML =
-            `<div class="col-12"><div class="alert alert-danger">Error cargando publicaciones.</div></div>`;
+            `<div class="alert alert-danger">Error cargando publicaciones.</div>`;
     }
 
-    function renderizarTarjetas(data) {
+    async function renderizarTarjetas(data) {
         contenedor.innerHTML = "";
 
-        data.forEach(pub => {
-            const col = document.createElement("div");
-col.className = "col-6 col-md-4 mb-4";
-			
-      
+        for (let pub of data) {
+            const card = document.createElement("div");
+            card.className = "card-general"; // usamos tu estilo unificado
 
-
-            col.innerHTML = `
-                <div class="card-general">
-                    <div class="loader">Cargando portada...</div>
-                    <img class="card-img-top d-none portada-generada" data-pdf="${pub.url_pdf}" alt="Portada PDF">
-
-                    <div class="card-body-general">
-                        <h5 class="card-title-general">${pub.titulo}</h5>
-
-                        <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
-
-                        <p class="card-text-general">${pub.descripcion || ""}</p>
-
-                        <a href="${pub.url_pdf}" target="_blank"
-                           class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
-                    </div>
+            card.innerHTML = `
+                <div class="loader">Cargando portada...</div>
+                <img class="card-img-top d-none portada-generada" data-pdf="${pub.url_pdf}" alt="Portada PDF">
+                <div class="card-body-general">
+                    <h5 class="card-title-general">${pub.titulo}</h5>
+                    <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
+                    <p class="card-text-general">${pub.descripcion || ""}</p>
+                    <a href="${pub.url_pdf}" target="_blank"
+                       class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
                 </div>
             `;
 
-            contenedor.appendChild(col);
-        });
+            contenedor.appendChild(card);
+        }
 
+        // Generar portadas PDF
         document.querySelectorAll(".portada-generada").forEach(async img => {
             const urlPDF = img.dataset.pdf;
             const portada = await obtenerPortadaPDF(urlPDF);
@@ -210,9 +176,17 @@ col.className = "col-6 col-md-4 mb-4";
             img.classList.remove("d-none");
         });
     }
-
 });
 </script>
+
+
+
+
+
+
+
+
+				
 
 </body>
 </html>
