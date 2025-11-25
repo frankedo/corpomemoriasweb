@@ -179,19 +179,19 @@ col.className = "col-6 col-md-4 mb-4";
 
 
             col.innerHTML = `
-                <div class="card">
+                <div class="card-general">
                     <div class="loader">Cargando portada...</div>
                     <img class="card-img-top d-none portada-generada" data-pdf="${pub.url_pdf}" alt="Portada PDF">
 
-                    <div class="card-body">
-                        <h5 class="card-title">${pub.titulo}</h5>
+                    <div class="card-body-general">
+                        <h5 class="card-title-general">${pub.titulo}</h5>
 
                         <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
 
-                        <p class="card-text">${pub.descripcion || ""}</p>
+                        <p class="card-text-general">${pub.descripcion || ""}</p>
 
                         <a href="${pub.url_pdf}" target="_blank"
-                           class="btn btn-primary btn-block mb-2">Ver PDF</a>
+                           class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
                     </div>
                 </div>
             `;
