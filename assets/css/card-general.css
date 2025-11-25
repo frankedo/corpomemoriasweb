@@ -17,8 +17,8 @@
 
 .card-general img {
   width: 100%;
-  height: 280px; /* Imagen más alta */
-  object-fit: cover; /* Llenar la card sin fondo visible */
+  height: 280px; /* Imagen alta */
+  object-fit: cover; /* Llenar toda la card sin fondo visible */
   object-position: center; /* Centra la imagen */
   display: block;
 }
@@ -26,10 +26,10 @@
 .card-body-general {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Ajusta al inicio */
-  padding: 16px; /* Más espacio interno */
+  justify-content: flex-start;
+  padding: 16px;
   text-align: left;
-  min-height: 140px; /* Permite espacio suficiente para 4 líneas de descripción */
+  /* No limitamos la altura, se ajusta automáticamente al contenido */
 }
 
 .card-body-general p {
@@ -50,12 +50,7 @@
   color: #555;
   margin-bottom: 8px;
   line-height: 1.3;
-  
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* máximo 4 líneas */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis; /* agrega "..." si se corta */
+  /* Ya no limitamos las líneas, la card se ajusta automáticamente */
 }
 
 .small-text-general {
@@ -91,6 +86,6 @@
 
   .card-body-general {
     text-align: center;
-    min-height: 160px; /* un poco más de espacio en móvil */
+    padding: 14px;
   }
 }
