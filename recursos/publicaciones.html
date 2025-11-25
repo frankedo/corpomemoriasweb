@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const backendURL = "https://supabase-backend-1-g0bt.onrender.com";
 
     try {
-        const res = await fetch(backendURL);
+        const res = await fetch(`${backendURL}/publicaciones`);
         const publicaciones = await res.json();
 
         publicaciones.forEach(pub => {
