@@ -2,7 +2,7 @@
 #archivoGrid,
 #lista-publicaciones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 tarjetas por fila */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* columnas automáticas */
   gap: 20px;
   justify-content: center;
   padding: 20px 0;
