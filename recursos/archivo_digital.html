@@ -170,18 +170,18 @@ async function cargarArchivos(filtro = "all") {
         const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
 
         const card = `
-          <div class="card">
+          <div class="card-general">
             ${archivo.imagen ? `<img src="${archivo.imagen}" alt="${archivo.titulo}" class="card-img-top">` : ""}
-            <div class="card-body">
-              <h5 class="card-title">${archivo.titulo}</h5>
-              <p class="card-text">${archivo.descripcion || "Sin descripción"}</p>
+            <div class="card-body-general">
+              <h5 class="card-title-general">${archivo.titulo}</h5>
+              <p class="card-text-general">${archivo.descripcion || "Sin descripción"}</p>
               <p class="small-text">📅 ${fechaFormateada}</p>
               ${archivo.autor ? `<p class="small-text">✍️ ${archivo.autor}</p>` : ""}
               ${archivo.fuente ? `<p class="small-text">🔗 Fuente: ${archivo.fuente}</p>` : ""}
 
               <!-- 🔗 Botones de acción -->
               <div class="d-flex align-items-center mt-2">
-                <a href="${archivo.url}" target="_blank" class="btn btn-primary btn-sm mr-2">Ver Más</a>
+                <a href="${archivo.url}" target="_blank" class="btn-general btn-primary btn-sm mr-2">Ver Más</a>
                 <div class="share-buttons d-flex">
                   <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
                     <i class="fab fa-facebook-f"></i>
@@ -198,7 +198,7 @@ async function cargarArchivos(filtro = "all") {
           </div>
         `;
 
-        contenedor.innerHTML += card;
+        contenedor.innerHTML += card-general;
       });
   } catch (error) {
     console.error("Error al cargar archivos:", error);
