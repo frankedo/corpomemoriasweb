@@ -184,34 +184,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="card-body">
                         <h5 class="card-title">${pub.titulo}</h5>
 
-                        <p><strong>Año:</strong> ${pub.anio ? pub.anio : "Sin año"}</p>
+                        <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
 
                         <p class="card-text">${pub.descripcion || ""}</p>
 
                         <a href="${pub.url_pdf}" target="_blank"
                            class="btn btn-primary btn-block mb-2">Ver PDF</a>
-
-                        <div class="text-center">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pub.url_pdf)}"
-                               target="_blank" class="btn btn-outline-primary btn-sm m-1">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-
-                            <a href="https://wa.me/?text=${encodeURIComponent(pub.url_pdf)}"
-                               target="_blank" class="btn btn-outline-success btn-sm m-1">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-
-                            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pub.url_pdf)}"
-                               target="_blank" class="btn btn-outline-info btn-sm m-1">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-
-                            <a href="https://www.instagram.com/corpomemorias/"
-                               target="_blank" class="btn btn-outline-danger btn-sm m-1">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             `;
