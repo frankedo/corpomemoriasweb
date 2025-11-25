@@ -76,45 +76,71 @@
 
 
 
-
 <!-- About Section -->
-    <section id="publicaciones_observatorio">
-        <!-- Container -->
-        <div class="container">
-            <!-- About wrapper -->
-            <div class="about-wrapper">
-                <div class="after"></div>
-                <div class="content">
+<section id="publicaciones_observatorio">
+    <!-- Container -->
+    <div class="container">
+        <!-- About wrapper -->
+        <div class="about-wrapper">
+            <div class="after"></div>
+            <div class="content">
 
-	
+                <!-- FILTRO ÚNICO -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <select id="filtroTipo" class="form-control">
+                            <option value="">Filtrar por tipo</option>
+                            <option value="informe">Informe</option>
+                            <option value="boletin">Boletín</option>
+                            <option value="revista">Revista</option>
+                            <option value="libro">Libro</option>
+                            <option value="taller">Taller</option>
+                        </select>
+                    </div>
+                </div>
 
+                <!-- Contenedor Grid -->
+                <div id="lista-publicaciones" class="grid-container"></div>
 
-    <!-- FILTRO ÚNICO -->
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <select id="filtroTipo" class="form-control">
-                <option value="">Filtrar por tipo</option>
-                <option value="informe">Informe</option>
-                <option value="boletin">Boletín</option>
-                <option value="revista">Revista</option>
-                <option value="libro">Libro</option>
-                <option value="taller">Taller</option>
-            </select>
+            </div>
         </div>
     </div>
+</section>
 
-    <div id="lista-publicaciones" class="row"></div>
-</div>
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
 
+async function obtenerPortadaPDF(urlPDF) {
+    try {
+        const loadingTask = pdfjsLib.getDocument(urlPDF);
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
 
+        const viewport = page.getViewport({ scale: 1.5 });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
 
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({ canvasContext: context, viewport }).promise;
+
+        return canvas.toDataURL();
+    } catch (err) {
+        console.error("Error cargando portada:", err);
+        return "https://placehold.co/300x400?text=Sin+Portada";
+    }
+}
+</script>
 
 <!-- SCRIPT PRINCIPAL -->
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-    const contenedor = document.getElementById("lista-publicaciones"); // debe ser un div grid
+    const contenedor = document.getElementById("lista-publicaciones");
     const filtroTipo = document.getElementById("filtroTipo");
-
     const backendURL = "https://supabase-backend-1-g0bt.onrender.com";
 
     let publicaciones = [];
@@ -127,19 +153,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Filtrar solo por tipo
         filtroTipo.addEventListener("change", () => {
-            let tipo = filtroTipo.value;
-
-            let filtradas = publicaciones.filter(p => {
-                return tipo && tipo !== "all" ? p.tipo === tipo : true;
-            });
-
+            const tipo = filtroTipo.value;
+            const filtradas = publicaciones.filter(p => tipo ? p.tipo === tipo : true);
             renderizarTarjetas(filtradas);
         });
 
     } catch (err) {
         console.error("Error cargando publicaciones:", err);
-        contenedor.innerHTML =
-            `<div class="alert alert-danger">Error cargando publicaciones.</div>`;
+        contenedor.innerHTML = `<div class="alert alert-danger">Error cargando publicaciones.</div>`;
     }
 
     async function renderizarTarjetas(data) {
@@ -147,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         for (let pub of data) {
             const card = document.createElement("div");
-            card.className = "card-general"; // usamos tu estilo unificado
+            card.className = "card-general";
 
             card.innerHTML = `
                 <div class="loader">Cargando portada...</div>
@@ -156,8 +177,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <h5 class="card-title-general">${pub.titulo}</h5>
                     <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
                     <p class="card-text-general">${pub.descripcion || ""}</p>
-                    <a href="${pub.url_pdf}" target="_blank"
-                       class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
+                    <a href="${pub.url_pdf}" target="_blank" class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
                 </div>
             `;
 
@@ -181,11 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-
-
-
-
-
+	
 				
 
 </body>
