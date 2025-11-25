@@ -170,17 +170,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.className = "card-general";
 
-            card.innerHTML = `
-                <div class="loader">Cargando portada...</div>
-                <img class="card-img-top d-none portada-generada" data-pdf="${pub.url_pdf}" alt="Portada PDF">
-                <div class="card-body-general">
-                    <h5 class="card-title-general">${pub.titulo}</h5>
-                    <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
-                    <p class="card-text-general">${pub.descripcion || ""}</p>
-                    <a href="${pub.url_pdf}" target="_blank" class="btn-general btn-primary btn-block mb-2">Ver PDF</a>
-                </div>
-            `;
 
+
+			card.innerHTML = `
+    <div class="loader">Cargando portada...</div>
+    <img class="portada-generada d-none" data-pdf="${pub.url_pdf}" alt="Portada PDF">
+    <div class="card-body-general">
+        <h5 class="card-title-general">${pub.titulo}</h5>
+        <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
+        <p class="card-text-general">${pub.descripcion || ""}</p>
+        <a href="${pub.url_pdf}" target="_blank" class="btn-general mb-2">Ver PDF</a>
+    </div>
+`;
+           
+			
+			
             contenedor.appendChild(card);
         }
 
