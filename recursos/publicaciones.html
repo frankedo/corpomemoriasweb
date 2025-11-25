@@ -134,30 +134,40 @@ async function cargarPublicaciones(filtro = "all"){
         .forEach(pub => {
             const fecha = new Date(pub.fecha).getFullYear();
 
-            const card = `
-                <div class="pub-card">
 
-                    <!-- Miniatura desde el PDF -->
-                    <div class="pdf-thumb">
-                        <iframe src="https://docs.google.com/gview?embedded=1&url=${url_pdf}#page=1"></iframe>
-                    </div>
 
-                    <div class="pub-body">
-                        <div class="pub-title">${pub.titulo}</div>
-                        <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
-                        <div class="pub-date">📅 ${fecha}</div>
 
-                        <div class="buttons">
-                            <a href="${url_pdf}" target="_blank" class="btn-yellow">Leer PDF</a>
 
-                            <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${url_pdf}')">
-                                Compartir
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
+const card = `
+    <div class="pub-card">
 
+        <div class="pdf-thumb">
+            <iframe src="https://docs.google.com/gview?embedded=1&url=${pub.url_pdf}#page=1"></iframe>
+        </div>
+
+        <div class="pub-body">
+            <div class="pub-title">${pub.titulo}</div>
+            <div class="pub-desc">${pub.descripcion || 'Sin descripción'}</div>
+            <div class="pub-date">📅 ${fecha}</div>
+
+            <div class="buttons">
+                <a href="${pub.url_pdf}" target="_blank" class="btn-yellow">Leer PDF</a>
+
+                <button class="btn-yellow" onclick="sharePub('${pub.titulo}','${pub.url_pdf}')">
+                    Compartir
+                </button>
+            </div>
+        </div>
+    </div>
+`;
+
+
+
+
+
+
+
+            
             grid.innerHTML += card;
         });
 }
