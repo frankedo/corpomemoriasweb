@@ -136,13 +136,15 @@ async function cargarPublicaciones(filtro = "all"){
 
 
 
-
-
 const card = `
     <div class="pub-card">
 
+        <!-- Miniatura -->
         <div class="pdf-thumb">
-            <iframe src="https://docs.google.com/gview?embedded=1&url=${pub.url_pdf}#page=1"></iframe>
+            ${pub.url_portada 
+                ? `<img src="${pub.url_portada}" style="width:100%; height:100%; object-fit:cover;">`
+                : `<div style="padding:20px;text-align:center;color:#666;">Sin portada</div>`
+            }
         </div>
 
         <div class="pub-body">
@@ -160,6 +162,8 @@ const card = `
         </div>
     </div>
 `;
+
+
 
 
 
