@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<link rel="stylesheet" href="../assets/css/card-general.css">
-
-<!-- Bootstrap + Creative Design main styles -->
-    <link rel="stylesheet" href="../assets/css/creative-design.css">
-	
-     <meta charset="utf-8">
-    <meta name="google-site-verification@corpomemorias.netlify.app" content="6Jg75i6_BVhEGzpzF3FTG7wEbW5mF48oGYLUYFc8Gyk">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sitio oficial de la Corporación Marlón Memorias y Huellas de un Desaparecido - Corpomemorias Aguachica. Luchamos por la dignidad de los desaparecidos en Colombia.">
     <meta name="author" content="Devcrud">
 
-    <title>CORPOMEMORIAS</title>
+    <title>CORPOMEMORIAS | Publicaciones</title>
+
+    <!-- CSS propio de tarjetas -->
+    <link rel="stylesheet" href="../assets/css/card-general.css">
 
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js" defer></script>
 
-    <!-- font icons -->
-    <link rel="stylesheet" href="../assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Font Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-    <!-- Bootstrap -->
-       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-	<!-- ICONOS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-    <!-- SUPABASE -->
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
-
-
-
-
-
-	
+    <style>
+    /* Descripción limitada a 4 líneas */
+    .card-text-general {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    </style>
+</head>
 <body>
 
 <!-- NAV -->
-<nav id="scrollspy" class="navbar page-navbar navbar-light navbar-expand-md fixed-top">
+<nav class="navbar page-navbar navbar-light navbar-expand-md fixed-top">
     <div class="container">
         <a class="navbar-brand" href="../index.html">
             <strong class="text-primary">Corporación</strong> 
@@ -73,42 +67,34 @@
     </div>
 </header>
 
-
-
-
-<!-- About Section -->
+<!-- Publicaciones -->
 <section id="publicaciones_observatorio">
-    <!-- Container -->
     <div class="container">
-        <!-- About wrapper -->
         <div class="about-wrapper">
             <div class="after"></div>
             <div class="content">
 
-                <!-- FILTRO ÚNICO -->
-                <div class="row mb-4">
-                    <div class="col-md-12">
-                        <select id="filtroTipo" class="form-control">
-                            <option value="">Filtrar por tipo</option>
-                            <option value="informe">Informe</option>
-                            <option value="boletin">Boletín</option>
-                            <option value="revista">Revista</option>
-                            <option value="libro">Libro</option>
-                            <option value="taller">Taller</option>
-                        </select>
-                    </div>
+                <!-- FILTRO -->
+                <div class="filtro-container" style="margin-bottom: 20px;">
+                    <select id="filtroTipo">
+                        <option value="">Filtrar por tipo</option>
+                        <option value="informe">Informe</option>
+                        <option value="boletin">Boletín</option>
+                        <option value="revista">Revista</option>
+                        <option value="libro">Libro</option>
+                        <option value="taller">Taller</option>
+                    </select>
                 </div>
 
-                <!-- Contenedor Grid -->
-                <div id="lista-publicaciones" class="grid-container"></div>
+                <!-- GRID -->
+                <div id="archivoGrid"></div>
 
             </div>
         </div>
     </div>
 </section>
 
-<!-- PDF.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<!-- SCRIPT PDF.js -->
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js";
@@ -139,7 +125,7 @@ async function obtenerPortadaPDF(urlPDF) {
 <!-- SCRIPT PRINCIPAL -->
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
-    const contenedor = document.getElementById("lista-publicaciones");
+    const contenedor = document.getElementById("archivoGrid");
     const filtroTipo = document.getElementById("filtroTipo");
     const backendURL = "https://supabase-backend-1-g0bt.onrender.com";
 
@@ -151,7 +137,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         renderizarTarjetas(publicaciones);
 
-        // Filtrar solo por tipo
         filtroTipo.addEventListener("change", () => {
             const tipo = filtroTipo.value;
             const filtradas = publicaciones.filter(p => tipo ? p.tipo === tipo : true);
@@ -160,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     } catch (err) {
         console.error("Error cargando publicaciones:", err);
-        contenedor.innerHTML = `<div class="alert alert-danger">Error cargando publicaciones.</div>`;
+        contenedor.innerHTML = `<div class="alert">Error cargando publicaciones.</div>`;
     }
 
     async function renderizarTarjetas(data) {
@@ -170,43 +155,29 @@ document.addEventListener("DOMContentLoaded", async () => {
             const card = document.createElement("div");
             card.className = "card-general";
 
-
-
-			card.innerHTML = `
-    <div class="loader">Cargando portada...</div>
-    <img class="portada-generada d-none" data-pdf="${pub.url_pdf}" alt="Portada PDF">
-    <div class="card-body-general">
-        <h5 class="card-title-general">${pub.titulo}</h5>
-        <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
-        <p class="card-text-general">${pub.descripcion || ""}</p>
-        <a href="${pub.url_pdf}" target="_blank" class="btn-general mb-2">Ver PDF</a>
-    </div>
-`;
-           
-			
-			
+            card.innerHTML = `
+                <div class="loader">Cargando portada...</div>
+                <img class="portada-generada d-none" data-pdf="${pub.url_pdf}" alt="Portada PDF">
+                <div class="card-body-general">
+                    <h5 class="card-title-general">${pub.titulo}</h5>
+                    <p><strong>Año:</strong> ${pub.fecha ? new Date(pub.fecha).getFullYear() : "Sin año"}</p>
+                    <p class="card-text-general">${pub.descripcion || ""}</p>
+                    <a href="${pub.url_pdf}" target="_blank" class="btn-general mb-2">Ver PDF</a>
+                </div>
+            `;
             contenedor.appendChild(card);
         }
 
-        // Generar portadas PDF
         document.querySelectorAll(".portada-generada").forEach(async img => {
             const urlPDF = img.dataset.pdf;
             const portada = await obtenerPortadaPDF(urlPDF);
-
-            const loader = img.previousElementSibling;
-            loader.classList.add("d-none");
-
+            img.previousElementSibling.classList.add("d-none");
             img.src = portada;
             img.classList.remove("d-none");
         });
     }
 });
 </script>
-
-
-
-	
-				
 
 </body>
 </html>
