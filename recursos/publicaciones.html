@@ -90,9 +90,9 @@
 <!-- CONTENIDO -->
 <div class="container py-5">
 
-    <!-- FILTROS -->
+    <!-- FILTRO ÚNICO -->
     <div class="row mb-4">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <select id="filtroTipo" class="form-control">
                 <option value="">Filtrar por tipo</option>
                 <option value="informe">Informe</option>
@@ -100,12 +100,6 @@
                 <option value="revista">Revista</option>
                 <option value="libro">Libro</option>
                 <option value="taller">Taller</option>
-            </select>
-        </div>
-
-        <div class="col-md-6">
-            <select id="filtroAnio" class="form-control">
-                <option value="">Filtrar por año</option>
             </select>
         </div>
     </div>
@@ -147,7 +141,6 @@ async function obtenerPortadaPDF(urlPDF) {
 document.addEventListener("DOMContentLoaded", async () => {
     const contenedor = document.getElementById("lista-publicaciones");
     const filtroTipo = document.getElementById("filtroTipo");
-    const filtroAnio = document.getElementById("filtroAnio");
 
     const backendURL = "https://supabase-backend-1-g0bt.onrender.com";
 
@@ -157,34 +150,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         const res = await fetch(`${backendURL}/publicaciones`);
         publicaciones = await res.json();
 
-        // Cargar años
-        const anios = [...new Set(publicaciones.map(p => p.anio).filter(a => a))];
-        anios.sort().forEach(anio => {
-            filtroAnio.innerHTML += `<option value="${anio}">${anio}</option>`;
-        });
-
         renderizarTarjetas(publicaciones);
 
-        filtroTipo.addEventListener("change", aplicarFiltros);
-        filtroAnio.addEventListener("change", aplicarFiltros);
+        // Filtrar solo por tipo
+        filtroTipo.addEventListener("change", () => {
+            let tipo = filtroTipo.value;
+
+            let filtradas = publicaciones.filter(p => {
+                return tipo ? p.tipo === tipo : true;
+            });
+
+            renderizarTarjetas(filtradas);
+        });
 
     } catch (err) {
         console.error("Error cargando publicaciones:", err);
         contenedor.innerHTML =
             `<div class="col-12"><div class="alert alert-danger">Error cargando publicaciones.</div></div>`;
-    }
-
-    function aplicarFiltros() {
-        let tipo = filtroTipo.value;
-        let anio = filtroAnio.value;
-
-        let filtradas = publicaciones.filter(p => {
-            let coincTipo = tipo ? p.tipo === tipo : true;
-            let coincAnio = anio ? p.anio == anio : true;
-            return coincTipo && coincAnio;
-        });
-
-        renderizarTarjetas(filtradas);
     }
 
     function renderizarTarjetas(data) {
@@ -201,12 +183,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     <div class="card-body">
                         <h5 class="card-title">${pub.titulo}</h5>
-                        <p><strong>Año:</strong> ${pub.anio || "N/A"}</p>
+
+                        <p><strong>Año:</strong> ${pub.anio ? pub.anio : "Sin año"}</p>
+
                         <p class="card-text">${pub.descripcion || ""}</p>
 
-                        <a href="${pub.url_pdf}" target="_blank" class="btn btn-primary btn-block mb-2">
-                            Ver PDF
-                        </a>
+                        <a href="${pub.url_pdf}" target="_blank"
+                           class="btn btn-primary btn-block mb-2">Ver PDF</a>
 
                         <div class="text-center">
                             <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pub.url_pdf)}"
