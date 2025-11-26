@@ -11497,10 +11497,6 @@ position: relative;
 }
 
 
-html {
-    scroll-padding-top: 90px; /* altura de tu navbar */
-    scroll-behavior: smooth;  /* deslizamiento suave */
-}
 
 
 
