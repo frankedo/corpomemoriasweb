@@ -11495,3 +11495,13 @@ position: relative;
 .testmonial-wrapper .title {
   margin-top: -40px;
 }
+
+
+html {
+    scroll-padding-top: 90px; /* altura de tu navbar */
+    scroll-behavior: smooth;  /* deslizamiento suave */
+}
+
+
+
+
