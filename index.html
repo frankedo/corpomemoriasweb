@@ -104,25 +104,18 @@
 
  <!-- Fondo oscuro -->
     <div id="popupOverlay" class="popup-overlay"></div>
-
     <!-- Contenido del popup -->
     <div id="popup" class="popup">
-      
-        <h2>¡Bienvenido!</h2>
-        <p>Tu ayuda es importante.</p>
-
-        <!-- Imagen dentro del popup -->
+     <!-- Imagen dentro del popup -->
         <img src="assets/imgs/1727378767183.jpg" alt="Imagen de Popup">
 	<span class="close-btn" onclick="closePopup()">X (cerrar)</span>
     </div>
-
     <script>
         // Función para abrir el popup automáticamente
         function openPopup() {
             document.getElementById('popup').style.display = 'block';
             document.getElementById('popupOverlay').style.display = 'block';
         }
-
         // Función para cerrar el popup
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
