@@ -111,108 +111,87 @@
 </header>
 <!-- End of Page Header -->
 
-<section id="donaciones" style="padding: 40px 0;">
-
-    <!-- ================================================== -->
-    <!--   CSS EXCLUSIVO PARA LOS QR Y LOGO DE DONACIIONES -->
-    <!-- ================================================== -->
-    <style>
-        /* Contenedor general */
-        .donacion-box {
-            max-width: 500px;
-            margin: 0 auto 50px auto;
-            text-align: center;
-        }
-
-        /* QR */
-        .qr-img {
-            width: 180px;
-            max-width: 100%;
-            border-radius: 12px;
-            margin-bottom: 15px;
-        }
-
-        /* LOGO VAKI */
-        .logo-vaki {
-            width: 160px;
-            background: #ffffff;
-            padding: 8px 12px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        /* Botón amarillo estilo Nequi/Bancolombia */
-        .btn-donacion {
-            background: #ffd000;
-            color: #000;
-            font-weight: 600;
-            padding: 12px 20px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .btn-donacion:hover {
-            background: #ffcc00;
-        }
-    </style>
 
 
-
-	
-	
-	
-	
-	
 <!-- ============================
-     SECCIÓN DE DONACIONES
+  CSS EXCLUSIVO PARA QR Y LOGOS
 ============================= -->
+<style>
+/* ⬇️ Contenedores exclusivos — NO chocan con creative-design */
+.img-wrapper-nequi img,
+.img-wrapper-bancolombia img {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+}
 
-<!-- section NEQUI -->
+/* Logo VAKI */
+.img-wrapper-vaki img {
+    max-width: 160px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+</style>
+
+
+<!-- ============================
+  SECCIÓN NEQUI
+============================= -->
 <section id="NEQUI">
     <div class="container">
         <div class="row justify-content-between align-items-center">
 
-            <!-- IMAGEN QR -->
-           <div class="donacion-box">
-            <h3>Donar con Nequi</h3>
-            <img src="assets/imgs/qr-nequi.png" alt="QR Nequi" class="qr-img">
-            <a class="btn-donacion">Copiar número Nequi</a>
-        </div>
+            <!-- QR NEQUI -->
+            <div class="col-md-6">
+                <div class="img-wrapper-nequi">
+                    <img src="../assets/imgs/nequi-qr.gif" alt="QR Nequi">
+                </div>
+            </div>
 
-            <!-- TEXTO Y BOTÓN -->
+            <!-- TEXTO -->
             <div class="col-md-5">
-
                 <h6 class="title mb-3">
                     Si llegaste hasta aquí, es porque nuestra historia tocó tu corazón. Con eso ya nos apoyas mucho.
                 </h6>
 
                 <p>
                     Tu aporte nos ayuda a mantener viva la memoria, fortalecer nuestra labor con las familias buscadoras
-                    y sostener el Museo Virtual de Corpomemorias. Cada donación, por pequeña que sea, hace una diferencia.
+                    y sostener el Museo Virtual de Corpomemorias. Cada donación hace una diferencia.
                 </p>
 
                 <p class="text-muted">Por la memoria, la dignidad y la justicia.</p>
 
-                <!-- DATOS DE NEQUI -->
                 <div class="mt-3">
                     <p><strong>📱 Nequi:</strong> 323 223 0965</p>
 
-                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('3232230965')"
+                    <button class="btn btn-primary btn-sm"
+                        onclick="copiarTexto('3232230965')"
                         style="background-color:#f6d743; border-color:#f6d743; color:#000;">
                         Copiar número de Nequi
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
-	
-	
 
+
+<!-- ============================
+  SECCIÓN BANCOLOMBIA
+============================= -->
 <section id="BANCOLOMBIA">
     <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -224,30 +203,27 @@
                 </h6>
 
                 <p>
-                    Tu aporte nos ayuda a mantener viva la memoria, fortalecer nuestra labor con las familias buscadoras
-                    y sostener el Museo Virtual de Corpomemorias. Cada donación, por pequeña que sea, hace una diferencia.
+                    Tu aporte nos ayuda a mantener viva la memoria y fortalecer nuestra labor.
                 </p>
 
                 <p class="text-muted">Por la memoria, la dignidad y la justicia.</p>
 
-                <!-- DATOS DE LA CUENTA -->
                 <div class="mt-3">
                     <p><strong>🏦 Bancolombia (Ahorros):</strong> 297-499289-46</p>
 
-                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('29749928946')"
+                    <button class="btn btn-primary btn-sm"
+                        onclick="copiarTexto('29749928946')"
                         style="background-color:#f6d743; border-color:#f6d743; color:#000;">
                         Copiar número de cuenta
                     </button>
                 </div>
             </div>
 
-            <!-- IMAGEN QR -->
+            <!-- QR BANCOLOMBIA -->
             <div class="col-md-6">
-                <div class="img-wrapper">
-    <div class="after"></div>
-    <img src="../assets/imgs/bancolombia-qr.gif" class="qr-small" alt="QR Bancolombia">
-</div>
-
+                <div class="img-wrapper-bancolombia">
+                    <img src="../assets/imgs/bancolombia-qr.gif" alt="QR Bancolombia">
+                </div>
             </div>
 
         </div>
@@ -255,35 +231,30 @@
 </section>
 
 
+<!-- ============================
+  SECCIÓN VAKI
+============================= -->
 <section id="VAKI">
     <div class="container">
         <div class="row justify-content-between align-items-center">
-            
-            <!-- IMAGEN -->
-            <div class="col-md-6">
-               <div class="img-wrapper">
-    <div class="after"></div>
-    <img src="../assets/imgs/vaki-logo.gif" class="vaki-small" alt="Logo Vaki">
-</div>
 
+            <!-- LOGO -->
+            <div class="col-md-6">
+                <div class="img-wrapper-vaki">
+                    <img src="../assets/imgs/vaki-logo.gif" alt="Logo Vaki">
+                </div>
             </div>
 
             <!-- TEXTO -->
             <div class="col-md-5">
-
                 <h6 class="title mb-3 text-center">APÓYANOS A TRAVÉS DE VAKI</h6>
                 <h6 class="title mb-3 text-center">Un legado de búsqueda a través de la memoria</h6>
 
-                <div style="text-align: justify;">
-                    <p>
-                        Gracias por apoyar este proyecto de memoria viva. 
-                        Cada aporte, por pequeño que sea, nos ayuda a seguir visibilizando la búsqueda,
-                        la dignidad y la lucha de las familias que no descansan hasta encontrar a sus seres queridos. 
-                        Tu solidaridad suma y nos permite mantener viva la memoria.
-                    </p>
-                </div>
+                <p style="text-align: justify;">
+                    Gracias por apoyar este proyecto de memoria viva. Cada aporte nos ayuda a seguir visibilizando la búsqueda
+                    y la dignidad de las familias que no descansan hasta encontrar a sus seres queridos.
+                </p>
 
-                <!-- BOTÓN -->
                 <a href="https://vaki.co/es/vaki/inicitiva-de-memoria-viva-museo-huellas-de-un-desaparecido-corpomemorias"
                    target="_blank">
                     <button class="btn btn-primary btn-sm"
@@ -291,7 +262,6 @@
                         Ir a Vaki
                     </button>
                 </a>
-
             </div>
 
         </div>
@@ -299,19 +269,20 @@
 </section>
 
 
-
-	
-
-<!-- SCRIPT PARA COPIAR -->
+<!-- ============================
+  SCRIPT PARA COPIAR
+============================= -->
 <script>
 function copiarTexto(texto) {
-    navigator.clipboard.writeText(texto).then(function() {
-        alert("Número copiado: " + texto);
-    });
+    navigator.clipboard.writeText(texto)
+        .then(() => alert("Copiado: " + texto))
+        .catch(() => alert("No se pudo copiar"));
 }
 </script>
 
 
+
+	
 
     <!-- VIDEO DE YOUTUBE -->
     <section class="has-bg-img" id="VIDEO_DONAR">
