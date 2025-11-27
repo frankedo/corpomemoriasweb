@@ -117,6 +117,30 @@
     </div>      
 </header>
 <!-- End of Page Header -->
+<style>
+/* 📌 Ajuste correcto para que ninguna imagen se vea recortada ni deformada */
+.img-donacion {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto; /* Centrada */
+    max-width: 350px; /* Límite para que no se estire demasiado */
+}
+
+/* 📌 Este fix evita por completo que el wrapper recorte la imagen */
+.img-wrapper {
+    height: auto !important;
+    padding: 10px;
+    position: relative;
+}
+
+/* 📌 Mantener el fondo amarillo (tus otras secciones también usan este fondo) */
+.img-wrapper .after {
+    background-color: #f6d743 !important;
+}
+</style>
 
 
 <!-- ============================
@@ -178,15 +202,6 @@ function copiarTexto(texto) {
 </script>
 
 
-<style>
-    /* Evita que las imágenes se recorten o deformen */
-    .img-donacion {
-        width: 100%;
-        height: auto;
-        object-fit: contain; /* Muestra la imagen completa */
-        border-radius: 8px;
-    }
-</style>
 
 
 
@@ -225,9 +240,6 @@ function copiarTexto(texto) {
 
                     <!-- ⭐ Este debe ser el QR correcto -->
                    <img src="../assets/imgs/qr_corpomemorias_bancolombia.jpeg" class="img-donacion" alt="QR Bancolombia">
-
-                         class="w-100" 
-                         alt="QR Bancolombia Corpomemorias">
                 </div>
             </div>
 
