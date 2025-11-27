@@ -118,12 +118,28 @@
 </header>
 <!-- End of Page Header -->
 
+<style>
+#NEQUI .img-wrapper img,
+#BANCOLOMBIA .img-wrapper img,
+#VAKI .img-wrapper img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
+}
+</style>
+
+
+
+
 	
 <!-- ============================
      SECCIÓN DE DONACIONES
 ============================= -->
-	
-	
+<!-- ============================
+     SECCIÓN DE DONACIONES
+============================= -->
+
 <!-- section NEQUI -->
 <section id="NEQUI">
     <div class="container">
@@ -131,14 +147,13 @@
 
             <!-- IMAGEN QR -->
             <div class="col-md-6">
-                
+                <div class="img-wrapper">
                     <div class="after"></div>
-                   <img src="../assets/imgs/qr_corpomemorias_nequi.jpeg" class="img-donacion" alt="QR Nequi">
-
-              
+                    <img src="../assets/imgs/qr_corpomemorias_nequi.jpeg" class="img-donacion" alt="QR Nequi">
+                </div>
             </div>
 
-            <!-- TEXTO Y BOTONES -->
+            <!-- TEXTO Y BOTÓN -->
             <div class="col-md-5">
 
                 <h6 class="title mb-3">
@@ -156,33 +171,19 @@
                 <div class="mt-3">
                     <p><strong>📱 Nequi:</strong> 323 223 0965</p>
 
-                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('3232230965')">
+                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('3232230965')"
+                        style="background-color:#f6d743; border-color:#f6d743; color:#000;">
                         Copiar número de Nequi
                     </button>
                 </div>
-
-             
-
             </div>
         </div>
     </div>
 </section>
+	
+	
 
-<!-- SCRIPT PARA COPIAR -->
-<script>
-function copiarTexto(texto) {
-    navigator.clipboard.writeText(texto).then(function() {
-        alert("Número copiado: " + texto);
-    });
-}
-</script>
-
-
-
-
-
-
-	<section id="BANCOLOMBIA">
+<section id="BANCOLOMBIA">
     <div class="container">
         <div class="row justify-content-between align-items-center">
 
@@ -203,7 +204,8 @@ function copiarTexto(texto) {
                 <div class="mt-3">
                     <p><strong>🏦 Bancolombia (Ahorros):</strong> 297-499289-46</p>
 
-                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('29749928946')">
+                    <button class="btn btn-primary btn-sm" onclick="copiarTexto('29749928946')"
+                        style="background-color:#f6d743; border-color:#f6d743; color:#000;">
                         Copiar número de cuenta
                     </button>
                 </div>
@@ -211,12 +213,10 @@ function copiarTexto(texto) {
 
             <!-- IMAGEN QR -->
             <div class="col-md-6">
-               
+                <div class="img-wrapper">
                     <div class="after right"></div>
-
-                    <!-- ⭐ Este debe ser el QR correcto -->
-                   <img src="../assets/imgs/qr_corpomemorias_bancolombia.jpeg" class="img-donacion" alt="QR Bancolombia">
-             
+                    <img src="../assets/imgs/qr_corpomemorias_bancolombia.jpeg" class="img-donacion" alt="QR Bancolombia">
+                </div>
             </div>
 
         </div>
@@ -224,28 +224,23 @@ function copiarTexto(texto) {
 </section>
 
 
-
-          <!-- Section -->
 <section id="VAKI">
-    <!-- Container -->
     <div class="container">
-        <!-- Row -->
         <div class="row justify-content-between align-items-center">
             
-            <!-- Imagen -->
+            <!-- IMAGEN -->
             <div class="col-md-6">
-              
-                    <div class="after"></div> <!-- Fondo amarillo igual -->
-                    <img src="../assets/imgs/lola-icon.gif" class="img-donacion" alt="Vaki">
-
-                
+                <div class="img-wrapper">
+                    <div class="after"></div>
+                    <img src="../assets/imgs/lola-icon.gif" class="img-donacion" alt="Vaki Logo">
+                </div>
             </div>
 
-            <!-- Texto -->
+            <!-- TEXTO -->
             <div class="col-md-5">
 
                 <h6 class="title mb-3 text-center">APÓYANOS A TRAVÉS DE VAKI</h6>
-                <h6 class="title mb-3 text-center">Un legado para la memoria, a través de nuestro Museo Virtual Huellas de un Desaparecido</h6>
+                <h6 class="title mb-3 text-center">Un legado de búsqueda a través de la memoria</h6>
 
                 <div style="text-align: justify;">
                     <p>
@@ -256,25 +251,35 @@ function copiarTexto(texto) {
                     </p>
                 </div>
 
-                <a href="https://vaki.co/es/vaki/inicitiva-de-memoria-viva-museo-huellas-de-un-desaparecido-corpomemorias" 
-   target="_blank">
-    <button class="btn btn-primary btn-sm" 
-            style="background-color: #f6d743; border-color: #f6d743; color: #000;">
-        Ir a Vaki
-    </button>
-</a>
-
+                <!-- BOTÓN -->
+                <a href="https://vaki.co/es/vaki/inicitiva-de-memoria-viva-museo-huellas-de-un-desaparecido-corpomemorias"
+                   target="_blank">
+                    <button class="btn btn-primary btn-sm"
+                        style="background-color:#f6d743; border-color:#f6d743; color:#000;">
+                        Ir a Vaki
+                    </button>
+                </a>
 
             </div>
 
-        </div><!-- End of Row -->
-    </div><!-- End of Container-->
-</section><!-- End of Section -->
+        </div>
+    </div>
+</section>
 
 
-  
-  
+
 	
+
+<!-- SCRIPT PARA COPIAR -->
+<script>
+function copiarTexto(texto) {
+    navigator.clipboard.writeText(texto).then(function() {
+        alert("Número copiado: " + texto);
+    });
+}
+</script>
+
+
 
     <!-- VIDEO DE YOUTUBE -->
     <section class="has-bg-img" id="VIDEO_DONAR">
