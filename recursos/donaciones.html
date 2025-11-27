@@ -117,17 +117,25 @@
     </div>      
 </header>
 <!-- End of Page Header -->
+
+	
 <style>
-/* 📌 Ajuste correcto para que ninguna imagen se vea recortada ni deformada */
 .img-donacion {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: auto;          
+    object-fit: contain;    /* Muestra la imagen completa */
     border-radius: 8px;
-    display: block;
-    margin: 0 auto; /* Centrada */
-    max-width: 350px; /* Límite para que no se estire demasiado */
 }
+
+
+	.img-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 10px; /* evita que pegue a los bordes */
+}
+
 
 </style>
 
