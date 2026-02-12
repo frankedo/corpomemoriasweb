@@ -99,7 +99,113 @@ Este espacio artístico no solo honra a las víctimas, sino que también permite
       			 <div class="col">
                          </div>
                     </div><!-- End of Row -->                   
-                  <!--  <a href="javascript:void(0)">Read More...</a>-->
+                 
+
+
+<!-- 🗂️ Contenedor de tarjetas -->
+<div id="archivoGrid" class="row"></div>
+
+
+					
+					
+					
+					
+					
+				
+<script>
+
+				  
+
+
+	const backendUrl = "https://supabase-backend-1-g0bt.onrender.com"; // Tu backend en Render
+
+async function cargarArchivos(filtro = "all") {
+    try {
+        const response = await fetch(`${backendUrl}/archivo_digital`);
+        const data = await response.json();
+        const contenedor = document.getElementById("archivoGrid");
+        contenedor.innerHTML = "";
+
+        data
+            .filter(archivo => filtro === "all" || archivo.tipo === filtro)
+            .forEach(archivo => {
+                const fechaFormateada = new Date(archivo.fecha_subida).toLocaleDateString("es-ES");
+
+                const card = `
+                    <div class="card-general">
+                        ${archivo.imagen ? `<img src="${archivo.imagen}" alt="${archivo.titulo}">` : ""}
+                        <div class="card-body-general">
+                            <h5 class="card-title-general">${archivo.titulo}</h5>
+                            <p class="card-text-general">${archivo.descripcion || "Sin descripción"}</p>
+                            <p class="small-text-general">📅 ${fechaFormateada}</p>
+                            ${archivo.autor ? `<p class="small-text-general">✍️ ${archivo.autor}</p>` : ""}
+                            ${archivo.fuente ? `<p class="small-text-general">🔗 Fuente: ${archivo.fuente}</p>` : ""}
+                            <div class="d-flex align-items-center mt-2">
+                                <a href="${archivo.url}" target="_blank" class="btn-general">Ver Más</a>
+                                <div class="share-buttons d-flex ml-2">
+                                    <button class="btn btn-sm btn-outline-primary ml-1" onclick="shareCard('facebook', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-info ml-1" onclick="shareCard('twitter', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success ml-1" onclick="shareCard('whatsapp', '${archivo.titulo}', '${archivo.descripcion}', '${archivo.url}')">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                contenedor.innerHTML += card;
+            });
+    } catch (error) {
+        console.error("Error al cargar archivos:", error);
+    }
+}
+
+// Función de compartir
+function shareCard(platform, title, description, url) {
+    const text = `${title} - ${description}\n${url}`;
+    let shareUrl = "";
+    switch (platform) {
+        case "facebook":
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            break;
+        case "twitter":
+            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            break;
+        case "whatsapp":
+            shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            break;
+    }
+    window.open(shareUrl, "_blank");
+}
+
+// Evento de filtro
+document.getElementById("filterCategory").addEventListener("change", e => {
+    cargarArchivos(e.target.value);
+});
+
+// Cargar por defecto
+cargarArchivos();
+
+
+
+
+
+
+	
+
+
+</script>
+
+
+
+
+
+
+
                 </div>
             </div><!-- End of About Wrapper -->         
         </div>  <!-- End of Container-->        
@@ -249,5 +355,6 @@ recuperación emocional y psicológica.</p></center>
 
   
 	
+
 
 
