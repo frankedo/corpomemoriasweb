@@ -127,12 +127,24 @@ const backendUrl = "https://supabase-backend-1-g0bt.onrender.com";
 async function cargarGaleria() {
     try {
         const response = await fetch(`${backendUrl}/galeria_pictorica`);
+
+        if (!response.ok) {
+            throw new Error("Error HTTP: " + response.status);
+        }
+
         const data = await response.json();
+        console.log("Datos recibidos:", data);
+
         const contenedor = document.getElementById("archivoGrid");
         contenedor.innerHTML = "";
 
+        if (!data || data.length === 0) {
+            contenedor.innerHTML = "<p>No hay obras registradas.</p>";
+            return;
+        }
+
         data
-            .sort((a, b) => a.orden - b.orden)
+            .sort((a, b) => (a.orden || 0) - (b.orden || 0))
             .forEach(obra => {
 
                 const card = `
@@ -141,7 +153,7 @@ async function cargarGaleria() {
                             ${obra.imagen_url ? `<img src="${obra.imagen_url}" alt="${obra.titulo}">` : ""}
                             
                             <div class="card-body-general">
-                                <h5 class="card-title-general">${obra.titulo}</h5>
+                                <h5 class="card-title-general">${obra.titulo || "Sin título"}</h5>
                                 
                                 ${obra.autor ? `<p class="small-text-general">✍️ ${obra.autor}</p>` : ""}
                                 ${obra.anio ? `<p class="small-text-general">📅 ${obra.anio}</p>` : ""}
@@ -155,7 +167,7 @@ async function cargarGaleria() {
                                 ${obra.exposicion ? `<p class="small-text-general">📍 ${obra.exposicion}</p>` : ""}
 
                                 <div class="mt-2">
-                                    <button class="btn-general" onclick="verObra('${obra.id}')">
+                                    <button class="btn-general">
                                         Ver obra completa
                                     </button>
                                 </div>
@@ -168,9 +180,10 @@ async function cargarGaleria() {
             });
 
     } catch (error) {
-        console.error("Error al cargar galería:", error);
+        console.error("Error REAL detectado:", error);
     }
 }
+
 
 function verObra(id) {
     console.log("Abrir obra con ID:", id);
@@ -332,6 +345,7 @@ recuperación emocional y psicológica.</p></center>
 
   
 	
+
 
 
 
