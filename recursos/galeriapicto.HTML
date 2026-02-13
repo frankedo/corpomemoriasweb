@@ -79,201 +79,312 @@
 
 
 
+<!-- ============================= -->
+<!-- 🎨 GALERÍA PICTÓRICA MUSEO -->
+<!-- ============================= -->
+
+<style>
+
+/* ====== ESTÉTICA GENERAL ====== */
+
+#museo-galeria {
+    background: #f4f1ec;
+    padding: 100px 0;
+    font-family: "Georgia", serif;
+}
+
+/* ====== MARCO CURATORIAL ====== */
+
+.marco-curatorial {
+    background: #ffffff;
+    padding: 60px;
+    border: 1px solid #e5dfd6;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    margin-bottom: 80px;
+}
+
+.museo-title {
+    font-family: "Playfair Display", serif;
+    font-size: 38px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.museo-divider {
+    width: 70px;
+    height: 2px;
+    background: #b89c6d;
+    margin: 25px auto 40px auto;
+}
+
+.texto-curatorial {
+    max-width: 900px;
+    margin: auto;
+    text-align: justify;
+    line-height: 1.9;
+    font-size: 17px;
+    color: #444;
+}
+
+/* ====== SALA EXPOSICIÓN ====== */
+
+.card-museo {
+    background: #fff;
+    border: 1px solid #eae6df;
+    padding: 18px;
+    transition: all 0.4s ease;
+    height: 100%;
+}
+
+.card-museo img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card-museo:hover {
+    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+.card-museo h5 {
+    font-family: "Playfair Display", serif;
+    font-size: 18px;
+}
+
+.ficha-tecnica {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.btn-museo {
+    border: 1px solid #b89c6d;
+    background: transparent;
+    color: #b89c6d;
+    padding: 6px 14px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-museo:hover {
+    background: #b89c6d;
+    color: #fff;
+}
+
+/* ====== ANIMACIÓN SUAVE ====== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ====== MODAL MUSEOGRÁFICO ====== */
+
+.modal-museo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-contenido {
+    background: #fff;
+    padding: 50px;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.cerrar-modal {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* ====== SECCIÓN VIDEO ====== */
+
+.marco-video {
+    background: #ffffff;
+    padding: 50px;
+    border: 1px solid #e5dfd6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 60px;
+}
+
+.marco-video iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+}
+
+</style>
 
 
+<section id="museo-galeria">
+<div class="container">
 
-<!-- 🎨 GALERÍA PICTÓRICA -->
-<section id="galeria-pictorica">
-    <div class="container">
+    <!-- ====== TEXTO CURATORIAL ====== -->
 
-        <!-- 🕊️ Texto Curatorial -->
-        <div class="text-center mb-5">
-            <h2 class="title mb-3">Galería Pictórica</h2>
-            <div style="width:60px;height:2px;background:#000;margin:0 auto 25px auto;opacity:.2;"></div>
+    <div class="marco-curatorial">
+        <h2 class="museo-title">Galería Pictórica</h2>
+        <div class="museo-divider"></div>
 
-            <p class="lead text-muted" style="max-width: 900px; margin: 0 auto; text-align: justify; line-height: 1.8;">
-                La <strong>Galería Pictórica de CORPOMEMORIAS</strong> nace del taller 
+        <div class="texto-curatorial">
+            <p>
+                La <strong>Galería Pictórica de CORPOMEMORIAS</strong> surge del taller 
                 <em>“Pintando Recuerdos”</em>, realizado en conmemoración del Día Internacional 
-                de la Víctima de Desaparición Forzada. Durante este espacio de encuentro, 
-                víctimas y familiares transformaron el dolor en creación, dando vida a 
-                <strong>18 obras en óleo</strong> que hoy conforman la exposición 
-                <em>"Galería Pictórica de los Hechos Victimizantes"</em>.
-                <br><br>
-                Cada pintura es un testimonio visual que narra vivencias profundas, 
-                marcadas por la ausencia, la resistencia y la esperanza. 
-                Estas obras no solo representan experiencias individuales, 
-                sino que dialogan con la memoria colectiva de una región 
-                y de un país que aún camina en procesos de verdad y dignificación.
-                <br><br>
-                El arte, en este espacio, se convierte en herramienta de sanación, 
-                memoria y resiliencia. Más que una exposición, esta galería es 
-                un acto simbólico de dignidad que honra a las víctimas y 
-                permite a las nuevas generaciones comprender las historias 
-                que han marcado su territorio.
+                de la Víctima de Desaparición Forzada.
+            </p>
+            <p>
+                Durante este proceso creativo, familiares y víctimas transformaron 
+                el dolor en expresión artística, dando origen a una colección 
+                de obras que dialogan con la memoria, la dignidad y la resiliencia.
+            </p>
+            <p>
+                Esta exposición constituye un acto simbólico de reconocimiento 
+                y un espacio de contemplación donde el arte se convierte en 
+                instrumento de memoria histórica.
             </p>
         </div>
-
-        <!-- 🖼️ Grid de Obras -->
-        <div id="archivoGrid" class="row"></div>
-
     </div>
+
+    <!-- ====== SALA DE EXPOSICIÓN ====== -->
+
+    <div id="archivoGrid" class="row"></div>
+
+</div>
+</section>
+
+
+<!-- ====== MODAL ====== -->
+
+<div id="modalObra" class="modal-museo">
+    <div class="modal-contenido">
+        <span class="cerrar-modal">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+
+<!-- ====== SECCIÓN AUDIOVISUAL ====== -->
+
+<section>
+<div class="container">
+
+    <div class="marco-video">
+        <h5 class="museo-title">Nota periodística</h5>
+        <div class="museo-divider"></div>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_AQUI" allowfullscreen></iframe>
+    </div>
+
+    <div class="marco-video">
+        <h5 class="museo-title">
+            Comentario del artista plástico Ramón Lineros
+        </h5>
+        <div class="museo-divider"></div>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_AQUI" allowfullscreen></iframe>
+    </div>
+
+</div>
 </section>
 
 
 <script>
 
-const backendUrl = "https://supabase-backend-1-g0bt.onrender.com"; 
+const backendUrl = "https://supabase-backend-1-g0bt.onrender.com";
 
 async function cargarGaleria() {
     try {
         const response = await fetch(`${backendUrl}/galeria_pictorica`);
-
-        if (!response.ok) {
-            throw new Error("Error HTTP: " + response.status);
-        }
-
         const data = await response.json();
-        console.log("Datos recibidos:", data);
-
         const contenedor = document.getElementById("archivoGrid");
         contenedor.innerHTML = "";
 
-        if (!data || data.length === 0) {
-            contenedor.innerHTML = "<p>No hay obras registradas.</p>";
-            return;
-        }
-
         data
-            .sort((a, b) => (a.orden || 0) - (b.orden || 0))
-            .forEach(obra => {
+        .sort((a, b) => (a.orden || 0) - (b.orden || 0))
+        .forEach((obra, index) => {
 
-                const card = `
-                    <div class="col-md-4 mb-4">
-                        <div class="card-general">
-                            ${obra.imagen_url ? `<img src="${obra.imagen_url}" alt="${obra.titulo}">` : ""}
-                            
-                            <div class="card-body-general">
-                                <h5 class="card-title-general">${obra.titulo || "Sin título"}</h5>
-                                
-                                ${obra.autor ? `<p class="small-text-general">✍️ ${obra.autor}</p>` : ""}
-                                ${obra.anio ? `<p class="small-text-general">📅 ${obra.anio}</p>` : ""}
-                                ${obra.tecnica ? `<p class="small-text-general">🎨 ${obra.tecnica}</p>` : ""}
-                                
-                                <p class="card-text-general">
-                                    ${obra.descripcion ? obra.descripcion.substring(0, 180) + "..." : "Sin descripción"}
-                                </p>
+            const col = document.createElement("div");
+            col.className = "col-md-4 mb-5 fade-in";
 
-                                ${obra.eje_tematico ? `<p class="small-text-general">🕊️ ${obra.eje_tematico}</p>` : ""}
-                                ${obra.exposicion ? `<p class="small-text-general">📍 ${obra.exposicion}</p>` : ""}
-
-                                <div class="mt-2">
-                                    <button class="btn-general">
-                                        Ver obra completa
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+            col.innerHTML = `
+                <div class="card-museo">
+                    <img src="${obra.imagen_url}" alt="${obra.titulo}">
+                    <h5>${obra.titulo}</h5>
+                    <div class="ficha-tecnica">
+                        ${obra.autor || ""} 
+                        ${obra.anio ? " · " + obra.anio : ""}
                     </div>
-                `;
+                    <button class="btn-museo"
+                        onclick='abrirModal(${JSON.stringify(obra)})'>
+                        Ver ficha museográfica
+                    </button>
+                </div>
+            `;
 
-                contenedor.innerHTML += card;
-            });
+            contenedor.appendChild(col);
+
+            setTimeout(() => {
+                col.classList.add("visible");
+            }, index * 120);
+
+        });
 
     } catch (error) {
-        console.error("Error REAL detectado:", error);
+        console.error("Error cargando galería:", error);
     }
 }
 
+function abrirModal(obra) {
 
-function verObra(id) {
-    console.log("Abrir obra con ID:", id);
-    // Aquí luego podemos conectar un modal dinámico elegante tipo museo
+    const modal = document.getElementById("modalObra");
+    const body = document.getElementById("modalBody");
+
+    body.innerHTML = `
+        <h3 style="font-family:Playfair Display;">${obra.titulo}</h3>
+        <p><strong>Autor:</strong> ${obra.autor || "No especificado"}</p>
+        <p><strong>Año:</strong> ${obra.anio || "No especificado"}</p>
+        <p><strong>Técnica:</strong> ${obra.tecnica || "No especificado"}</p>
+        <p><strong>Eje temático:</strong> ${obra.eje_tematico || ""}</p>
+        <p><strong>Exposición:</strong> ${obra.exposicion || ""}</p>
+        <hr>
+        <img src="${obra.imagen_url}" 
+             style="width:100%;margin:20px 0;">
+        <p style="line-height:1.9;text-align:justify;">
+            ${obra.descripcion || ""}
+        </p>
+    `;
+
+    modal.style.display = "flex";
 }
+
+document.querySelector(".cerrar-modal").onclick = () => {
+    document.getElementById("modalObra").style.display = "none";
+};
+
+window.onclick = (e) => {
+    if (e.target.id === "modalObra") {
+        document.getElementById("modalObra").style.display = "none";
+    }
+};
 
 cargarGaleria();
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-<!-- About Section -->
-    <section id="about">
-        <!-- Container -->
-        <div class="container">
-            <!-- About wrapper -->
-            <div class="about-wrapper">
-                <div class="after"></div>
-                <div class="content">
-                    <center><h5 class="title mb-3">Nota periodística</h5>
-<p>En este enlace se observa la nota periodística de MITV CANAL 20</p></center>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col">
-                            <p>   </p> 
-
-      			 <div class="col">
-                         </div>
-                    </div><!-- End of Row -->                   
-               
-
-			<iframe width="100%" height="450px" class="border-0" src="https://youtube.com/embed/@huellasdeundesaparecido8384/?"></iframe>
-             
-                </div>
-            </div><!-- End of About Wrapper -->         
-        </div>  <!-- End of Container-->        
-     </section><!--End of Section -->
-
-
-
-   
-<!-- About Section -->
-    <section id="about">
-        <!-- Container -->
-        <div class="container">
-            <!-- About wrapper -->
-            <div class="about-wrapper">
-                <div class="after"></div>
-                <div class="content">
-                    <center><h5 class="title mb-3">Comentario del artista plástico Ramon Lineros a la Galería de Arte Pintando Recuerdos.</h5>
-<p>Cabe señalar que este arte se realizó por huellas de un desaparecido en el marco del día
-internacional de las desapariciones forzadas, aquí se cuenta el dolor y las dificultades que
-hemos enfrentado como familiares de desaparecidos. Esto ha permitido que desde huellas de
-un desaparecido la comunidad Comprenda el impacto psicológico y emocional que las
-desapariciones forzadas y otros eventos traumáticos tienen en las familias y comunidades y les
-ha proporcionado apoyo psicosocial para ayudar a las personas a enfrentar y superar el dolor,
-utilizando como herramientas las artes, esto les permite a las familias la reconstrucción y
-recuperación emocional y psicológica.</p></center>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col">
-                            <p>   </p> 
-
-      			 <div class="col">
-                         </div>
-                    </div><!-- End of Row -->                   
-               
-
-			<iframe width="100%" height="450px" class="border-0" src="https://youtube.com/embed/@huellasdeundesaparecido8384/?">
-			
-                    </iframe>
-               
-                </div>
-            </div><!-- End of About Wrapper -->         
-        </div>  <!-- End of Container-->        
-     </section><!--End of Section -->
-   
 
 
    
@@ -345,6 +456,7 @@ recuperación emocional y psicológica.</p></center>
 
   
 	
+
 
 
 
