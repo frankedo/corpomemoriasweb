@@ -364,6 +364,7 @@ async function cargarGaleria() {
         contenedor.innerHTML = "";
 
         data
+        .filter(obra => obra.estado === "publicado") // Solo mostrar publicadas
         .sort((a, b) => (a.orden || 0) - (b.orden || 0))
         .forEach((obra, index) => {
 
@@ -375,7 +376,7 @@ async function cargarGaleria() {
                     <img src="${obra.imagen_url}" alt="${obra.titulo}">
                     <h5>${obra.titulo}</h5>
                     <div class="ficha-tecnica">
-                        ${obra.autor || ""} 
+                        ${obra.autor || "Autor no especificado"}
                         ${obra.anio ? " · " + obra.anio : ""}
                     </div>
                     <button class="btn-museo"
@@ -405,16 +406,22 @@ function abrirModal(obra) {
 
     body.innerHTML = `
         <h3 style="font-family:Playfair Display;">${obra.titulo}</h3>
+
         <p><strong>Autor:</strong> ${obra.autor || "No especificado"}</p>
         <p><strong>Año:</strong> ${obra.anio || "No especificado"}</p>
         <p><strong>Técnica:</strong> ${obra.tecnica || "No especificado"}</p>
-        <p><strong>Eje temático:</strong> ${obra.eje_tematico || ""}</p>
-        <p><strong>Exposición:</strong> ${obra.exposicion || ""}</p>
+        <p><strong>Eje temático:</strong> ${obra.eje_tematico || "No especificado"}</p>
+        <p><strong>Contexto:</strong> ${obra.contexto || "No especificado"}</p>
+        <p><strong>Exposición:</strong> ${obra.exposicion || "No especificado"}</p>
+        <p><strong>Estado:</strong> ${obra.estado || "No especificado"}</p>
+
         <hr>
+
         <img src="${obra.imagen_url}" 
              style="width:100%;margin:20px 0;">
+
         <p style="line-height:1.9;text-align:justify;">
-            ${obra.descripcion || ""}
+            ${obra.descripcion || "Sin descripción disponible"}
         </p>
     `;
 
@@ -434,6 +441,7 @@ window.onclick = (e) => {
 cargarGaleria();
 
 </script>
+
 
 
    
@@ -505,6 +513,7 @@ cargarGaleria();
 
   
 	
+
 
 
 
