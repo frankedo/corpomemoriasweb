@@ -352,9 +352,6 @@
 </section>
 
 
-
-
-
 <script>
 
 const backendUrl = "https://supabase-backend-1-g0bt.onrender.com";
@@ -363,12 +360,13 @@ async function cargarGaleria() {
     try {
         const response = await fetch(`${backendUrl}/galeria_pictorica`);
         const data = await response.json();
+
         const contenedor = document.getElementById("archivoGrid");
         contenedor.innerHTML = "";
 
+        // Ordenamos según el campo "orden"
         data
-        .filter(obra => obra.estado === "publicado")
-        .sort((a, b) => (a.orden || 0) - (b.orden || 0))
+        .sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
         .forEach((obra, index) => {
 
             const col = document.createElement("div");
@@ -376,18 +374,22 @@ async function cargarGaleria() {
 
             col.innerHTML = `
                 <div class="card-museo">
-                    <img src="${obra.imagen_url}" alt="${obra.titulo}">
-                    <h5>${obra.titulo}</h5>
+                    <img src="${obra.imagen_url || ''}" alt="${obra.titulo || ''}">
+                    <h5>${obra.titulo || "Sin título"}</h5>
                     <div class="ficha-tecnica">
                         ${obra.autor || "Autor no especificado"}
                         ${obra.anio ? " · " + obra.anio : ""}
                     </div>
-                    <button class="btn-museo"
-                        onclick='abrirModal(${JSON.stringify(obra)})'>
+                    <button class="btn-museo">
                         Ver ficha museográfica
                     </button>
                 </div>
             `;
+
+            // Evento seguro (sin JSON.stringify)
+            col.querySelector(".btn-museo").addEventListener("click", () => {
+                abrirModal(obra);
+            });
 
             contenedor.appendChild(col);
 
@@ -408,27 +410,28 @@ function abrirModal(obra) {
     const body = document.getElementById("modalBody");
 
     body.innerHTML = `
-        <h2 style="font-family:Playfair Display;">${obra.titulo}</h2>
+        <h2 style="font-family:Playfair Display;">${obra.titulo || "Sin título"}</h2>
 
-        <div style="margin-bottom:15px;">
-            <strong>Autor:</strong> ${obra.autor || "No especificado"}<br>
-            <strong>Año:</strong> ${obra.anio || "No especificado"}<br>
-            <strong>Técnica:</strong> ${obra.tecnica || "No especificado"}<br>
-            <strong>Dimensiones:</strong> ${obra.dimensiones || "No especificado"}<br>
-            <strong>Eje temático:</strong> ${obra.eje_tematico || "No especificado"}<br>
-            <strong>Lugar de inspiración:</strong> ${obra.lugar_inspiracion || "No especificado"}<br>
-            <strong>Exposición:</strong> ${obra.exposicion || "No especificado"}<br>
-            <strong>Fecha de exposición:</strong> ${obra.fecha_exposicion || "No especificado"}
-        </div>
+        <p><strong>Autor:</strong> ${obra.autor || "No especificado"}</p>
+        <p><strong>Año:</strong> ${obra.anio || "No especificado"}</p>
+        <p><strong>Técnica:</strong> ${obra.tecnica || "No especificado"}</p>
+        <p><strong>Dimensiones:</strong> ${obra.dimensiones || "No especificado"}</p>
+        <p><strong>Eje temático:</strong> ${obra.eje_tematico || "No especificado"}</p>
+        <p><strong>Lugar de inspiración:</strong> ${obra.lugar_inspiracion || "No especificado"}</p>
+        <p><strong>Exposición:</strong> ${obra.exposicion || "No especificado"}</p>
+        <p><strong>Fecha de exposición:</strong> ${obra.fecha_exposicion || "No especificado"}</p>
+        <p><strong>Estado:</strong> ${obra.estado || "No especificado"}</p>
 
         ${obra.frase_destacada ? `
-            <blockquote style="font-style:italic; margin:20px 0; border-left:3px solid #999; padding-left:15px;">
+            <blockquote style="margin:20px 0; padding-left:15px; border-left:4px solid #999; font-style:italic;">
                 ${obra.frase_destacada}
             </blockquote>
         ` : ""}
 
-        <img src="${obra.imagen_url}" 
-             style="width:100%; margin:20px 0;">
+        ${obra.imagen_url ? `
+            <img src="${obra.imagen_url}" 
+                 style="width:100%; margin:20px 0;">
+        ` : ""}
 
         ${obra.contexto ? `
             <h4>Contexto</h4>
@@ -462,11 +465,6 @@ cargarGaleria();
 
 </script>
 
-
-
-   
-
-   
 
    
 <!-- Section -->
@@ -533,6 +531,7 @@ cargarGaleria();
 
   
 	
+
 
 
 
