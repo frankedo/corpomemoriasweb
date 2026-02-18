@@ -238,16 +238,23 @@
 	/* estilos para BANNERS */
 <style>
 	/* Altura uniforme para todos los banners */
+
+
+	/* Mantener proporción 1920x600 (3.2:1) */
 #carouselBanners .carousel-item {
-  height: 500px; /* Puedes ajustar a 450, 550, etc */
+  aspect-ratio: 1920 / 600;
 }
 
 #carouselBanners .carousel-item img {
-  height: 100%;
   width: 100%;
-  object-fit: cover; /* Esto hace la magia */
+  height: 100%;
+  object-fit: cover;
 }
 
+
+
+
+	
 	
 	.banner-slider {
   background-color: #f5f1e8;
