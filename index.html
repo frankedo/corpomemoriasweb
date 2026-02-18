@@ -237,44 +237,59 @@
 
 
 
-<!-- ===== SECCIÓN BANNERS ESPECIALES ===== -->
-<section class="event-banners-section py-5">
-  <div class="container">
-    
-    <div class="row">
 
-      <!-- Banner 1 -->
-      <div class="col-12 mb-4">
-        <div class="event-banner-wrapper">
+<!-- ===== BANNER SLIDER ===== -->
+<section class="banner-slider py-5">
+  <div class="container">
+
+    <div id="carouselBanners" class="carousel slide carousel-fade" data-ride="carousel">
+
+      <!-- Indicadores -->
+      <ol class="carousel-indicators">
+        <li data-target="#carouselBanners" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselBanners" data-slide-to="1"></li>
+      </ol>
+
+      <!-- Slides -->
+      <div class="carousel-inner rounded shadow-lg">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
           <img src="../assets/imgs/banners/banner_club_de_lectura_corpomemorias.png"
-               class="img-fluid rounded shadow-lg event-banner"
+               class="d-block w-100"
+               style="cursor:pointer;"
                data-toggle="modal"
                data-target="#modalClubLectura"
-               style="cursor:pointer;"
                alt="Club de Lectura">
         </div>
+
+        <!-- Slide 2 (ejemplo futuro evento) -->
+        <div class="carousel-item">
+          <img src="../assets/imgs/banners/banner_club_de_lectura_corpomemorias.png"
+               class="d-block w-100"
+               style="cursor:pointer;"
+               data-toggle="modal"
+               data-target="#modalEventoFuturo"
+               alt="Evento Futuro">
+        </div>
+
       </div>
 
-      <!-- Aquí en el futuro puedes duplicar este bloque -->
-      <!-- Banner 2 -->
-      
-      <div class="col-12 mb-4">
-        <div class="event-banner-wrapper">
-          <img src="../assets/imgs/banners/banner_club_de_lectura_corpomemorias.png"
-               class="img-fluid rounded shadow-lg event-banner"
-               data-toggle="modal"
-               data-target="#modalCampana"
-               style="cursor:pointer;">
-        </div>
-      </div>
-      
+      <!-- Flechas -->
+      <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#carouselBanners" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
 
     </div>
 
   </div>
 </section>
-<!-- ===== FIN SECCIÓN ===== -->
+<!-- ===== FIN SLIDER ===== -->
 
+	
 
 
 
