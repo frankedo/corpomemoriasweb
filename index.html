@@ -361,7 +361,243 @@
 
 
 
+<style>
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,10,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: #fff;
+  width: 90%;
+  max-width: 1100px;
+  max-height: 85vh;
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(40px);
+  transition: all 0.4s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  border: none;
+  background: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.modal-header h2 {
+  margin-bottom: 10px;
+}
+
+.modal-content-scroll {
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.modal-body {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.modal-text {
+  flex: 1 1 400px;
+}
+
+.modal-text p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.modal-gallery {
+  flex: 1 1 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.gallery-track img {
+  width: 100%;
+  border-radius: 15px;
+  flex-shrink: 0;
+}
+
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.gallery-prev { left: 10px; }
+.gallery-next { right: 10px; }
+
+.btn-registro {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 28px;
+  background: #7b1e1e;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-registro:hover {
+  background: #5a0f0f;
+  transform: translateY(-2px);
+}
+
+@media(max-width:768px){
+  .modal-body {
+    flex-direction: column;
+  }
+}
+
+</style>
+
+
+
+<script>
+
+const modal = document.getElementById("modalCuratorial");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalMeta = document.getElementById("modalMeta");
+const modalLink = document.getElementById("modalLink");
+const galleryTrack = document.querySelector(".gallery-track");
+const closeBtn = document.querySelector(".modal-close");
+
+let currentIndex = 0;
+let autoSlide;
+
+document.querySelectorAll(".banner-click").forEach(banner => {
+
+  banner.addEventListener("click", () => {
+
+    modalTitle.textContent = banner.dataset.title;
+
+    // IMPORTANTE: innerHTML para que respete <p>
+    modalDescription.innerHTML = banner.dataset.description;
+
+    modalMeta.textContent =
+      banner.dataset.date + " | " + banner.dataset.location;
+
+    if (banner.dataset.link) {
+      modalLink.href = banner.dataset.link;
+      modalLink.style.display = "inline-block";
+    } else {
+      modalLink.style.display = "none";
+    }
+
+    // Galería
+    galleryTrack.innerHTML = "";
+    const images = banner.dataset.images.split(",");
+
+    images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src.trim();
+      galleryTrack.appendChild(img);
+    });
+
+    currentIndex = 0;
+    updateGallery();
+
+    startAutoSlide();
+
+    modal.classList.add("active");
+  });
+
+});
+
+function updateGallery() {
+  galleryTrack.style.transform =
+    `translateX(-${currentIndex * 100}%)`;
+}
+
+function startAutoSlide() {
+  clearInterval(autoSlide);
+  autoSlide = setInterval(() => {
+    if (currentIndex < galleryTrack.children.length - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0;
+    }
+    updateGallery();
+  }, 4000);
+}
+
+document.querySelector(".gallery-next").addEventListener("click", () => {
+  if (currentIndex < galleryTrack.children.length - 1) {
+    currentIndex++;
+  } else {
+    currentIndex = 0;
+  }
+  updateGallery();
+});
+
+document.querySelector(".gallery-prev").addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = galleryTrack.children.length - 1;
+  }
+  updateGallery();
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("active");
+  clearInterval(autoSlide);
+});
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) {
+    modal.classList.remove("active");
+    clearInterval(autoSlide);
+  }
+});
+
+</script>
+
+
+
+	
 
 
 
