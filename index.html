@@ -481,7 +481,14 @@ document.querySelectorAll("#carouselBanners img").forEach(banner => {
     modalTitle.textContent = banner.dataset.title;
     modalDescription.textContent = banner.dataset.description;
     modalMeta.textContent = banner.dataset.date + " | " + banner.dataset.location;
-    modalLink.href = banner.dataset.link;
+    
+	  if (banner.dataset.link && banner.dataset.link !== "") {
+  modalLink.href = banner.dataset.link;
+  modalLink.style.display = "inline-block";
+} else {
+  modalLink.style.display = "none";
+}
+
 
     // Crear galería
     galleryTrack.innerHTML = "";
