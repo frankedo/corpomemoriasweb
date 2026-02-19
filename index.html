@@ -278,259 +278,6 @@
 
 
 
-
-
-
-
-<style>
-
-/* BOTÓN REGISTRO DEL MODAL DE BANNER*/
-.btn-registro {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 14px 30px;
-  background: #7b1e1e;
-  color: #fff;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-}
-
-.btn-registro:hover {
-  background: #5a0f0f;
-  transform: translateY(-2px);
-}
-
-/* OVERLAY */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,10,10,0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease;
-  z-index: 9999;
-}
-
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* CONTENEDOR */
-.modal-container {
-  background: #fff;
-  width: 92%;
-  max-width: 1100px;
-  max-height: 85vh;
-  overflow-y: auto; /* SCROLL ACTIVADO */
-  border-radius: 20px;
-  padding: 50px 40px;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: all 0.5s ease;
-  position: relative;
-}
-
-.modal-overlay.active .modal-container {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* CERRAR */
-.modal-close {
-  position: absolute;
-  right: 25px;
-  top: 20px;
-  border: none;
-  background: none;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-/* HEADER */
-.modal-header h2 {
-  font-size: 26px;
-  margin-bottom: 10px;
-}
-
-#modalMeta {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 30px;
-}
-
-/* BODY */
-.modal-body {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-/* TEXTO */
-.modal-text {
-  flex: 1 1 420px;
-}
-
-#modalDescription {
-  line-height: 1.8;
-  font-size: 15.5px;
-  white-space: pre-line; /* RESPETA SALTOS */
-  margin-bottom: 15px;
-}
-
-/* GALERÍA */
-.modal-gallery {
-  flex: 1 1 420px;
-  position: relative;
-  overflow: hidden;
-}
-
-.gallery-track {
-  display: flex;
-  transition: transform 0.6s ease;
-}
-
-.gallery-track img {
-  width: 100%;
-  border-radius: 15px;
-  flex-shrink: 0;
-}
-
-.gallery-prev,
-.gallery-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  font-size: 20px;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.gallery-prev { left: 10px; }
-.gallery-next { right: 10px; }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .modal-body {
-    flex-direction: column;
-  }
-}
-
-</style>
-
-	
-
-
-
-
-
-<script>
-const modal = document.getElementById("modalCuratorial");
-const modalTitle = document.getElementById("modalTitle");
-const modalDescription = document.getElementById("modalDescription");
-const modalMeta = document.getElementById("modalMeta");
-const modalLink = document.getElementById("modalLink");
-const galleryTrack = document.querySelector(".gallery-track");
-const closeBtn = document.querySelector(".modal-close");
-
-let currentIndex = 0;
-let autoSlide;
-
-document.querySelectorAll("#carouselBanners img").forEach(banner => {
-
-  banner.addEventListener("click", () => {
-
-    modalTitle.textContent = banner.dataset.title;
-    modalDescription.textContent = banner.dataset.description.trim();
-    modalMeta.textContent = banner.dataset.date + " | " + banner.dataset.location;
-
-    /* BOTÓN SIEMPRE VISIBLE SI HAY LINK */
-    if (banner.dataset.link && banner.dataset.link !== "") {
-      modalLink.href = banner.dataset.link;
-      modalLink.textContent = "Ir al formulario de inscripción";
-      modalLink.style.display = "inline-block";
-    } else {
-      modalLink.style.display = "none";
-    }
-
-    /* GALERÍA */
-    galleryTrack.innerHTML = "";
-    const images = banner.dataset.images.split(",");
-
-    images.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src.trim();
-      galleryTrack.appendChild(img);
-    });
-
-    currentIndex = 0;
-    updateGallery();
-    startAutoSlide();
-
-    modal.classList.add("active");
-  });
-
-});
-
-function updateGallery() {
-  galleryTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-}
-
-function startAutoSlide() {
-  clearInterval(autoSlide);
-  autoSlide = setInterval(() => {
-    if (currentIndex < galleryTrack.children.length - 1) {
-      currentIndex++;
-    } else {
-      currentIndex = 0;
-    }
-    updateGallery();
-  }, 4000);
-}
-
-document.querySelector(".gallery-next").addEventListener("click", () => {
-  if (currentIndex < galleryTrack.children.length - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0;
-  }
-  updateGallery();
-});
-
-document.querySelector(".gallery-prev").addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = galleryTrack.children.length - 1;
-  }
-  updateGallery();
-});
-
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("active");
-  clearInterval(autoSlide);
-});
-
-modal.addEventListener("click", e => {
-  if (e.target === modal) {
-    modal.classList.remove("active");
-    clearInterval(autoSlide);
-  }
-});
-</script>
-
-
-
 	<!-- ===== BANNER SLIDER FULL WIDTH ===== -->
 <section class="banner-slider py-5">
 
@@ -538,29 +285,23 @@ modal.addEventListener("click", e => {
 
     <div class="carousel-inner">
 
-      <!-- Slide 1 -->
       <div class="carousel-item active">
         <img src="../assets/imgs/banners/banner_club_de_lectura_corpomemorias.png"
              class="d-block w-100 banner-click"
              data-title="Club de Lectura Comunitario / Lecturas para la Paz y la Memoria Viva"
-             
+
              data-description="
 <p>CorpoMemorias abre un nuevo espacio para encontrarnos a través de la palabra y la memoria.</p>
 
-<p>En el marco de nuestra biblioteca comunitaria, ganadora de la 2ª convocatoria “¡Crece tu biblioteca!” de @makemakelibros, convocamos a niños a partir de los 10 años, jóvenes y adultos a participar en este espacio de encuentro.</p>
+<p>En el marco de nuestra biblioteca comunitaria, ganadora de la 2ª convocatoria “¡Crece tu biblioteca!” de @makemakelibros, convocamos a niños a partir de los 10 años, jóvenes y adultos.</p>
 
-<p>Si deseas crear lazos de participación comunitaria, vivir una actividad extracurricular después de clases, el trabajo o la cotidianidad, te invitamos a unirte a esta bonita iniciativa.</p>
+<p>Será un espacio para leer, conversar y reflexionar sobre la memoria y la resiliencia.</p>
 
-<p>Será un espacio para leer, conversar y reflexionar sobre la memoria, las emociones y la resiliencia desde una mirada sensible y humana.</p>
+<p><strong>La participación es abierta.</strong> No hay cuota obligatoria.</p>
 
-<p><strong>La participación es abierta.</strong> No hay cuota obligatoria. Quien desee podrá realizar un aporte voluntario para apoyar el sostenimiento de la biblioteca comunitaria y las actividades de Corpomemorias.</p>
-
-<p>Porque la palabra también es un acto de encuentro.<br>
-Y la memoria se fortalece cuando la compartimos.</p>
-
-<p>📩 Escríbenos para recibir más información en comentarios o por mensaje directo.</p>
+<p>Porque la palabra también es un acto de encuentro.</p>
 "
-             
+
              data-date="Sábados"
              data-location="Modalidad presencial"
              data-images="../assets/imgs/jovenes_leyendo_corpomemorias.jpg,../assets/imgs/museohuellasdeundesaparecidoportada.jpg"
@@ -569,12 +310,8 @@ Y la memoria se fortalece cuando la compartimos.</p>
              style="cursor:pointer;">
       </div>
 
-      <!-- Slide 2 -->
-      
-
     </div>
 
-    <!-- Flechas -->
     <a class="carousel-control-prev" href="#carouselBanners" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon"></span>
     </a>
@@ -584,24 +321,60 @@ Y la memoria se fortalece cuando la compartimos.</p>
     </a>
 
   </div>
-
 </section>
 <!-- ===== FIN BANNER ===== -->
 
 
+<!-- ===== MODAL CURATORIAL ===== -->
+<div id="modalCuratorial" class="modal-overlay">
+  <div class="modal-container">
+
+    <button class="modal-close">&times;</button>
+
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <p id="modalMeta"></p>
+    </div>
+
+    <div class="modal-content-scroll">
+      <div class="modal-body">
+
+        <div class="modal-text">
+          <div id="modalDescription"></div>
+          <a id="modalLink" target="_blank" class="btn-registro">
+            Ir al registro
+          </a>
+        </div>
+
+        <div class="modal-gallery">
+          <button class="gallery-prev">&#10094;</button>
+          <div class="gallery-track"></div>
+          <button class="gallery-next">&#10095;</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 	
-
-	
-
-
-
-
-	
-
-
 	<!-- About Section -->
 <section id="about">
   <!-- Container -->
