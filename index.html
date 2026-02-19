@@ -359,33 +359,33 @@ Y la memoria se fortalece cuando la compartimos.</p>
       <p id="modalMeta"></p>
     </div>
 
-    <div class="modal-content-scroll">
-      <div class="modal-body">
 
-        <div class="modal-text">
-          <div id="modalDescription"></div>
-          <a id="modalLink" target="_blank" class="btn-registro">
-            Ir al registro
-          </a>
-        </div>
 
-        <div class="modal-gallery">
-          <button class="gallery-prev">&#10094;</button>
-          <div class="gallery-track"></div>
-          <button class="gallery-next">&#10095;</button>
-        </div>
+<div class="modal-content-scroll">
 
-      </div>
-    </div>
+  <div class="modal-gallery">
+    <button class="gallery-prev">&#10094;</button>
+    <div class="gallery-track"></div>
+    <button class="gallery-next">&#10095;</button>
+  </div>
+
+  <div class="modal-text">
+    <div id="modalDescription"></div>
+    <a id="modalLink" target="_blank" class="btn-registro">
+      Ir al registro
+    </a>
+  </div>
+
+</div>
 
   </div>
 </div>
 
 
 
-
 <style>
 
+/* ===== OVERLAY ===== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -404,10 +404,11 @@ Y la memoria se fortalece cuando la compartimos.</p>
   visibility: visible;
 }
 
+/* ===== CONTENEDOR ===== */
 .modal-container {
   background: #fff;
   width: 90%;
-  max-width: 1100px;
+  max-width: 950px;
   max-height: 85vh;
   border-radius: 20px;
   padding: 40px;
@@ -422,6 +423,7 @@ Y la memoria se fortalece cuando la compartimos.</p>
   transform: translateY(0);
 }
 
+/* ===== BOTÓN CERRAR ===== */
 .modal-close {
   position: absolute;
   right: 25px;
@@ -432,35 +434,45 @@ Y la memoria se fortalece cuando la compartimos.</p>
   cursor: pointer;
 }
 
+/* ===== HEADER ===== */
+.modal-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
 .modal-header h2 {
   margin-bottom: 10px;
 }
 
+#modalMeta {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ===== CONTENIDO CON SCROLL ===== */
 .modal-content-scroll {
   overflow-y: auto;
-  margin-top: 20px;
+  margin-top: 25px;
+  padding-right: 10px;
 }
 
-.modal-body {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+/* Scroll elegante */
+.modal-content-scroll::-webkit-scrollbar {
+  width: 6px;
 }
 
-.modal-text {
-  flex: 1 1 400px;
+.modal-content-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
 }
 
-.modal-text p {
-  margin-bottom: 18px;
-  line-height: 1.7;
-  text-align: justify;
-}
-
+/* ===== GALERÍA TIPO ARTÍCULO ===== */
 .modal-gallery {
-  flex: 1 1 400px;
   position: relative;
+  width: 100%;
+  margin-bottom: 35px;
   overflow: hidden;
+  border-radius: 15px;
 }
 
 .gallery-track {
@@ -470,10 +482,11 @@ Y la memoria se fortalece cuando la compartimos.</p>
 
 .gallery-track img {
   width: 100%;
-  border-radius: 15px;
   flex-shrink: 0;
+  border-radius: 15px;
 }
 
+/* Flechas del slider interno */
 .gallery-prev,
 .gallery-next {
   position: absolute;
@@ -485,14 +498,35 @@ Y la memoria se fortalece cuando la compartimos.</p>
   font-size: 20px;
   padding: 8px 12px;
   cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+  background: rgba(0,0,0,0.7);
 }
 
 .gallery-prev { left: 10px; }
 .gallery-next { right: 10px; }
 
+/* ===== TEXTO EDITORIAL ===== */
+.modal-text {
+  width: 100%;
+}
+
+.modal-text p {
+  margin-bottom: 22px;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 16px;
+  color: #333;
+}
+
+/* ===== BOTÓN REGISTRO ===== */
 .btn-registro {
   display: inline-block;
-  margin-top: 25px;
+  margin-top: 30px;
   padding: 14px 28px;
   background: #7b1e1e;
   color: #fff;
@@ -507,13 +541,20 @@ Y la memoria se fortalece cuando la compartimos.</p>
   transform: translateY(-2px);
 }
 
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .modal-body {
-    flex-direction: column;
+  .modal-container {
+    padding: 25px;
+  }
+
+  .modal-text p {
+    font-size: 15px;
   }
 }
 
 </style>
+
+
 
 
 
