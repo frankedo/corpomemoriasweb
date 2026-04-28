@@ -328,7 +328,7 @@ async function cargarPiezas() {
       card.className = 'col-md-4 mb-4';
 
       card.innerHTML = `
-        <div class="card h-100">
+       <div class="card h-100" onclick="verPieza(${pieza.id})" style="cursor:pointer;">
           <img src="${pieza.imagen_principal}" class="card-img-top" alt="${pieza.nombre}">
           <div class="card-body">
             <h5 class="card-title">${pieza.nombre}</h5>
@@ -349,7 +349,37 @@ async function cargarPiezas() {
 cargarPiezas();
 </script>
   
+<script>
+async function verPieza(id) {
+  try {
+    const res = await fetch(`${API_URL}/api/piezas/${id}`);
+    const pieza = await res.json();
 
+    // Título
+    document.getElementById('modalPiezaTitulo').textContent = pieza.nombre;
+
+    // Textos
+    document.getElementById('modalDescripcion').textContent = pieza.descripcion || '';
+    document.getElementById('modalProceso').textContent = pieza.proceso || '';
+    document.getElementById('modalSignificado').textContent = pieza.significado || '';
+
+    // Carrusel
+    const carouselInner = document.getElementById('carouselPiezaInner');
+
+    carouselInner.innerHTML = pieza.imagenes_piezas.map((img, index) => `
+      <div class="carousel-item ${index === 0 ? 'active' : ''}">
+        <img src="${img.url}" class="d-block w-100">
+      </div>
+    `).join('');
+
+    // Mostrar modal
+    $('#modalPieza').modal('show');
+
+  } catch (error) {
+    console.error('Error cargando pieza:', error);
+  }
+}
+</script>
 
 
 
@@ -408,6 +438,48 @@ cargarPiezas();
     </section><!-- End of Section -->
 
    
+
+
+<!-- Modal Piezas -->
+<div class="modal fade" id="modalPieza" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPiezaTitulo"></h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Carrusel -->
+        <div id="carouselPieza" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner" id="carouselPiezaInner"></div>
+
+          <a class="carousel-control-prev" href="#carouselPieza" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+
+          <a class="carousel-control-next" href="#carouselPieza" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+
+        <hr>
+
+        <p id="modalDescripcion"></p>
+        <p id="modalProceso"></p>
+        <p id="modalSignificado"></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 	
 </body>
