@@ -133,6 +133,15 @@
 
 <!-- Inicia museo virtual -->
 
+<section id="piezas" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Textiles de Memoria</h2>
+    <div id="piezas-contenido" class="row"></div>
+  </div>
+</section>
+
+
+
 <!-- Sección de Exposición Itinerante -->
 <section id="exposicion-itinerante" class="py-5">
     <div class="container">
@@ -303,7 +312,42 @@
     </script>
 
 
+<script>
+const API_URL = 'https://supabase-backend-1-g0bt.onrender.com';
 
+async function cargarPiezas() {
+  try {
+    const res = await fetch(`${API_URL}/api/piezas`);
+    const piezas = await res.json();
+
+    const contenedor = document.getElementById('piezas-contenido');
+    contenedor.innerHTML = '';
+
+    piezas.forEach(pieza => {
+      const card = document.createElement('div');
+      card.className = 'col-md-4 mb-4';
+
+      card.innerHTML = `
+        <div class="card h-100">
+          <img src="${pieza.imagen_principal}" class="card-img-top" alt="${pieza.nombre}">
+          <div class="card-body">
+            <h5 class="card-title">${pieza.nombre}</h5>
+            <p class="card-text">${pieza.descripcion || ''}</p>
+          </div>
+        </div>
+      `;
+
+      contenedor.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error('Error cargando piezas:', error);
+  }
+}
+
+// Ejecutar
+cargarPiezas();
+</script>
   
 
 
