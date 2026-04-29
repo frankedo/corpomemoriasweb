@@ -362,6 +362,9 @@ async function verPieza(id) {
     document.getElementById('modalDescripcion').textContent = pieza.descripcion || '';
     document.getElementById('modalProceso').textContent = pieza.proceso || '';
     document.getElementById('modalSignificado').textContent = pieza.significado || '';
+    document.getElementById('modalAutor').textContent = pieza.autor || 'Sin registro';
+    document.getElementById('modalOrigen').textContent = pieza.origen || 'Sin registro';
+    document.getElementById('modalFuente').textContent = pieza.fuente || 'Sin registro';
 
     // Carrusel
     const carouselInner = document.getElementById('carouselPiezaInner');
@@ -472,6 +475,13 @@ async function verPieza(id) {
         <p id="modalDescripcion"></p>
         <p id="modalProceso"></p>
         <p id="modalSignificado"></p>
+
+
+<hr>
+
+<p><strong>👤 Autor:</strong> <span id="modalAutor"></span></p>
+<p><strong>📍 Origen:</strong> <span id="modalOrigen"></span></p>
+<p><strong>📚 Fuente:</strong> <span id="modalFuente"></span></p>
 
       </div>
     </div>
